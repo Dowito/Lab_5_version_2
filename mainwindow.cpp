@@ -13,19 +13,14 @@ MainWindow::MainWindow(QWidget *parent)
     //iniciando personaje
     personaje = new Personaje;
     personaje->setType(1, 0);
-    bloque = new Bloque;
-    bloque->setType(1);
-    bloque->setPos(48,48);
     //agregando elementos a mostrar en pantalla a la escena
     escena->addItem(personaje);
-    escena->addItem(bloque);
     //agregando la escena a graphcisview
     ui->graphicsView->setScene(escena);
 }
 
 MainWindow::~MainWindow()
 {
-    delete bloque;
     delete personaje;
     delete ui;
 }
@@ -41,6 +36,26 @@ void MainWindow::createMap()
                 matrizGame[y][x] = 2;
             }
             else matrizGame[y][x] = 0;
+        }
+    }
+}
+
+void MainWindow::loadMap()
+{
+    Bloque *bloque;
+    for (int y=0; y<sizeMapY; y++) {
+        for (int x=0; x<sizeMapX; x++) {
+            bloque = new Bloque; //creamos un nuevo bloque
+            if (matrizGame[y][x] == 0) { //0 significa que es piso
+                bloque->setSize(sizeGame);
+                bloque->setTypeFloor();
+                bloque->setPos(x*size_sprites*sizeGame,y*size_sprites*sizeGame);
+                bloques.push_back(bloque);
+                escena->addItem(bloque);
+            }
+            else { //los demas bloques se crearan segun el type:
+                matrizGame[y][x] = 2;
+            }
         }
     }
 }

@@ -4,8 +4,10 @@
 #include <QGraphicsScene> //Para mostrar objetos enel graphicsview por medio de la escena
 #include <QKeyEvent> //para leer las señales de las teclas
 #include <QTimer> //temporalizador
+#include <QVector>
 #include <personaje.h>
 #include <bloque.h>
+
 #define sizeMapX 31
 #define sizeMapY 13
 #define sizeGame 1
@@ -23,12 +25,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private:
     void createMap();
+    void loadMap();
+
+private:
     bool even_aleatorio(float p);
 
+    QVector<Bloque *> bloques;
     short matrizGame[sizeMapX][sizeMapY];
-    Bloque *bloque;
     Personaje *personaje;
     QTimer *time;
     QGraphicsScene *escena;
