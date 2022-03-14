@@ -11,11 +11,14 @@ class Objeto : public QObject, public QGraphicsPixmapItem
 public:
     Objeto();
 
+    void setSize(unsigned short size);
+
     void setType(int typeX = 0, int typeY = 0);
 
 protected:
     QPixmap sprite; //aqui se guarda, por defecto, los sprites que corresponden a cada objeto.
     QPixmap type; //se crearan funciones que solo cojan la parte de sprite que se quiere ver en pantalla
+    unsigned short size;
     unsigned short width;
     unsigned short height;
 };

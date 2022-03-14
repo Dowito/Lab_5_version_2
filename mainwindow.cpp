@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     personaje = new Personaje;
     personaje->setType(1, 0);
     bloque = new Bloque;
-    bloque->setType(2);
+    bloque->setType(1);
     bloque->setPos(48,48);
     //agregando elementos a mostrar en pantalla a la escena
     escena->addItem(personaje);
