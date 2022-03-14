@@ -8,10 +8,10 @@
 #include <personaje.h>
 #include <bloque.h>
 
-#define sizeMapX 31
-#define sizeMapY 13
+#define sizeMapX 15
+#define sizeMapY 10
 #define sizeGame 1
-#define dificult 0.1
+#define dificult 0.5
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

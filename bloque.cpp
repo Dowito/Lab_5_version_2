@@ -8,5 +8,5 @@ Bloque::Bloque()
 
 void Bloque::setTypeFloor()
 {
-    setPixmap(floor);
+    setPixmap(floor.scaled(this->size, this->size));
 }
