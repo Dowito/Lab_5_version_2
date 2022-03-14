@@ -13,8 +13,12 @@ MainWindow::MainWindow(QWidget *parent)
     //iniciando personaje
     personaje = new Personaje;
     personaje->setType(1, 0);
+    bloque = new Bloque;
+    bloque->setType(2);
+    bloque->setPos(48,48);
     //agregando elementos a mostrar en pantalla a la escena
     escena->addItem(personaje);
+    escena->addItem(bloque);
     //agregando la escena a graphcisview
     ui->graphicsView->setScene(escena);
 }

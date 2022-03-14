@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/images">
         <file>Sprites/personaje.png</file>
+        <file>Sprites/Bloques.png</file>
+        <file>Sprites/piso.png</file>
     </qresource>
 </RCC>

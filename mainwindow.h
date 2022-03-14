@@ -8,6 +8,7 @@
 #include <QString>
 
 #include <personaje.h>
+#include <bloque.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,6 +23,7 @@ public:
     ~MainWindow();
 
 private:
+    Bloque *bloque;
     Personaje *personaje;
     QTimer *time;
     QGraphicsScene *escena;
