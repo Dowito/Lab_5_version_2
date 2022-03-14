@@ -25,7 +25,31 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    delete bloque;
     delete personaje;
     delete ui;
+}
+
+void MainWindow::createMap()
+{
+    for (int y=0; y<sizeMapY; y++) {
+        for (int x=0; x<sizeMapX; x++) {
+            if (y==0 || x==0 || y==sizeMapY-1 || x==sizeMapX || (x%2==0 && y%2==0)) { //imprimir los bloques no destructible
+                matrizGame[y][x] = 1;
+            }
+            else if (even_aleatorio(dificult)) { //imprimir destruibles
+                matrizGame[y][x] = 2;
+            }
+            else matrizGame[y][x] = 0;
+        }
+    }
+}
+
+bool MainWindow::even_aleatorio(float p)
+{
+    int num_rand = rand(),x;
+    x = p*(RAND_MAX+1)-1;
+
+    return num_rand<=x;
 }
 
