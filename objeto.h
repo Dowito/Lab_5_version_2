@@ -5,13 +5,13 @@
 
 #define size_sprites 48
 
-class Objeto : public QObject, QGraphicsPixmapItem
+class Objeto : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
     Objeto();
 
-    void setType(int typeX, int typeY);
+    void setType(int typeX = 0, int typeY = 0);
 
 protected:
     QPixmap sprite; //aqui se guarda, por defecto, los sprites que corresponden a cada objeto.

@@ -7,7 +7,7 @@
 #include <QTimer>
 #include <QString>
 
-#include <objeto.h>
+#include <personaje.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,6 +22,7 @@ public:
     ~MainWindow();
 
 private:
+    Personaje *personaje;
     QTimer *time;
     QGraphicsScene *escena;
     Ui::MainWindow *ui;

@@ -10,14 +10,18 @@ MainWindow::MainWindow(QWidget *parent)
     //inicializando la escena
     escena = new QGraphicsScene;
     escena->setSceneRect(0,0,ui->graphicsView->width()-2,ui->graphicsView->height()-2);
+    //iniciando personaje
+    personaje = new Personaje;
+    personaje->setType(1, 0);
     //agregando elementos a mostrar en pantalla a la escena
-    //escena->addItem(bloque);
+    escena->addItem(personaje);
     //agregando la escena a graphcisview
-    //ui->display->setScene(escena);
+    ui->graphicsView->setScene(escena);
 }
 
 MainWindow::~MainWindow()
 {
+    delete personaje;
     delete ui;
 }
 
