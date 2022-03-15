@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     //iniciando personaje
     personaje = new Personaje;
     personaje->setSize(sizeGame);
-    personaje->setType(1, 0);
+    personaje->setFrame(1, 0);
     //agregando elementos a mostrar en pantalla a la escena
     escena->addItem(personaje);
     //agregando la escena a graphcisview

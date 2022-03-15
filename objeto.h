@@ -13,7 +13,7 @@ public:
 
     void setSize(unsigned short size);
 
-    void setType(int typeX = 0, int typeY = 0);
+    void setFrame(int typeX = 0, int typeY = 0);
 
 protected:
     QPixmap sprite; //aqui se guarda, por defecto, los sprites que corresponden a cada objeto.

@@ -3,5 +3,9 @@
         <file>Sprites/personaje.png</file>
         <file>Sprites/Bloques.png</file>
         <file>Sprites/piso.png</file>
+        <file>Sprites/Enemigos.png</file>
+        <file>Sprites/demonio.png</file>
+        <file>Sprites/hombre_lobo.png</file>
+        <file>Sprites/furro.png</file>
     </qresource>
 </RCC>

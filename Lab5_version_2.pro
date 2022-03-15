@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     bloque.cpp \
+    enemigo.cpp \
     main.cpp \
     mainwindow.cpp \
     objeto.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
 
 HEADERS += \
     bloque.h \
+    enemigo.h \
     mainwindow.h \
     objeto.h \
     personaje.h
