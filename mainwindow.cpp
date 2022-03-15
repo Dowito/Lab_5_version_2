@@ -13,18 +13,32 @@ MainWindow::MainWindow(QWidget *parent)
     createMap();
     loadMap();
 
-    //connect(time, SIGNAL(timeout()), this, SLOT(moveEnemigo()));
-    //connect(time, &QTimer::timeout, this, &Juego::moveEnemigo);
-    //QObject::connect(&timer, &QTimer::timeout, &scene, &QGraphicsScene::advance);
-    //iniciando personaje
+
+
+    timer = new QTimer;
 
     enemigo[0] = new Enemigo (1);
     enemigo[0]->setSize(sizeGame);
     enemigo[0]->setFrame(1,1);
     enemigo[0]->setPos(3*48,1*48);
 
+    enemigo[1] = new Enemigo (2);
+    connect(timer, &QTimer::timeout, enemigo[1], &Enemigo::move);
+    enemigo[1]->setSize(sizeGame);
+    enemigo[1]->setFrame(1,1);
+    enemigo[1]->setPos(3*48,3*48);
+
+    //connect(time, &QTimer::timeout, this, &Juego::moveEnemigo);
+    //QObject::connect(&timer, SIGNAL(timeout()), &scene, SLOT(advance()));
+    //QObject::connect(&timer, &QTimer::timeout, &scene, &QGraphicsScene::advance);
+    //iniciando personaje
     escena->addItem(enemigo[0]);
+    escena->addItem(enemigo[1]);
+
+    connect(timer, &QTimer::timeout, enemigo[0], &Enemigo::move);
     ui->graphicsView->setScene(escena);
+
+    timer->start(100);
 }
 
 MainWindow::~MainWindow()

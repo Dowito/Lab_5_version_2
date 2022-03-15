@@ -9,9 +9,15 @@
  */
 class Enemigo : public Objeto
 {
+
 public:
     Enemigo() {};
     Enemigo(short type);
+
+    short getVel() const;
+
+public slots:
+    void move(); //tiene toda la logica de movimiento
 
 private:
     short vel;

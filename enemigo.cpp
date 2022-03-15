@@ -15,3 +15,13 @@ Enemigo::Enemigo(short type)
         vel = 5;
     }
 }
+
+void Enemigo::move()
+{
+    setX(x()+vel); //posicion actual en x y la cambia en vel.
+}
+
+short Enemigo::getVel() const
+{
+    return vel;
+}

@@ -35,7 +35,7 @@ private:
     Bloque *bloques[sizeMapY][sizeMapX];
     short matrizGame[sizeMapY][sizeMapX];
     Personaje *personaje;
-    QTimer *time;
+    QTimer *timer;
     QGraphicsScene *escena;
     Ui::MainWindow *ui;
 
