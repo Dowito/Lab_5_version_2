@@ -12,11 +12,11 @@ MainWindow::MainWindow(QWidget *parent)
     createMap();
     loadMap();
     //iniciando personaje
-    personaje = new Personaje;
-    personaje->setSize(sizeGame);
-    personaje->setFrame(1, 0);
-    //agregando elementos a mostrar en pantalla a la escena
-    escena->addItem(personaje);
+    enemigo[0] = new Enemigo (1);
+    enemigo[0]->setSize(sizeGame);
+    enemigo[0]->setFrame(1,1);
+    enemigo[0]->setPos(3*48,1*48);
+    escena->addItem(enemigo[0]);
     //agregando la escena a graphcisview
     ui->graphicsView->setScene(escena);
 }
@@ -33,7 +33,9 @@ void MainWindow::createMap()
 {
     for (int y=0; y<sizeMapY; y++) {
         for (int x=0; x<sizeMapX; x++) {
-            if (x==0 || y==0 || x==sizeMapX-1 || y==sizeMapY-1 || (x%2==0 && y%2==0)) { //imprimir los bloques no destructibles
+            if ((x==1 && y==1) || (x==2 && y==1) || (x==1 && y==2)) matrizGame[y][x] = 9;
+
+            else if (x==0 || y==0 || x==sizeMapX-1 || y==sizeMapY-1 || (x%2==0 && y%2==0)) { //imprimir los bloques no destructibles
                 matrizGame[y][x] = 0; //typeX=0 corresponde al bloque
             }
             else if (even_aleatorio(dificult)) { //imprimir destruibles
@@ -48,13 +50,19 @@ void MainWindow::loadMap()
 {
     for (int y=0; y<sizeMapY; y++) {
         for (int x=0; x<sizeMapX; x++) {
+            if(x==1 && y==1) {
+                personaje = new Personaje;
+                personaje->setSize(sizeGame);
+                personaje->setFrame(1);
+                personaje->setPos(1*48,1*48);
+            }
             bloques[y][x] = new Bloque;
             bloques[y][x]->setSize(sizeGame);
             bloques[y][x]->setType(matrizGame[y][x]); //lo inicio segun el tipo que me de la matriz
             bloques[y][x]->setPos(x*size_sprites*sizeGame, y*size_sprites*sizeGame); //con hacemos una cuadicula, en al que cada casilla sera del tamaño de los sprites
             escena->addItem(bloques[y][x]);
         }
-    }
+    }escena->addItem(personaje);//Aqui pa que aparesca
 }
 
 bool MainWindow::even_aleatorio(float p)

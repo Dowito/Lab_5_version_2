@@ -7,7 +7,7 @@
 #include <QVector>
 #include <personaje.h>
 #include <bloque.h>
-
+#include <enemigo.h>
 #define sizeMapX 15 //Solo numero impares
 #define sizeMapY 11 //Solo numero impares
 #define sizeGame 1
@@ -31,6 +31,7 @@ public:
 private:
     bool even_aleatorio(float p);
 
+    Enemigo *enemigo[3];
     Bloque *bloques[sizeMapY][sizeMapX];
     short matrizGame[sizeMapY][sizeMapX];
     Personaje *personaje;
