@@ -8,8 +8,8 @@
 #include <personaje.h>
 #include <bloque.h>
 
-#define sizeMapX 15
-#define sizeMapY 11
+#define sizeMapX 15 //Solo numero impares
+#define sizeMapY 11 //Solo numero impares
 #define sizeGame 1
 #define dificult 0.5
 

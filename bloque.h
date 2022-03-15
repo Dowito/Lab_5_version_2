@@ -12,6 +12,8 @@ class Bloque : public Objeto
 {
 public:
     Bloque();
+
+    void setType(int type);
     /*!
      * \brief setTypeFloor sprite de piso.
      */

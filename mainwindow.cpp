@@ -46,25 +46,13 @@ void MainWindow::createMap()
 
 void MainWindow::loadMap()
 {
-    Bloque *bloque;
     for (int y=0; y<sizeMapY; y++) {
         for (int x=0; x<sizeMapX; x++) {
-            bloque = new Bloque; //creamos un nuevo bloque en cada ciclo
-            if (matrizGame[y][x] != 9) { //si no es piso
-                bloque->setSize(sizeGame);
-                bloque->setType(matrizGame[y][x]);
-                bloque->setPos(x*size_sprites*sizeGame, y*size_sprites*sizeGame); //con hacemos una cuadicula, en al que cada casilla sera del tamaño de los sprites
-                bloques.push_back(bloque);
-                escena->addItem(bloque);
-                //ui->graphicsView->setScene(escena); //igualmente al final se monta la escena
-            }
-            else { //piso
-                bloque->setSize(sizeGame);
-                bloque->setTypeFloor();
-                bloque->setPos(x*size_sprites*sizeGame, y*size_sprites*sizeGame);
-                escena->addItem(bloque);
-                //ui->graphicsView->setScene(escena);
-            }
+            bloques[y][x] = new Bloque;
+            bloques[y][x]->setSize(sizeGame);
+            bloques[y][x]->setType(matrizGame[y][x]); //lo inicio segun el tipo que me de la matriz
+            bloques[y][x]->setPos(x*size_sprites*sizeGame, y*size_sprites*sizeGame); //con hacemos una cuadicula, en al que cada casilla sera del tamaño de los sprites
+            escena->addItem(bloques[y][x]);
         }
     }
 }
