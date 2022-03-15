@@ -6,18 +6,24 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->graphicsView->setWindowTitle(QT_TRANSLATE_NOOP(QGraphicsView, "Bombersouls"));
     ui->graphicsView->setGeometry(0,0,width(),height());
     escena = new QGraphicsScene;
     escena->setSceneRect(0,0,ui->graphicsView->width()-2,ui->graphicsView->height()-2);
     createMap();
     loadMap();
+
+    //connect(time, SIGNAL(timeout()), this, SLOT(moveEnemigo()));
+    //connect(time, &QTimer::timeout, this, &Juego::moveEnemigo);
+    //QObject::connect(&timer, &QTimer::timeout, &scene, &QGraphicsScene::advance);
     //iniciando personaje
+
     enemigo[0] = new Enemigo (1);
     enemigo[0]->setSize(sizeGame);
     enemigo[0]->setFrame(1,1);
     enemigo[0]->setPos(3*48,1*48);
+
     escena->addItem(enemigo[0]);
-    //agregando la escena a graphcisview
     ui->graphicsView->setScene(escena);
 }
 
@@ -62,7 +68,8 @@ void MainWindow::loadMap()
             bloques[y][x]->setPos(x*size_sprites*sizeGame, y*size_sprites*sizeGame); //con hacemos una cuadicula, en al que cada casilla sera del tamaño de los sprites
             escena->addItem(bloques[y][x]);
         }
-    }escena->addItem(personaje);//Aqui pa que aparesca
+    }
+    escena->addItem(personaje);//Aqui pa que aparesca
 }
 
 bool MainWindow::even_aleatorio(float p)
