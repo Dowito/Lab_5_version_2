@@ -13,7 +13,7 @@ class Bloque : public Objeto
 public:
     Bloque();
     /*!
-     * \brief setType sprite de piso.
+     * \brief setTypeFloor sprite de piso.
      */
     void setTypeFloor();
 private:

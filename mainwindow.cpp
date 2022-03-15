@@ -31,15 +31,15 @@ MainWindow::~MainWindow()
 
 void MainWindow::createMap()
 {
-    for (int x=0; x<sizeMapX; x++) {
-        for (int y=0; y<sizeMapY; y++) {
+    for (int y=0; y<sizeMapY; y++) {
+        for (int x=0; x<sizeMapX; x++) {
             if (x==0 || y==0 || x==sizeMapX-1 || y==sizeMapY-1 || (x%2==0 && y%2==0)) { //imprimir los bloques no destructibles
-                matrizGame[x][y] = 0; //typeX=0 corresponde al bloque
+                matrizGame[y][x] = 0; //typeX=0 corresponde al bloque
             }
             else if (even_aleatorio(dificult)) { //imprimir destruibles
-                matrizGame[x][y] = 1; //typeX=1 corresponde al ladrillo
+                matrizGame[y][x] = 1; //typeX=1 corresponde al ladrillo
             }
-            else matrizGame[x][y] = 9; //cualquier otra cosa corresponde al piso
+            else matrizGame[y][x] = 9; //cualquier otra cosa corresponde al piso
         }
     }
 }
@@ -47,12 +47,12 @@ void MainWindow::createMap()
 void MainWindow::loadMap()
 {
     Bloque *bloque;
-    for (int x=0; x<sizeMapX; x++) {
-        for (int y=0; y<sizeMapY; y++) {
+    for (int y=0; y<sizeMapY; y++) {
+        for (int x=0; x<sizeMapX; x++) {
             bloque = new Bloque; //creamos un nuevo bloque en cada ciclo
-            if (matrizGame[x][y] != 9) { //si no es piso
+            if (matrizGame[y][x] != 9) { //si no es piso
                 bloque->setSize(sizeGame);
-                bloque->setType(matrizGame[x][y]);
+                bloque->setType(matrizGame[y][x]);
                 bloque->setPos(x*size_sprites*sizeGame, y*size_sprites*sizeGame); //con hacemos una cuadicula, en al que cada casilla sera del tamaño de los sprites
                 bloques.push_back(bloque);
                 escena->addItem(bloque);

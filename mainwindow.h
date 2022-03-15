@@ -9,7 +9,7 @@
 #include <bloque.h>
 
 #define sizeMapX 15
-#define sizeMapY 10
+#define sizeMapY 11
 #define sizeGame 1
 #define dificult 0.5
 
@@ -32,7 +32,7 @@ private:
     bool even_aleatorio(float p);
 
     QVector<Bloque *> bloques;
-    short matrizGame[sizeMapX][sizeMapY];
+    short matrizGame[sizeMapY][sizeMapX];
     Personaje *personaje;
     QTimer *time;
     QGraphicsScene *escena;
