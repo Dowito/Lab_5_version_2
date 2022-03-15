@@ -31,7 +31,7 @@ public:
 private:
     bool even_aleatorio(float p);
 
-    QVector<Bloque *> bloques;
+    Bloque *bloques[sizeMapY][sizeMapX];
     short matrizGame[sizeMapY][sizeMapX];
     Personaje *personaje;
     QTimer *time;
