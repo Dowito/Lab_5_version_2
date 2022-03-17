@@ -6,8 +6,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->graphicsView->setWindowTitle(QT_TRANSLATE_NOOP(QGraphicsView, "Bombersouls"));
-    ui->graphicsView->setGeometry(0,0,width(),height());
+    setGeometry(0,0,48*sizeMapX*sizeGame,48*sizeMapY*sizeGame+2*48);
+    ui->graphicsView->setGeometry(0,0,width(),height()-2*48);
+    ui->VIDAS->setGeometry(1*48*sizeGame,12*48*sizeGame,51,20);
     escena = new QGraphicsScene;
     escena->setSceneRect(0,0,ui->graphicsView->width()-2,ui->graphicsView->height()-2);
     createMap();
