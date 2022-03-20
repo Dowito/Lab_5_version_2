@@ -26,3 +26,8 @@ void Objeto::setVel(short newVel)
 {
     vel = newVel;
 }
+
+void Objeto::tryMove()
+{
+
+}

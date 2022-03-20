@@ -18,6 +18,8 @@ public:
     short getVel() const;
     void setVel(short newVel);
 
+    void tryMove();
+
 protected:
     QPixmap sprite; //aqui se guarda, por defecto, los sprites que corresponden a cada objeto.
     QPixmap type; //se crearan funciones que solo cojan la parte de sprite que se quiere ver en pantalla
