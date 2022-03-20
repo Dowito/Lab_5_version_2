@@ -122,12 +122,10 @@ Asegurarme que si se haya genera una llave y una puerta.\highlight1\par
 {\pntext\f1\'B7\tab}temporalizador: tiempo que se demoran en explotar\par
 {\pntext\f1\'B7\tab}Interacciones:\par
 
-\pard 
-{\pntext\f0 b.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pnlcltr{\pntxta.}}
-\fi-360\li1080\sa200\sl276\slmult1 Jugador.\par
-{\pntext\f0 c.\tab}Bloques destruibles.\par
-{\pntext\f0 d.\tab}Enemigos.\par
-{\pntext\f0 e.\tab}Explosion bomba\par
+\pard\fi-360\li1080\sa200\sl276\slmult1 b.\tab Jugador.\par
+c.\tab Bloques destruibles.\par
+d.\tab Enemigos.\par
+e.\tab Explosion bomba\par
 
 \pard\sa200\sl276\slmult1\b Explosion Bombas:\par
 \highlight1\b0 Puede ser mejor que explosion solo sea un estado de la bomba. una bomba al explotar pasa al estado "explotion" y cambia su forma de interacinar con el mundo.\highlight0\par
@@ -176,16 +174,13 @@ Se inicia por defecto en false, al igual que los aumentos, son drop de los bloqu
 {\pntext\f0 b.\tab}explosio. sale la muerta de la puerta.\par
 
 \pard\sa200\sl276\slmult1\b Caracter:\par
-
-\pard\sa200\sl276\slmult1\b0 un numero seria un objeto, que puede tomar el sprite de un numero del 0 al 9.\par
+\b0 un numero seria un objeto, que puede tomar el sprite de un numero del 0 al 9.\par
 un caracter son objetos que puede tomar el sprite de cualquier letra o caracter. \par
 \highlight4 Seria un objeto caracter, que tenga sprites de numeros, letra o cualquier caracter.\par
-
-\pard\sa200\sl276\slmult1\highlight0 No tiene ninguna caracteristica, simplement es un objeto que se va a mostrar en pantalla, osea que solo tiene sprite y da igual si tiene area.\par
+\highlight0 No tiene ninguna caracteristica, simplement es un objeto que se va a mostrar en pantalla, osea que solo tiene sprite y da igual si tiene area.\par
 no veo necesario crear ua clases para esto, en si, podria tratarce coom un objeto de lo mas general, que slo se inicia con su sprite y posicion.\par
 \b Nivel:\b0\par
-
-\pard\sa200\sl276\slmult1 El escenario completa no cabe dentro de la escena completa, asi que toca ir mostrando dia pedazos. por eso interactara con el jugador, que el usuario siempre se vea en pantalla\par
+El escenario completa no cabe dentro de la escena completa, asi que toca ir mostrando dia pedazos. por eso interactara con el jugador, que el usuario siempre se vea en pantalla\par
 El escenario se inicia ubicando los bloques indestructibles por defecto, luego en lo demas espacios, se iran ubicando aleatoriamente los bloques destructibles, con la condicion de que no encierren al jugador en un area donde no pueda explotar una bomba sin morir.\par
 
 \pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1 Interacciones:\par
@@ -235,6 +230,12 @@ Si se choca con un enemigo o una explosion, el estado del jugador pasara a ser m
 \fi-360\li1080\sa200\sl276\slmult1 timer = 1s, posicion  +10: da brincos. \highlight4 quizas sea aceptable\highlight0\par
 {\pntext\f0 b.\tab}timer=1s, posicion +1: demaciado lento.\par
 {\pntext\f0 c.\tab}timer=100s, queda decente apartir de +3\par
+
+\pard\sa200\sl276\slmult1\par
+Definir todas las clases con la propiedad de la matriz.\par
+-la puerta se generara en un bloque, la posicion puede ser generada apartir de un x y y aleatorio asegurando que se generen en un bloque, los bloques solo estan en posiciones pares. ais que garantizar que el x y y sean pares es suficiente\par
+ver funcion singleshot.\par
+ver funcion collidewithitem\par
 
 \pard\sa200\sl276\slmult1\par
 \par
