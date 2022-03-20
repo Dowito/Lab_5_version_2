@@ -8,6 +8,8 @@
 #include <personaje.h>
 #include <bloque.h>
 #include <enemigo.h>
+#include <QKeyEvent>
+
 #define sizeMapX 15 //Solo numero impares
 #define sizeMapY 11 //Solo numero impares
 #define sizeGame 1
@@ -24,7 +26,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+    void keyPressEvent(QKeyEvent *i);
     void createMap();
     void loadMap();
 

@@ -50,6 +50,22 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::keyPressEvent(QKeyEvent *i)
+{
+    if (i->key() == Qt::Key_D) {
+        personaje->setX(personaje->x()+personaje->getVel());
+    }
+    else if (i->key()  == Qt::Key_A) {
+        personaje->setX(personaje->x()-personaje->getVel());
+    }
+    else if (i->key() == Qt::Key_W) {
+        personaje->setY(personaje->y()-personaje->getVel());
+    }
+    else if (i->key() == Qt::Key_S) {
+        personaje->setY(personaje->y()+personaje->getVel());
+    }
+}
+
 void MainWindow::createMap()
 {
     for (int y=0; y<sizeMapY; y++) {

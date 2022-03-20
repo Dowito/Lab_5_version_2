@@ -19,6 +19,7 @@ SOURCES += \
 HEADERS += \
     bloque.h \
     enemigo.h \
+    macros.h \
     mainwindow.h \
     objeto.h \
     personaje.h

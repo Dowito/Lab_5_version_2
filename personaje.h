@@ -1,7 +1,9 @@
 #ifndef PERSONAJE_H
 #define PERSONAJE_H
 
+#include <macros.h>
 #include <objeto.h>
+
 /*!
  * \brief The Personaje class
  * Types:
@@ -18,6 +20,9 @@ class Personaje : public Objeto
 {
 public:
     Personaje(); //cargamos el sprite por difecto en el constructor
+
+private:
+
 };
 
 #endif // PERSONAJE_H
