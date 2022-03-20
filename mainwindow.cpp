@@ -93,6 +93,7 @@ void MainWindow::loadMap()
         for (int x=0; x<sizeMapX; x++) {
             if(x==1 && y==1) {
                 personaje = new Personaje;
+                personaje->matrizGame = matrizGame; //Le paso la matriz al personaje
                 personaje->setSize(sizeGame);
                 personaje->setFrame(1);
                 personaje->setPos(1*48,1*48);
@@ -104,7 +105,7 @@ void MainWindow::loadMap()
             escena->addItem(bloques[y][x]);
         }
     }
-    escena->addItem(personaje);//Aqui pa que aparesca
+    escena->addItem(personaje);//Aqui pa que aparesca encima de los bloques y no alreves.
 }
 
 bool MainWindow::even_aleatorio(float p)

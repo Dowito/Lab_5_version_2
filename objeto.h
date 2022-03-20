@@ -18,7 +18,8 @@ public:
     short getVel() const;
     void setVel(short newVel);
 
-    //void tryMove(short direction);
+    void tryMove(short direction);
+    int **matrizGame;
 
 protected:
     QPixmap sprite; //aqui se guarda, por defecto, los sprites que corresponden a cada objeto.

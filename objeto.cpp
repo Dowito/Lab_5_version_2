@@ -26,7 +26,7 @@ void Objeto::setVel(short newVel)
 {
     vel = newVel;
 }
-/*
+
 void Objeto::tryMove(short direction)
 {
     //hacia la derecha
@@ -43,4 +43,3 @@ void Objeto::tryMove(short direction)
         break;
     }
 }
-*/
