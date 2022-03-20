@@ -68,6 +68,10 @@ void MainWindow::keyPressEvent(QKeyEvent *i)
 
 void MainWindow::createMap()
 {
+    matrizGame = new int *[sizeMapY];
+    for (short i = 0; i<sizeMapY; i++) {
+        matrizGame[i] = new int [sizeMapX];
+    }
     for (int y=0; y<sizeMapY; y++) {
         for (int x=0; x<sizeMapX; x++) {
             if ((x==1 && y==1) || (x==2 && y==1) || (x==1 && y==2)) matrizGame[y][x] = 9;

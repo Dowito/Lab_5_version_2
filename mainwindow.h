@@ -35,7 +35,7 @@ private:
 
     Enemigo *enemigo[3];
     Bloque *bloques[sizeMapY][sizeMapX];
-    short matrizGame[sizeMapY][sizeMapX];
+    int **matrizGame;
     Personaje *personaje;
     QTimer *timer;
     QGraphicsScene *escena;
