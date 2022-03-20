@@ -18,7 +18,7 @@ public:
     short getVel() const;
     void setVel(short newVel);
 
-    void tryMove();
+    void tryMove(short direction);
 
 protected:
     QPixmap sprite; //aqui se guarda, por defecto, los sprites que corresponden a cada objeto.

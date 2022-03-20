@@ -27,7 +27,19 @@ void Objeto::setVel(short newVel)
     vel = newVel;
 }
 
-void Objeto::tryMove()
+void Objeto::tryMove(short direction)
 {
+    //hacia la derecha
+    switch (direction) {
+    case 0: //Abajo
+        int mY = y()+vel;
+        int mX1 = x(); //se revisa la ezquina mas a la izquierda de la hitbox
+        int mX2 = x()+size; //se revisa la ezquina mas la aderecha de la hitbox
+        if ([y()+vel][x()] != 9 && [y()+vel][x()+size] != 9) {
 
+        }
+        break;
+    default:
+        break;
+    }
 }
