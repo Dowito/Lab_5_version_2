@@ -1,7 +1,6 @@
 #ifndef PERSONAJE_H
 #define PERSONAJE_H
 
-#include <macros.h>
 #include <objeto.h>
 
 /*!

@@ -2,7 +2,7 @@
 #define OBJETO_H
 #include <QObject>
 #include <QGraphicsPixmapItem>
-
+#include <macros.h>
 #define size_sprites 48
 
 class Objeto : public QObject, public QGraphicsPixmapItem
@@ -19,6 +19,7 @@ public:
     void setVel(short newVel);
 
     void tryMove(short direction);
+
     int **matrizGame;
 
 protected:

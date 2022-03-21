@@ -9,11 +9,8 @@
 #include <bloque.h>
 #include <enemigo.h>
 #include <QKeyEvent>
+#include <macros.h>
 
-#define sizeMapX 15 //Solo numero impares
-#define sizeMapY 11 //Solo numero impares
-#define sizeGame 1
-#define dificult 0.5
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

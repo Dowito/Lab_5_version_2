@@ -52,18 +52,20 @@ MainWindow::~MainWindow()
 
 void MainWindow::keyPressEvent(QKeyEvent *i)
 {
-    if (i->key() == Qt::Key_D) {
-        personaje->setX(personaje->x()+personaje->getVel());
-    }
+    if (i->key() == Qt::Key_S) {
+            personaje->tryMove(0);
+        }
+
     else if (i->key()  == Qt::Key_A) {
-        personaje->setX(personaje->x()-personaje->getVel());
+        personaje->tryMove(1);
+    }
+    else if (i->key() == Qt::Key_D) {
+        personaje->tryMove(2);
     }
     else if (i->key() == Qt::Key_W) {
-        personaje->setY(personaje->y()-personaje->getVel());
+        personaje->tryMove(3);//personaje->setY(personaje->y()-personaje->getVel());
     }
-    else if (i->key() == Qt::Key_S) {
-        personaje->setY(personaje->y()+personaje->getVel());
-    }
+
 }
 
 void MainWindow::createMap()
