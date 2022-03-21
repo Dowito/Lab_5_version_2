@@ -27,7 +27,7 @@ void Objeto::setVel(short newVel)
     vel = newVel;
 }
 
-void Objeto::tryMove(short direction)
+bool Objeto::tryMove(short direction)
 {
     static int piso = 9;
     if(direction == 0){//Abajo
@@ -40,9 +40,9 @@ void Objeto::tryMove(short direction)
         int mX2 = ezXD/size;
         if (matrizGame[mY][mX1] == piso && matrizGame[mY][mX2] == piso) {
             setY(y()+vel);
-            return;
+            return true;
         }
-        else return;
+        else return false;
     }
     else if(direction == 1){ //Izquierda
         int ezX = x();
@@ -54,9 +54,9 @@ void Objeto::tryMove(short direction)
         int mY2 = ezYI/size;
         if (matrizGame[mY1][mX] == piso && matrizGame[mY2][mX] == piso) {
             setX(x()-vel);
-            return;
+            return true;
         }
-        else return;
+        else return false;
     }
     else if (direction == 2) { //Derecha
         int ezX = x()+size_sprites*sizeGame-1;
@@ -68,9 +68,9 @@ void Objeto::tryMove(short direction)
         int mY2 = ezYI/size;
         if (matrizGame[mY1][mX] == piso && matrizGame[mY2][mX] == piso) {
             setX(x()+vel);
-            return;
+            return true;
         }
-        else return;
+        else return false;
     }
     if(direction == 3){//Arriba
         int ezY = y();
@@ -82,9 +82,9 @@ void Objeto::tryMove(short direction)
         int mX2 = ezXD/size;
         if (matrizGame[mY][mX1] == piso && matrizGame[mY][mX2] == piso) {
             setY(y()-vel);
-            return;
+            return true;
         }
-        else return;
+        else return false;
     }
 }
 

@@ -21,7 +21,7 @@ public:
     int **getMatrizGame() const;
     void setMatrizGame(int **newMatrizGame);
 
-    void tryMove(short direction);
+    bool tryMove(short direction);
 
 protected:
     int **matrizGame;
