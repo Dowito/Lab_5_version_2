@@ -18,5 +18,5 @@ Enemigo::Enemigo(short type)
 
 void Enemigo::move()
 {
-    tryMove(1); //posicion actual en x y la cambia en vel.
+    tryMove(2);//setX(x()+vel); //posicion actual en x y la cambia en vel.
 }

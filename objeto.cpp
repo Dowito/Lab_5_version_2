@@ -87,3 +87,13 @@ void Objeto::tryMove(short direction)
         else return;
     }
 }
+
+int **Objeto::getMatrizGame() const
+{
+    return matrizGame;
+}
+
+void Objeto::setMatrizGame(int **newMatrizGame)
+{
+    matrizGame = newMatrizGame;
+}

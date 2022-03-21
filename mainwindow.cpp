@@ -21,13 +21,13 @@ MainWindow::MainWindow(QWidget *parent)
     enemigo[0] = new Enemigo (1);
     enemigo[0]->setSize(sizeGame);
     enemigo[0]->setFrame(1,1);
-    enemigo[0]->setPos(3*48,1*48);
+    enemigo[0]->setPos(4*48,1*48);
 
     enemigo[1] = new Enemigo (2);
     connect(timer, &QTimer::timeout, enemigo[1], &Enemigo::move);
     enemigo[1]->setSize(sizeGame);
     enemigo[1]->setFrame(1,1);
-    enemigo[1]->setPos(3*48,3*48);
+    enemigo[1]->setPos(4*48,3*48);
 
     //connect(time, &QTimer::timeout, this, &Juego::moveEnemigo);
     //QObject::connect(&timer, SIGNAL(timeout()), &scene, SLOT(advance()));
@@ -95,7 +95,7 @@ void MainWindow::loadMap()
         for (int x=0; x<sizeMapX; x++) {
             if(x==1 && y==1) {
                 personaje = new Personaje;
-                personaje->matrizGame = matrizGame; //Le paso la matriz al personaje
+                personaje->setMatrizGame(matrizGame); //Le paso la matriz al personaje
                 personaje->setSize(sizeGame);
                 personaje->setFrame(1);
                 personaje->setPos(1*48,1*48);

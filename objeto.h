@@ -18,6 +18,9 @@ public:
     short getVel() const;
     void setVel(short newVel);
 
+    int **getMatrizGame() const;
+    void setMatrizGame(int **newMatrizGame);
+
     void tryMove(short direction);
 
 protected:
