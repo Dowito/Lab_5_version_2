@@ -28,8 +28,6 @@ public:
     void loadMap();
 
 private:
-    bool even_aleatorio(float p);
-
     Enemigo *enemigo[3];
     Bloque *bloques[sizeMapY][sizeMapX];
     int **matrizGame;

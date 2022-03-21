@@ -24,19 +24,20 @@ void Enemigo::moveEnemy()
         int mX = x()/(size_sprites*sizeGame);
         int mY = y()/(size_sprites*sizeGame);
         if ((int)x()%(size_sprites*sizeGame)==0 && (int)x()%(size_sprites*sizeGame)==0 && mX%2!=2 && mY%2!=0) { //si se esta en una intercepcion
-            //cambiar direccion 50/503
-            //si cambia, cambiar mover
-            //si no cambia, mover.
+            if (even_aleatorio(0.3)) { //si cambia de direccion
+                direction = changeDirection();
+            }
+            move(direction);
         }
         else { //si no se esta en una intercepccion, entonces se realiza el movimiento
             move(direction);
         }
     }
     else {//si no es posible el movimiento
-        //cambiar direccion direccion
-        //mover
-        //si no existe una direccion valida, quedarce quieto
+        direction = changeDirection();
+        move(direction);
     }
+    return;
 }
 
 short Enemigo::changeDirection()
@@ -50,8 +51,6 @@ short Enemigo::changeDirection()
     if (matrizGame[posY][posX+1] == 9) buffer[count] = 2, count++;
     if (matrizGame[posY-1][posX] == 9) buffer[count] = 3, count++;
     if (count == 0) return 3498;
-    //generar numero aleatorio
-    srand(time(NULL));
     count = 0+rand()%(count-0);//genera numeros aleatorios en el rango de 0-count que corresponde a algun indice valido del buffer que contiene una direccion
     return buffer[count];
 }
