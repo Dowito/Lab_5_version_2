@@ -23,11 +23,17 @@ public:
 
     /*!
      * \brief tryMove Si es valido el movimiento a realizar en dicha direccion
-     * \param direction direccion a la que se quiere mover
+     * \param direction direccion a la que se quiere mover el objeto (0, 1, 2 o 3)
      * \return true si es valido el movimiento hacia dicha direccion, false de lo contrario.
      */
     bool tryMove(short direction);
+
+    /*!
+     * \brief move mueve el objeto
+     * \param direction direccion hacia donde se mueva el objeto (0, 1, 2 o 3).
+     */
     void move(short direction);
+
 protected:
     int **matrizGame;
     QPixmap sprite; //aqui se guarda, por defecto, los sprites que corresponden a cada objeto.
