@@ -38,3 +38,20 @@ void Enemigo::moveEnemy()
         //si no existe una direccion valida, quedarce quieto
     }
 }
+
+short Enemigo::changeDirection()
+{
+    short buffer[4] {'\0'};
+    short count = 0;
+    short posX = x();
+    short posY = y();
+    if (matrizGame[posY+1][posX] == 9) buffer[count] = 0, count++;
+    if (matrizGame[posY][posX-1] == 9) buffer[count] = 1, count++;
+    if (matrizGame[posY][posX+1] == 9) buffer[count] = 2, count++;
+    if (matrizGame[posY-1][posX] == 9) buffer[count] = 3, count++;
+    if (count == 0) return 3498;
+    //generar numero aleatorio
+    srand(time(NULL));
+    count = 0+rand()%(count-0);//genera numeros aleatorios en el rango de 0-count que corresponde a algun indice valido del buffer que contiene una direccion
+    return buffer[count];
+}

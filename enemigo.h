@@ -13,12 +13,13 @@ class Enemigo : public Objeto
 public:
     Enemigo() {};
     Enemigo(short type);
+
     void moveEnemy();
      //tiene toda la logica de movimiento
  public slots:
 
 private:
-
+    short changeDirection();
 };
 
 #endif // ENEMIGO_H
