@@ -18,8 +18,11 @@ Enemigo::Enemigo(short type)
 
 void Enemigo::moveEnemy()
 {
+    short direction = 498;
+    if(tryMove(direction)) move(direction);//funciona en todas las direccion.
+
     //setX(x()+vel); //posicion actual en x y la cambia en vel.
-    static short direction = 0;
+/*    static short direction = 0;
     if (tryMove(direction)) { //si es posible el movimiento
         int mX = x()/(size_sprites*sizeGame);
         int mY = y()/(size_sprites*sizeGame);
@@ -37,7 +40,7 @@ void Enemigo::moveEnemy()
         direction = changeDirection();
         move(direction);
     }
-    return;
+    return;*/
 }
 
 short Enemigo::changeDirection()

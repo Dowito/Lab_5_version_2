@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer, &QTimer::timeout, enemigo[1], &Enemigo::moveEnemy);
     enemigo[1]->setSize(sizeGame);
     enemigo[1]->setFrame(1,0);
-    enemigo[1]->setPos(4*48,3*48);
+    enemigo[1]->setPos(5*48,4*48);
     enemigo[1]->setMatrizGame(matrizGame);
     connect(timer, &QTimer::timeout, enemigo[0], &Enemigo::moveEnemy);
 
