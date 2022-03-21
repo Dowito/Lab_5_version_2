@@ -63,7 +63,7 @@ void MainWindow::keyPressEvent(QKeyEvent *i)
         personaje->tryMove(2);
     }
     else if (i->key() == Qt::Key_W) {
-        personaje->tryMove(3);//personaje->setY(personaje->y()-personaje->getVel());
+        personaje->tryMove(3);
     }
 
 }
