@@ -13,9 +13,9 @@ class Enemigo : public Objeto
 public:
     Enemigo() {};
     Enemigo(short type);
-
-public slots:
-    void move(); //tiene toda la logica de movimiento
+    void moveEnemy();
+     //tiene toda la logica de movimiento
+ public slots:
 
 private:
 

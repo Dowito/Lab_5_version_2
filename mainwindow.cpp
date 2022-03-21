@@ -20,14 +20,16 @@ MainWindow::MainWindow(QWidget *parent)
 
     enemigo[0] = new Enemigo (1);
     enemigo[0]->setSize(sizeGame);
-    enemigo[0]->setFrame(1,1);
+    enemigo[0]->setFrame(1,0);
     enemigo[0]->setPos(4*48,1*48);
-
+    enemigo[0]->setMatrizGame(matrizGame);
     enemigo[1] = new Enemigo (2);
-    connect(timer, &QTimer::timeout, enemigo[1], &Enemigo::move);
+    connect(timer, &QTimer::timeout, enemigo[1], &Enemigo::moveEnemy);
     enemigo[1]->setSize(sizeGame);
-    enemigo[1]->setFrame(1,1);
+    enemigo[1]->setFrame(1,0);
     enemigo[1]->setPos(4*48,3*48);
+    enemigo[1]->setMatrizGame(matrizGame);
+    connect(timer, &QTimer::timeout, enemigo[0], &Enemigo::moveEnemy);
 
     //connect(time, &QTimer::timeout, this, &Juego::moveEnemigo);
     //QObject::connect(&timer, SIGNAL(timeout()), &scene, SLOT(advance()));
@@ -36,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent)
     escena->addItem(enemigo[0]);
     escena->addItem(enemigo[1]);
 
-    connect(timer, &QTimer::timeout, enemigo[0], &Enemigo::move);
+
     ui->graphicsView->setScene(escena);
 
     timer->start(100);
