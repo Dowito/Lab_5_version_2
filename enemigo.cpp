@@ -24,7 +24,7 @@ void Enemigo::moveEnemy()
         int mX = x()/(size_sprites*sizeGame);
         int mY = y()/(size_sprites*sizeGame);
         if ((int)x()%(size_sprites*sizeGame)==0 && (int)x()%(size_sprites*sizeGame)==0 && mX%2!=2 && mY%2!=0) { //si se esta en una intercepcion
-            //cambiar direccion 50/50
+            //cambiar direccion 50/503
             //si cambia, cambiar mover
             //si no cambia, mover.
         }
