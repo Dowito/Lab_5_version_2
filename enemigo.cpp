@@ -19,5 +19,16 @@ Enemigo::Enemigo(short type)
 void Enemigo::moveEnemy()
 {
     //setX(x()+vel); //posicion actual en x y la cambia en vel.
-    tryMove(2);
+    static bool firts = true;
+    static int direction = 0;
+    if (firts) {
+        tryMove(direction); //si se choca cambiar de direcion.
+        firts = false;
+    }
+    else {
+
+
+    }
+    direction = 2;
+    tryMove(direction);
 }
