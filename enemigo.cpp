@@ -20,7 +20,7 @@ void Enemigo::moveEnemy()
 {
     //setX(x()+vel); //posicion actual en x y la cambia en vel.
     static bool firts = true;
-    static int direction = 0;
+    static short direction = 0;
     if (firts) { //el primer movimiento se hace aqui
         if(tryMove(direction)){ //si se choca cambiar de direcion.
             firts = false;

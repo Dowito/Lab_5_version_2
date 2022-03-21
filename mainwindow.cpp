@@ -55,18 +55,18 @@ MainWindow::~MainWindow()
 void MainWindow::keyPressEvent(QKeyEvent *i)
 {
     if (i->key() == Qt::Key_S) {
-            personaje->tryMove(0);
-        }
-
+        if(personaje->tryMove(0)) personaje->move(0);
+    }
     else if (i->key()  == Qt::Key_A) {
-        personaje->tryMove(1);
+        if(personaje->tryMove(1)) personaje->move(1);
     }
     else if (i->key() == Qt::Key_D) {
-        personaje->tryMove(2);
+        if(personaje->tryMove(2)) personaje->move(2);
     }
     else if (i->key() == Qt::Key_W) {
-        personaje->tryMove(3);
+        if(personaje->tryMove(3)) personaje->move(3);
     }
+    else return;
 
 }
 

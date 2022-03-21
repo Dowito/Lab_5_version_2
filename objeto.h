@@ -21,8 +21,13 @@ public:
     int **getMatrizGame() const;
     void setMatrizGame(int **newMatrizGame);
 
+    /*!
+     * \brief tryMove Si es valido el movimiento a realizar en dicha direccion
+     * \param direction direccion a la que se quiere mover
+     * \return true si es valido el movimiento hacia dicha direccion, false de lo contrario.
+     */
     bool tryMove(short direction);
-
+    void move(short direction);
 protected:
     int **matrizGame;
     QPixmap sprite; //aqui se guarda, por defecto, los sprites que corresponden a cada objeto.
