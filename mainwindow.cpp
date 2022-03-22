@@ -35,8 +35,8 @@ MainWindow::MainWindow(QWidget *parent)
     //QObject::connect(&timer, SIGNAL(timeout()), &scene, SLOT(advance()));
     //QObject::connect(&timer, &QTimer::timeout, &scene, &QGraphicsScene::advance);
     //iniciando personaje
-    enemigo[0]->setVel(1);
-    enemigo[1]->setVel(1);
+    //enemigo[0]->setVel(1);
+    //enemigo[1]->setVel(1);
     escena->addItem(enemigo[0]);
     escena->addItem(enemigo[1]);
 
