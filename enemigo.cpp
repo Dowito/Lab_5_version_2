@@ -23,7 +23,7 @@ void Enemigo::moveEnemy()
         int mX = ((int)x())/(size_sprites*sizeGame);
         int mY = ((int)y())/(size_sprites*sizeGame);
         if ((int)x()%(size_sprites*sizeGame)==0 && (int)y()%(size_sprites*sizeGame)==0 && mX%2!=0 && mY%2!=0) { //si se esta en una intercepcion
-            if (even_aleatorio(0.1)) { //si cambia de direccion
+            if (even_aleatorio(0.9)) { //si cambia de direccion
                 direction = changeDirection();
             }
             move(direction);
