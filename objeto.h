@@ -4,7 +4,6 @@
 #include <QGraphicsPixmapItem>
 #include <macros.h>
 #include <auxiliar.h>
-#define size_sprites 48
 
 class Objeto : public QObject, public QGraphicsPixmapItem
 {
