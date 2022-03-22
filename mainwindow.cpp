@@ -16,33 +16,35 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-    timer = new QTimer;
-    /*
+    timer[0] = new QTimer;
+    timer[1] = new QTimer;
+
     enemigo[0] = new Enemigo (1);
     enemigo[0]->setSize(sizeGame);
     enemigo[0]->setFrame(1,0);
     enemigo[0]->setPos(4*48,1*48);
     enemigo[0]->setMatrizGame(matrizGame);
-    //enemigo[0]->setVel(1);
-    connect(timer, &QTimer::timeout, enemigo[0], &Enemigo::moveEnemy);
-    */
+    enemigo[0]->setVel(1);
+    connect(timer[0], &QTimer::timeout, enemigo[0], &Enemigo::moveEnemy);
+    timer[0]->start(10);
     enemigo[1] = new Enemigo (2);
     enemigo[1]->setSize(sizeGame);
     enemigo[1]->setFrame(1,0);
     enemigo[1]->setPos(5*48,4*48);
     enemigo[1]->setMatrizGame(matrizGame);
     enemigo[1]->setVel(1);
-    connect(timer, &QTimer::timeout, enemigo[1], &Enemigo::moveEnemy);
+    connect(timer[1], &QTimer::timeout, enemigo[1], &Enemigo::moveEnemy);
+    timer[1]->start(100);
     //connect(time, &QTimer::timeout, this, &Juego::moveEnemigo);
     //QObject::connect(&timer, SIGNAL(timeout()), &scene, SLOT(advance()));
     //QObject::connect(&timer, &QTimer::timeout, &scene, &QGraphicsScene::advance);
-    //escena->addItem(enemigo[0]);
+
+    escena->addItem(enemigo[0]);
     escena->addItem(enemigo[1]);
-
-
     ui->graphicsView->setScene(escena);
 
-    timer->start(100);
+    //timer[0]->start(10);
+    //timer[1]->start(100);
 }
 
 MainWindow::~MainWindow()
