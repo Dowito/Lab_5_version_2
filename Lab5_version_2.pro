@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     auxiliar.cpp \
     bloque.cpp \
+    bomba.cpp \
     enemigo.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -20,6 +21,7 @@ SOURCES += \
 HEADERS += \
     auxiliar.h \
     bloque.h \
+    bomba.h \
     enemigo.h \
     macros.h \
     mainwindow.h \
