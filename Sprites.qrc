@@ -7,5 +7,7 @@
         <file>Sprites/demonio.png</file>
         <file>Sprites/hombre_lobo.png</file>
         <file>Sprites/furro.png</file>
+        <file>Sprites/bomba.png</file>
+        <file>Sprites/explosion.png</file>
     </qresource>
 </RCC>
