@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     enemigo[1]->setPos(5*48,4*48);
     enemigo[1]->setMatrizGame(matrizGame);
     enemigo[1]->setVel(1);
-    connect(timer[1], &QTimer::timeout, enemigo[1], &Enemigo::moveEnemy);
+    //connect(timer[1], &QTimer::timeout, enemigo[1], &Enemigo::moveEnemy);
     timer[1]->start(100);
     //connect(time, &QTimer::timeout, this, &Juego::moveEnemigo);
     //QObject::connect(&timer, SIGNAL(timeout()), &scene, SLOT(advance()));
@@ -50,8 +50,11 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete personaje;
+    delete *enemigo;
+    delete **bloques;
+    delete matrizGame;
     //delete time;//no se si daba eliminarlo
-    //delete escena;//no e si deba eliminarlo
+    delete escena;//no e si deba eliminarlo
     delete ui;
 }
 
@@ -68,6 +71,13 @@ void MainWindow::keyPressEvent(QKeyEvent *i)
     }
     else if (i->key() == Qt::Key_W) {
         if(personaje->tryMove(3)) personaje->move(3);
+    }
+    else if (i->key() == Qt::Key_Space) {
+        bomba = new Bomba;
+        if(bomba->putBomb(personaje->x(),personaje->y())){
+            escena->addItem(bomba);
+        }
+        else delete bomba;
     }
     else return;
 
@@ -120,5 +130,12 @@ void MainWindow::on_pushButton_clicked()
     bomba = new Bomba;
     bomba->setPos(personaje->x(),personaje->y());
     escena->addItem(bomba);
+}
+
+
+void MainWindow::on_quitarbomba_clicked()
+{
+    escena->removeItem(bomba);
+    bomba = nullptr;
 }
 

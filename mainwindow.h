@@ -30,6 +30,8 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_quitarbomba_clicked();
+
 private:
     Bomba *bomba;
     Enemigo *enemigo[3];
