@@ -10,7 +10,7 @@
 #include <enemigo.h>
 #include <QKeyEvent>
 #include <macros.h>
-
+#include <bomba.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -27,7 +27,11 @@ public:
     void createMap();
     void loadMap();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
+    Bomba *bomba;
     Enemigo *enemigo[3];
     Bloque *bloques[sizeMapY][sizeMapX];
     int **matrizGame;

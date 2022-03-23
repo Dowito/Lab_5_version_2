@@ -114,3 +114,11 @@ void MainWindow::loadMap()
     }
     escena->addItem(personaje);//Aqui pa que aparesca encima de los bloques y no alreves.
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    bomba = new Bomba;
+    bomba->setPos(personaje->x(),personaje->y());
+    escena->addItem(bomba);
+}
+
