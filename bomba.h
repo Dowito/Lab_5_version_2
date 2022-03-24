@@ -5,7 +5,7 @@
 
 class Bomba : public Objeto
 {
-
+    Q_OBJECT
 public:
     Bomba();
 
@@ -14,7 +14,7 @@ public slots:
     void startBomb();
 
 signals:
-    void bombDestroyed() {};
+    void bombDestroyed();
 
 private:
 

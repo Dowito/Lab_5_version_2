@@ -14,10 +14,9 @@ public:
     Enemigo() {};
     Enemigo(short type);
 
-
-     //tiene toda la logica de movimiento
- public slots:
+public slots:
     void moveEnemy();
+
 private:
     /*!
      * \brief changeDirection cambia la direccion por una direccion valida.

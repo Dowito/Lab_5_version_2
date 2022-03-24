@@ -82,7 +82,6 @@ void MainWindow::keyPressEvent(QKeyEvent *i)
                 connect(bomba, &Bomba::bombDestroyed, this, &MainWindow::removeBomb);
                 bomba->startBomb();
                 escena->addItem(bomba);
-
                 numBombas++;
             }
             else delete bomba;
@@ -136,8 +135,14 @@ void MainWindow::loadMap()
 
 void MainWindow::removeBomb()
 {
-    auto it = bombas.begin();
-    bombas.erase(it);
+    numBombas -= 1;
+    auto reBomba = bombas.front();
+    int mY = reBomba->y()/(size_sprites*sizeGame);
+    int mX = reBomba->x()/(size_sprites*sizeGame);
+    matrizGame[mY][mX] = 9;
+    escena->removeItem(reBomba);
+    bombas.pop_front();
+    delete reBomba;
 }
 
 void MainWindow::on_pushButton_clicked()
