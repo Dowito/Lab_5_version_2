@@ -17,8 +17,10 @@ bool Personaje::putBomb(Bomba *bomba)
     }
     else if (pY == y()) { //el personajes esta por la derecha
         if (x() <= (pX+((size-1)/2))) {
-            bomba->setPos(pX, pY);
-            return true;
+            if (matrizGame[pY][pX] != 2) {
+                bomba->setPos(pX, pY);
+                return true;
+            }
         }
         else if (x() > (pX+((size-1)/2))) {
             bomba->setPos(pX+size, pY);
@@ -38,6 +40,7 @@ bool Personaje::putBomb(Bomba *bomba)
         else return false;
     }
     else return false;
+    return false;
 }
 
 short Personaje::getBombs() const
