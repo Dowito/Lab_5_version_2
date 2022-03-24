@@ -39,3 +39,13 @@ bool Personaje::putBomb(Bomba *bomba)
     }
     else return false;
 }
+
+short Personaje::getBombs() const
+{
+    return bombs;
+}
+
+void Personaje::setBombs(short newBombs)
+{
+    bombs = newBombs;
+}

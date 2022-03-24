@@ -73,11 +73,15 @@ void MainWindow::keyPressEvent(QKeyEvent *i)
         if(personaje->tryMove(3)) personaje->move(3);
     }
     else if (i->key() == Qt::Key_Space) {
-        bomba = new Bomba;
-        if(personaje->putBomb(bomba)){
-            escena->addItem(bomba);
+        static int numBombs;
+        if (numBombs < personaje->getBombs()){
+            bomba = new Bomba;
+            if(personaje->putBomb(bomba)){
+                escena->addItem(bomba);
+                numBombs++;
+            }
+            else delete bomba;
         }
-        else delete bomba;
     }
     else return;
 
