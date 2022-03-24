@@ -6,6 +6,10 @@ class Bomba : public Objeto
 {
 public:
     Bomba();
+
+signals:
+    void destroyBomb();
+
 };
 
 #endif // BOMBA_H
