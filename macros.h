@@ -5,10 +5,10 @@
 #define sizeMapX 15 //Solo numero impares
 #define sizeMapY 11 //Solo numero impares
 #define sizeGame 1
-#define dificult 0.5
+#define dificult 0.0
 
 //Personaje
-#define velPlayer 1
+#define velPlayer 8
 #define bombsPlayer 4
 
 //Bomba
