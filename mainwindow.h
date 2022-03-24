@@ -33,6 +33,7 @@ private slots:
     void on_quitarbomba_clicked();
 
 private:
+    short numBombs;
     Bomba *bomba;
     Enemigo *enemigo[3];
     Bloque *bloques[sizeMapY][sizeMapX];

@@ -8,4 +8,10 @@
 #define dificult 0.5
 #define velPlayer 1
 #define bombsPlayer 4
+
+/*
+0 = bloque
+1 = bloque destruible
+2 = bomba
+9 = piso*/
 #endif // MACROS_H
