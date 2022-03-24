@@ -74,7 +74,7 @@ void MainWindow::keyPressEvent(QKeyEvent *i)
     }
     else if (i->key() == Qt::Key_Space) {
         bomba = new Bomba;
-        if(bomba->putBomb(personaje->x(),personaje->y())){
+        if(personaje->putBomb(bomba)){
             escena->addItem(bomba);
         }
         else delete bomba;

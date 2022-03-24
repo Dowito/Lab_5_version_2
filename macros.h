@@ -7,4 +7,5 @@
 #define sizeGame 1
 #define dificult 0.0
 #define velPlayer 1
+#define bombsPlayer 3
 #endif // MACROS_H

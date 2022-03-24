@@ -2,7 +2,7 @@
 #define PERSONAJE_H
 
 #include <objeto.h>
-
+#include <bomba.h>
 /*!
  * \brief The Personaje class
  * Types:
@@ -20,8 +20,9 @@ class Personaje : public Objeto
 public:
     Personaje(); //cargamos el sprite por difecto en el constructor
 
+    bool putBomb(Bomba *bomba);
 private:
-
+    short bombs;
 };
 
 #endif // PERSONAJE_H
