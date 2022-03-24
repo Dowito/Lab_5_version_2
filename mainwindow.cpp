@@ -15,7 +15,6 @@ MainWindow::MainWindow(QWidget *parent)
     loadMap();
 
 
-
     timer[0] = new QTimer;
     timer[1] = new QTimer;
 
@@ -73,15 +72,18 @@ void MainWindow::keyPressEvent(QKeyEvent *i)
         if(personaje->tryMove(3)) personaje->move(3);
     }
     else if (i->key() == Qt::Key_Space) {
-        if (numBombs < personaje->getBombs()){
-            bomba = new Bomba;
+        if (numBombas < personaje->getBombs()){
+            Bomba *bomba = new Bomba;
             if(personaje->putBomb(bomba)){
                 int mY = bomba->y()/(size_sprites*sizeGame);
                 int mX = bomba->x()/(size_sprites*sizeGame);
                 matrizGame[mY][mX] = 2;
+                bombas.push_back(bomba);
+                connect(bomba, &Bomba::bombDestroyed, this, &MainWindow::removeBomb);
                 bomba->startBomb();
                 escena->addItem(bomba);
-                numBombs++;
+
+                numBombas++;
             }
             else delete bomba;
         }
@@ -132,17 +134,23 @@ void MainWindow::loadMap()
     escena->addItem(personaje);//Aqui pa que aparesca encima de los bloques y no alreves.
 }
 
+void MainWindow::removeBomb()
+{
+    auto it = bombas.begin();
+    bombas.erase(it);
+}
+
 void MainWindow::on_pushButton_clicked()
 {
-    bomba = new Bomba;
+    /*bomba = new Bomba;
     bomba->setPos(personaje->x(),personaje->y());
-    escena->addItem(bomba);
+    escena->addItem(bomba);*/
 }
 
 
 void MainWindow::on_quitarbomba_clicked()
 {
-    escena->removeItem(bomba);
-    bomba = nullptr;
+    /*escena->removeItem(bomba);
+    bomba = nullptr;*/
 }
 
