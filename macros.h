@@ -6,9 +6,13 @@
 #define sizeMapY 11 //Solo numero impares
 #define sizeGame 1
 #define dificult 0.5
+
+//Personaje
 #define velPlayer 1
 #define bombsPlayer 4
 
+//Bomba
+#define DELAY 4000
 /*
 0 = bloque
 1 = bloque destruible

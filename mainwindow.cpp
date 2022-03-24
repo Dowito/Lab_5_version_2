@@ -79,6 +79,7 @@ void MainWindow::keyPressEvent(QKeyEvent *i)
                 int mY = bomba->y()/(size_sprites*sizeGame);
                 int mX = bomba->x()/(size_sprites*sizeGame);
                 matrizGame[mY][mX] = 2;
+                bomba->startBomb();
                 escena->addItem(bomba);
                 numBombs++;
             }
