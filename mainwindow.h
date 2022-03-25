@@ -30,13 +30,14 @@ public:
     void loadMap();
 
 private slots:
-    void removeBomb();
+    void removeBomb(QPointF pos);
 
     void on_pushButton_clicked();
 
     void on_quitarbomba_clicked();
 
 private:
+    Bomba* findBomb(QPointF pos);
     short numBombas;
     QList<Bomba*> bombas;
     Enemigo *enemigo[3];

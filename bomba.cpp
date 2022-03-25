@@ -70,7 +70,7 @@ void Bomba::explote(QVector<Explotion *> &explotions, QVector<QVector<int> > &mB
 void Bomba::remove()
 {
     setFrame(1,50);
-    emit bombDestroyed();
+    emit bombDestroyed(pos());
 }
 
 void Bomba::startBomb()

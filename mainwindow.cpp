@@ -80,7 +80,7 @@ void MainWindow::keyPressEvent(QKeyEvent *i)
                 int mX = bomba->x()/(size_sprites*sizeGame);
                 matrizGame[mY][mX] = 2;
                 bombas.push_back(bomba);
-                connect(bomba, &Bomba::bombDestroyed, this, &MainWindow::removeBomb);
+                connect(bomba, &Bomba::bombDestroyed, this, &MainWindow::removeBomb); //manda las coordenadas de la bomba a destruir a la funcion removeBomb
                 bomba->startBomb();
                 escena->addItem(bomba);
                 numBombas++;
@@ -134,18 +134,18 @@ void MainWindow::loadMap()
     escena->addItem(personaje);//Aqui pa que aparesca encima de los bloques y no alreves.
 }
 
-void MainWindow::removeBomb()
+void MainWindow::removeBomb(QPointF pos)
 {
     QVector<Explotion*> explotions;
     QVector<QVector<int>> mBlocks;
     numBombas -= 1;
-    auto reBomba = bombas.front();
+    auto reBomba = findBomb(pos);
     reBomba->explote(explotions, mBlocks);
     int mY = reBomba->y()/(size_sprites*sizeGame);
     int mX = reBomba->x()/(size_sprites*sizeGame);
     matrizGame[mY][mX] = 9;
     escena->removeItem(reBomba);
-    bombas.pop_front(); //cambiar el contenedor de las bombas
+    bombas.removeOne(reBomba); //cambiar el contenedor de las bombas
     reBomba->pos();
     delete reBomba;
     for (auto posM : qAsConst(mBlocks)) {
@@ -170,5 +170,14 @@ void MainWindow::on_quitarbomba_clicked()
 {
     /*escena->removeItem(bomba);
     bomba = nullptr;*/
+}
+
+Bomba *MainWindow::findBomb(QPointF pos)
+{
+    for (auto value : qAsConst(bombas)) {
+        if(value->pos() == pos) return value;
+    }
+    Bomba *bomb = nullptr;
+    return bomb;
 }
 
