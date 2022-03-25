@@ -137,9 +137,10 @@ void MainWindow::loadMap()
 void MainWindow::removeBomb()
 {
     QVector<Explotion*> explotions;
+    QVector<QVector<int>> mBlocks;
     numBombas -= 1;
     auto reBomba = bombas.front();
-    reBomba->explote(explotions);
+    reBomba->explote(explotions, mBlocks);
     int mY = reBomba->y()/(size_sprites*sizeGame);
     int mX = reBomba->x()/(size_sprites*sizeGame);
     matrizGame[mY][mX] = 9;
@@ -147,6 +148,11 @@ void MainWindow::removeBomb()
     bombas.pop_front(); //cambiar el contenedor de las bombas
     reBomba->pos();
     delete reBomba;
+    for (auto posM : qAsConst(mBlocks)) {
+        matrizGame[posM[1]][posM[0]] = 9;
+        //animacion de destruccion bloque
+        bloques[posM[1]][posM[0]]->setTypeFloor();
+    }
     for (Explotion *value : qAsConst(explotions)) {
         escena->addItem(value);
     }

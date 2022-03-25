@@ -14,7 +14,8 @@
 //Bomba
 #define DELAY 4000
 #define POT 2
-/*
+
+/*Matriz
 0 = bloque
 1 = bloque destruible
 2 = bomba
