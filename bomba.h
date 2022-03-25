@@ -2,23 +2,25 @@
 #define BOMBA_H
 #include <objeto.h>
 #include <QTimer>
-
+#include <explotion.h>
+#include <QVector>
 class Bomba : public Objeto
 {
     Q_OBJECT
 public:
     Bomba();
+    void explote(QVector<Explotion*> &explotions);
 
 public slots:
-    void explotion();
+    void remove();
     void startBomb();
 
 signals:
     void bombDestroyed();
 
 private:
-
     QTimer timer;
+    short pot;
     int delay;
 };
 

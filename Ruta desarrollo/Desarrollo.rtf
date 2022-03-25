@@ -1,6 +1,6 @@
 {\rtf1\ansi\ansicpg1252\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red255\green255\blue0;\red0\green0\blue255;\red255\green0\blue0;\red0\green255\blue0;}
-{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+{\*\generator Riched20 10.0.22000}\viewkind4\uc1 
 \pard\sa200\sl276\slmult1\b\f0\fs22\lang10 CLASES:\par
 \highlight1\b0 amarillo\highlight0  ideas que no tengo claras\highlight1\b\par
 \highlight2\b0 Azul\highlight0  posibles errores\highlight2\par
@@ -127,8 +127,12 @@ c.\tab Bloques destruibles.\par
 d.\tab Enemigos.\par
 e.\tab Explosion bomba\par
 
+\pard\fi-360\li360\sa200\sl276\slmult1 Al explotar, manda una se\'f1al, que inicia toda la secuencia de explosion.\par
+Reciba la se\'f1al de bombaDestruida, y en ese momento que inicie el proceso de explosion.\par
+
 \pard\sa200\sl276\slmult1\b Explosion Bombas:\par
-\highlight1\b0 Puede ser mejor que explosion solo sea un estado de la bomba. una bomba al explotar pasa al estado "explotion" y cambia su forma de interacinar con el mundo.\highlight0\par
+\b0 Una explosion es producto de una bomba, el radio de la explosion siempre depende de su potencia, en este caso, se le dara la propiedad de potencia a la bomba, y la funcion explota recibira dicha bomba.\par
+La casilla donde estaba la bomba se convierte en una llama, las llamas duraran un determinado tiempo. y la explosion en las casilla donde hayan un 9,  si alcanza una casilla donde haya un 1, automaticamente destruira dicho bloque y lo sustituye por un 9,  si hay un 2, explota dicha bomba y genera una cadena, si hay un 0, se dejan de expandir.\par
 \highlight4 recordar que la explosion es en forma de cruz, tocara difivir cada columna, y que cada una sea una explosion diferente.\highlight0\par
 
 \pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1 Radio explosion:\par

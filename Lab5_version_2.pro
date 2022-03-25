@@ -13,6 +13,7 @@ SOURCES += \
     bloque.cpp \
     bomba.cpp \
     enemigo.cpp \
+    explotion.cpp \
     main.cpp \
     mainwindow.cpp \
     objeto.cpp \
@@ -23,6 +24,7 @@ HEADERS += \
     bloque.h \
     bomba.h \
     enemigo.h \
+    explotion.h \
     macros.h \
     mainwindow.h \
     objeto.h \

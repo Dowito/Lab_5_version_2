@@ -74,6 +74,7 @@ void MainWindow::keyPressEvent(QKeyEvent *i)
     else if (i->key() == Qt::Key_Space) {
         if (numBombas < personaje->getBombs()){
             Bomba *bomba = new Bomba;
+            bomba->setMatrizGame(matrizGame);
             if(personaje->putBomb(bomba)){
                 int mY = bomba->y()/(size_sprites*sizeGame);
                 int mX = bomba->x()/(size_sprites*sizeGame);
@@ -135,14 +136,20 @@ void MainWindow::loadMap()
 
 void MainWindow::removeBomb()
 {
+    QVector<Explotion*> explotions;
     numBombas -= 1;
     auto reBomba = bombas.front();
+    reBomba->explote(explotions);
     int mY = reBomba->y()/(size_sprites*sizeGame);
     int mX = reBomba->x()/(size_sprites*sizeGame);
     matrizGame[mY][mX] = 9;
     escena->removeItem(reBomba);
-    bombas.pop_front();
+    bombas.pop_front(); //cambiar el contenedor de las bombas
+    reBomba->pos();
     delete reBomba;
+    for (Explotion *value : qAsConst(explotions)) {
+        escena->addItem(value);
+    }
 }
 
 void MainWindow::on_pushButton_clicked()
