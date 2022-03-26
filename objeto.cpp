@@ -102,6 +102,11 @@ void Objeto::move(short direction)
     else return;
 }
 
+unsigned short Objeto::getSize() const
+{
+    return size;
+}
+
 int **Objeto::getMatrizGame() const
 {
     return matrizGame;

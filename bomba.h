@@ -9,7 +9,7 @@ class Bomba : public Objeto
     Q_OBJECT
 public:
     Bomba();
-    void explote(QVector<Explotion*> &explotions, QVector<QVector<int>> &mBlocks);
+    void explote(QVector<Explotion*> &explotions, QVector<QVector<int>> &mBlocks, QVector<QVector<int>> &mBombs);
 
 public slots:
     void remove();

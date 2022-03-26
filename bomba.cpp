@@ -9,7 +9,7 @@ Bomba::Bomba()
     pot = POT;
 }
 
-void Bomba::explote(QVector<Explotion *> &explotions, QVector<QVector<int> > &mBlocks)
+void Bomba::explote(QVector<Explotion *> &explotions, QVector<QVector<int> > &mBlocks, QVector<QVector<int> > &mBombs)
 {
     Explotion *explotion;
     explotion = new Explotion;
@@ -39,6 +39,11 @@ void Bomba::explote(QVector<Explotion *> &explotions, QVector<QVector<int> > &mB
             mBlocks.push_back({mX-i, mY});
             break;
         }
+        /*
+        else if (matrizGame[mY][mX-i] == 2) {
+            mBombs.push_back({mX-i, mY});
+        }
+        */
         else break;
     }
     for (short i = 1; i<=pot; i++) {
@@ -69,7 +74,6 @@ void Bomba::explote(QVector<Explotion *> &explotions, QVector<QVector<int> > &mB
 
 void Bomba::remove()
 {
-    setFrame(1,50);
     emit bombDestroyed(pos());
 }
 

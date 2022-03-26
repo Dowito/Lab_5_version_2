@@ -138,16 +138,25 @@ void MainWindow::removeBomb(QPointF pos)
 {
     QVector<Explotion*> explotions;
     QVector<QVector<int>> mBlocks;
+    QVector<QVector<int>> mBombs;
     numBombas -= 1;
     auto reBomba = findBomb(pos);
-    reBomba->explote(explotions, mBlocks);
+    reBomba->explote(explotions, mBlocks, mBombs);
     int mY = reBomba->y()/(size_sprites*sizeGame);
     int mX = reBomba->x()/(size_sprites*sizeGame);
     matrizGame[mY][mX] = 9;
     escena->removeItem(reBomba);
-    bombas.removeOne(reBomba); //cambiar el contenedor de las bombas
-    reBomba->pos();
+    bombas.removeOne(reBomba);
     delete reBomba;
+    /*Cadena de Bombas
+    for (auto mChainPos : qAsConst(mBombs)) {
+        qreal chainX = mChainPos[0]*(size_sprites*sizeGame);
+        qreal chainY = mChainPos[1]*(size_sprites*sizeGame);
+        QPointF chainPos = {static_cast<qreal>(chainX),static_cast<qreal>(chainY)};
+        auto chainBomb = findBomb(chainPos);
+        chainBomb->remove();
+    }
+    */
     for (auto posM : qAsConst(mBlocks)) {
         matrizGame[posM[1]][posM[0]] = 9;
         //animacion de destruccion bloque

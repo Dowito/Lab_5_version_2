@@ -12,6 +12,7 @@ public:
     Objeto();
 
     void setSize(unsigned short size);
+    unsigned short getSize() const;
 
     void setFrame(int typeX = 0, int typeY = 0);
 
