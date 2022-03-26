@@ -1,8 +1,8 @@
 #ifndef BOMBA_H
 #define BOMBA_H
 #include <objeto.h>
-#include <QTimer>
 #include <explotion.h>
+#include <QTimer>
 #include <QVector>
 class Bomba : public Objeto
 {

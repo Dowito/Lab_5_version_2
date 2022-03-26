@@ -7,12 +7,14 @@
 #define sizeGame 1
 #define dificult 0.2
 #define clockGame 100
+
 //Personaje
 #define velPlayer 48
 #define bombsPlayer 4
 
 //Enemigo
 #define MAX_ENEMIES 5
+#define TIMER_ENEMY 100
 //#define MAX_ENEMIES 8
 
 //Bomba

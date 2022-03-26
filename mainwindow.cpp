@@ -123,8 +123,7 @@ void MainWindow::putEnemies()
         enemy = new Enemigo(type);
         enemy->setPos(x*enemy->getSize(),y*enemy->getSize());
         enemy->setMatrizGame(matrizGame);
-        connect(timer, &QTimer::timeout, enemy, &Enemigo::moveEnemy);
-
+        enemy->startEnemy();
         enemigos->push_back(enemy);
         //pasarcelos a personaje.
         escena->addItem(enemy);

@@ -4,26 +4,28 @@ Enemigo::Enemigo(short type)
 {
     if (type == 0) {
         sprite.load(":/images/Sprites/hombre_lobo.png");
-        tempo = 4;
         vel = 3;
     }
     else if (type == 1) {
         sprite.load(":/images/Sprites/furro.png");
-        tempo = 2;
         vel = 3;
     }
     else if (type == 2) {
         sprite.load(":/images/Sprites/demonio.png");
-        tempo = 1;
         vel = 3;
     }
     else {
         sprite.load(":/images/Sprites/explosion.png");
-        tempo = 0;
         vel = 3;
     }
     setSize(sizeGame);
     setFrame(1);
+}
+
+void Enemigo::startEnemy()
+{
+    connect(&timer, &QTimer::timeout, this, &Enemigo::moveEnemy);
+    timer.start(TIMER_ENEMY);
 }
 
 void Enemigo::moveEnemy()
