@@ -21,6 +21,7 @@ public:
     Personaje(); //cargamos el sprite por difecto en el constructor
 
     bool putBomb(Bomba *bomba);
+
     short getBombs() const;
     void setBombs(short newBombs);
 

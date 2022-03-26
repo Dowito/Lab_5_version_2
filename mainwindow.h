@@ -50,7 +50,7 @@ private:
     Bloque *bloques[sizeMapY][sizeMapX];
     int **matrizGame;
     Personaje *personaje;
-    QTimer *timer[2];
+    QTimer *timer;
     QGraphicsScene *escena;
     Ui::MainWindow *ui;
 
