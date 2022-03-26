@@ -2,18 +2,20 @@
 
 Enemigo::Enemigo(short type)
 {
-    vel = 1;
     if (type == 0) {
         sprite.load(":/images/Sprites/hombre_lobo.png");
-        vel = 2;
+        tempo = 4;
+        vel = 3;
     }
     else if (type == 1) {
         sprite.load(":/images/Sprites/furro.png");
+        tempo = 100;
         vel = 3;
     }
-    else {
+    else if (type == 2) {
         sprite.load(":/images/Sprites/demonio.png");
-        vel = 5;
+        tempo = 500;
+        vel = 3;
     }
 }
 
@@ -21,8 +23,8 @@ void Enemigo::moveEnemy()
 {
     static unsigned short count = 0;
     static short direction = 0;
-    //++count;
-    //if (count == 5){
+    count++;
+    if (count == 1){
         count = 0;
         if (tryMove(direction)) { //si es posible el movimiento
             int mX = ((int)x())/(size_sprites*sizeGame);
@@ -41,7 +43,7 @@ void Enemigo::moveEnemy()
             direction = changeDirection();
             move(direction);
         }
-    //}
+    }
 }
 
 short Enemigo::changeDirection()

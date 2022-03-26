@@ -23,7 +23,7 @@ private:
      * \return 0=abajo, 1=izquierda, 2=derecha, 3=arriba, de lo contrario significa que es no hay ninguna direccion donde moverce.
      */
     short changeDirection();
-    short delay;
+    unsigned short tempo;
 };
 
 #endif // ENEMIGO_H
