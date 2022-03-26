@@ -5,29 +5,20 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    enemigos = new QList<Enemigo*>;
+    timer = new QTimer;
+
     ui->setupUi(this);
     setGeometry(0,0,48*sizeMapX*sizeGame,48*sizeMapY*sizeGame+2*48);
     ui->graphicsView->setGeometry(0,0,width(),height()-2*48);
     ui->VIDAS->setGeometry(1*48*sizeGame,12*48*sizeGame,51,20);
     escena = new QGraphicsScene;
     escena->setSceneRect(0,0,ui->graphicsView->width()-2,ui->graphicsView->height()-2);
+
     createMap();
     loadMap();
+    putEnemies();
 
-
-    timer = new QTimer;
-    /*
-    enemigo[0] = new Enemigo (1);
-    enemigo[0]->setSize(sizeGame);
-    enemigo[0]->setFrame(1,0);
-    enemigo[0]->setPos(4*48,1*48);
-    enemigo[0]->setMatrizGame(matrizGame);
-    escena->addItem(enemigo[0]);
-    connect(timer, &QTimer::timeout, enemigo[0], &Enemigo::moveEnemy);
-    */
-    //connect(time, &QTimer::timeout, this, &Juego::moveEnemigo);
-    //QObject::connect(&timer, SIGNAL(timeout()), &scene, SLOT(advance()));
-    //QObject::connect(&timer, &QTimer::timeout, &scene, &QGraphicsScene::advance);
     ui->graphicsView->setScene(escena);
     timer->start(clockGame);
 }
@@ -37,7 +28,7 @@ MainWindow::~MainWindow()
     delete personaje;
     delete **bloques;
     delete matrizGame;
-    //delete time;//no se si daba eliminarlo
+    delete timer;//no se si daba eliminarlo
     delete escena;//no e si deba eliminarlo
     delete ui;
 }
@@ -120,16 +111,24 @@ void MainWindow::loadMap()
 
 void MainWindow::putEnemies()
 {
-    int y = 1+rand()%((sizeMapY-1)-1);
-    int x = 8+rand()%((sizeMapX-1)-8);
-    if (y%2 == 2) {
-        if (x%2 == 2) x += 1;
+    int y, x;
+    for(short i = 0; i<MAX_ENEMIES; i++){
+        y = 1+rand()%((sizeMapY-1)-1);
+        x = 6+rand()%((sizeMapX-1)-6);
+        if (y%2 == 0 && x%2 == 0) x += 1;
+        bloques[y][x]->setTypeFloor();
+        matrizGame[y][x] = 9;
+        short type = 0+rand()%(3-0);
+        Enemigo *enemy;
+        enemy = new Enemigo(type);
+        enemy->setPos(x*enemy->getSize(),y*enemy->getSize());
+        enemy->setMatrizGame(matrizGame);
+        connect(timer, &QTimer::timeout, enemy, &Enemigo::moveEnemy);
+
+        enemigos->push_back(enemy);
+        //pasarcelos a personaje.
+        escena->addItem(enemy);
     }
-    bloques[y][x]->setTypeFloor();
-    matrizGame[y][x] = 9;
-    Enemigo *enemy;
-    enemy = new Enemigo;
-    enemy->setPos(x,y);
 }
 
 void MainWindow::removeBomb(Bomba *reBomba)

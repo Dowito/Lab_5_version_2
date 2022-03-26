@@ -9,17 +9,17 @@ Enemigo::Enemigo(short type)
     }
     else if (type == 1) {
         sprite.load(":/images/Sprites/furro.png");
-        tempo = 100;
+        tempo = 2;
         vel = 3;
     }
     else if (type == 2) {
         sprite.load(":/images/Sprites/demonio.png");
-        tempo = 500;
+        tempo = 1;
         vel = 3;
     }
     else {
-        sprite.load(":/images/Sprites/demonio.png");
-        tempo = 500;
+        sprite.load(":/images/Sprites/explosion.png");
+        tempo = 0;
         vel = 3;
     }
     setSize(sizeGame);
