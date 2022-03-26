@@ -1,5 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+#include <macros.h>
 #include <QMainWindow>
 #include <QGraphicsScene> //Para mostrar objetos enel graphicsview por medio de la escena
 #include <QKeyEvent> //para leer las señales de las teclas
@@ -11,8 +12,7 @@
 #include <bloque.h>
 #include <enemigo.h>
 #include <bomba.h>
-#include <macros.h>
-
+#include <time.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -30,13 +30,19 @@ public:
     void loadMap();
 
 private slots:
+    void removeExplotion(QVector<Explotion*> &explotions);
+
     void removeBomb(QPointF pos);
 
     void on_pushButton_clicked();
 
     void on_quitarbomba_clicked();
 
+signals:
+    void destroyExplotions(QVector<Explotion*> &explotions);
+
 private:
+
     Bomba* findBomb(QPointF pos);
     short numBombas;
     QList<Bomba*> bombas;

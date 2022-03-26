@@ -8,13 +8,15 @@
 #define dificult 0.2
 
 //Personaje
-#define velPlayer 8
+#define velPlayer 48
 #define bombsPlayer 4
 
 //Bomba
-#define DELAY 4000
+#define DELAY 3000
 #define POT 2
 
+//Explocion
+#define DELAY_EXPLOCION 500
 /*Matriz
 0 = bloque
 1 = bloque destruible

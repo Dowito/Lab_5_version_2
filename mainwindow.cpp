@@ -141,6 +141,7 @@ void MainWindow::removeBomb(QPointF pos)
     QVector<QVector<int>> mBombs;
     numBombas -= 1;
     auto reBomba = findBomb(pos);
+    disconnect(reBomba, &Bomba::bombDestroyed, this, &MainWindow::removeBomb);
     reBomba->explote(explotions, mBlocks, mBombs);
     int mY = reBomba->y()/(size_sprites*sizeGame);
     int mX = reBomba->x()/(size_sprites*sizeGame);
@@ -165,6 +166,17 @@ void MainWindow::removeBomb(QPointF pos)
     for (Explotion *value : qAsConst(explotions)) {
         escena->addItem(value);
     }
+    connect(this, &MainWindow::destroyExplotions, this, &MainWindow::removeExplotion);
+    emit destroyExplotions(explotions);
+}
+
+void MainWindow::removeExplotion(QVector<Explotion*> &explotions)
+{
+    disconnect(this, &MainWindow::destroyExplotions, this, &MainWindow::removeExplotion);
+    for (Explotion *value : qAsConst(explotions)) {
+        escena->removeItem(value);
+    }
+
 }
 
 void MainWindow::on_pushButton_clicked()
