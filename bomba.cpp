@@ -74,7 +74,9 @@ void Bomba::explote(QVector<Explotion *> &explotions, QVector<QVector<int> > &mB
 
 void Bomba::remove()
 {
-    emit bombDestroyed(pos());
+    disconnect(&timer, &QTimer::timeout, this, &Bomba::remove);
+    timer.stop();
+    emit bombDestroyed(this);
 }
 
 void Bomba::startBomb()

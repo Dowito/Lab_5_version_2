@@ -16,7 +16,7 @@ public slots:
     void startBomb();
 
 signals:
-    void bombDestroyed(QPointF pos); //manda las coordenadas de la bomba a destruir
+    void bombDestroyed(Bomba *reBomba); //manda las coordenadas de la bomba a destruir
 
 private:
     QTimer timer;

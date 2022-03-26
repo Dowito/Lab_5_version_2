@@ -18,23 +18,28 @@ Enemigo::Enemigo(short type)
 
 void Enemigo::moveEnemy()
 {
+    static unsigned short count = 0;
     static short direction = 0;
-    if (tryMove(direction)) { //si es posible el movimiento
-        int mX = ((int)x())/(size_sprites*sizeGame);
-        int mY = ((int)y())/(size_sprites*sizeGame);
-        if ((int)x()%(size_sprites*sizeGame)==0 && (int)y()%(size_sprites*sizeGame)==0 && mX%2!=0 && mY%2!=0) { //si se esta en una intercepcion
-            if (even_aleatorio(0.9)) { //si cambia de direccion
-                direction = changeDirection();
+    ++count;
+    if (count == 5){
+        count = 0;
+        if (tryMove(direction)) { //si es posible el movimiento
+            int mX = ((int)x())/(size_sprites*sizeGame);
+            int mY = ((int)y())/(size_sprites*sizeGame);
+            if ((int)x()%(size_sprites*sizeGame)==0 && (int)y()%(size_sprites*sizeGame)==0 && mX%2!=0 && mY%2!=0) { //si se esta en una intercepcion
+                if (even_aleatorio(0.9)) { //si cambia de direccion
+                    direction = changeDirection();
+                }
+                move(direction);
             }
+            else { //si no se esta en una intercepccion, entonces se realiza el movimiento
+                move(direction);
+            }
+        }
+        else {//si no es posible el movimiento
+            direction = changeDirection();
             move(direction);
         }
-        else { //si no se esta en una intercepccion, entonces se realiza el movimiento
-            move(direction);
-        }
-    }
-    else {//si no es posible el movimiento
-        direction = changeDirection();
-        move(direction);
     }
 }
 

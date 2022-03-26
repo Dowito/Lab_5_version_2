@@ -133,6 +133,8 @@ Reciba la se\'f1al de bombaDestruida, y en ese momento que inicie el proceso de 
 \pard\sa200\sl276\slmult1\b Explosion Bombas:\par
 \b0 Una explosion es producto de una bomba, el radio de la explosion siempre depende de su potencia, en este caso, se le dara la propiedad de potencia a la bomba, y la funcion explota recibira dicha bomba.\par
 La casilla donde estaba la bomba se convierte en una llama, las llamas duraran un determinado tiempo. y la explosion en las casilla donde hayan un 9,  si alcanza una casilla donde haya un 1, automaticamente destruira dicho bloque y lo sustituye por un 9,  si hay un 2, explota dicha bomba y genera una cadena, si hay un 0, se dejan de expandir.\par
+La logica para es que dentro de una funcion que se llama al explotar una bomba, segun su potencia,  y otra funcion es encargada de calcular las explociones en 4 direcciones que podrian generar segun los casos, y cada explosion es guardada en un contenedor el cual se retorna, para luego agregarlos a la escena, despues de un delay, se eliminaran dichas explosiones.\par
+podria ahorarme el crear un contenedor para las explociones, cada explosion que cree la puedo conectar con la funcion que la elimina junto  a un timer unico de cada explosion. \par
 \highlight4 recordar que la explosion es en forma de cruz, tocara difivir cada columna, y que cada una sea una explosion diferente.\highlight0\par
 
 \pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1 Radio explosion:\par

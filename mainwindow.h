@@ -32,7 +32,7 @@ public:
 private slots:
     void removeExplotion(QVector<Explotion*> &explotions);
 
-    void removeBomb(QPointF pos);
+    void removeBomb(Bomba *reBomba);
 
     void on_pushButton_clicked();
 

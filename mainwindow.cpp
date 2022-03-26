@@ -131,17 +131,16 @@ void MainWindow::loadMap()
             escena->addItem(bloques[y][x]);
         }
     }
-    escena->addItem(personaje);//Aqui pa que aparesca encima de los bloques y no alreves.
+    escena->addItem(personaje);//Aqui para que aparesca encima de los bloques y no alreves.
 }
 
-void MainWindow::removeBomb(QPointF pos)
+void MainWindow::removeBomb(Bomba *reBomba)
 {
+    disconnect(reBomba, &Bomba::bombDestroyed, this, &MainWindow::removeBomb);
     QVector<Explotion*> explotions;
     QVector<QVector<int>> mBlocks;
     QVector<QVector<int>> mBombs;
     numBombas -= 1;
-    auto reBomba = findBomb(pos);
-    disconnect(reBomba, &Bomba::bombDestroyed, this, &MainWindow::removeBomb);
     reBomba->explote(explotions, mBlocks, mBombs);
     int mY = reBomba->y()/(size_sprites*sizeGame);
     int mX = reBomba->x()/(size_sprites*sizeGame);
@@ -149,7 +148,7 @@ void MainWindow::removeBomb(QPointF pos)
     escena->removeItem(reBomba);
     bombas.removeOne(reBomba);
     delete reBomba;
-    /*Cadena de Bombas
+    /*//Cadena de Bombas
     for (auto mChainPos : qAsConst(mBombs)) {
         qreal chainX = mChainPos[0]*(size_sprites*sizeGame);
         qreal chainY = mChainPos[1]*(size_sprites*sizeGame);
@@ -158,10 +157,10 @@ void MainWindow::removeBomb(QPointF pos)
         chainBomb->remove();
     }
     */
-    for (auto posM : qAsConst(mBlocks)) {
-        matrizGame[posM[1]][posM[0]] = 9;
+    for (auto mPos : qAsConst(mBlocks)) {
+        matrizGame[mPos[1]][mPos[0]] = 9;
         //animacion de destruccion bloque
-        bloques[posM[1]][posM[0]]->setTypeFloor();
+        bloques[mPos[1]][mPos[0]]->setTypeFloor();
     }
     for (Explotion *value : qAsConst(explotions)) {
         escena->addItem(value);
