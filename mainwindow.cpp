@@ -16,25 +16,18 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     timer = new QTimer;
-
+    /*
     enemigo[0] = new Enemigo (1);
     enemigo[0]->setSize(sizeGame);
     enemigo[0]->setFrame(1,0);
     enemigo[0]->setPos(4*48,1*48);
     enemigo[0]->setMatrizGame(matrizGame);
+    escena->addItem(enemigo[0]);
     connect(timer, &QTimer::timeout, enemigo[0], &Enemigo::moveEnemy);
-
-    enemigo[1] = new Enemigo (2);
-    enemigo[1]->setSize(sizeGame);
-    enemigo[1]->setFrame(1,0);
-    enemigo[1]->setPos(5*48,4*48);
-    enemigo[1]->setMatrizGame(matrizGame);
-    connect(timer, &QTimer::timeout, enemigo[1], &Enemigo::moveEnemy);
+    */
     //connect(time, &QTimer::timeout, this, &Juego::moveEnemigo);
     //QObject::connect(&timer, SIGNAL(timeout()), &scene, SLOT(advance()));
     //QObject::connect(&timer, &QTimer::timeout, &scene, &QGraphicsScene::advance);
-    escena->addItem(enemigo[0]);
-    escena->addItem(enemigo[1]);
     ui->graphicsView->setScene(escena);
     timer->start(clockGame);
 }
@@ -42,7 +35,6 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete personaje;
-    delete *enemigo;
     delete **bloques;
     delete matrizGame;
     //delete time;//no se si daba eliminarlo
@@ -82,7 +74,6 @@ void MainWindow::keyPressEvent(QKeyEvent *i)
         }
     }
     else return;
-
 }
 
 void MainWindow::createMap()
@@ -125,6 +116,20 @@ void MainWindow::loadMap()
         }
     }
     escena->addItem(personaje);//Aqui para que aparesca encima de los bloques y no alreves.
+}
+
+void MainWindow::putEnemies()
+{
+    int y = 1+rand()%((sizeMapY-1)-1);
+    int x = 8+rand()%((sizeMapX-1)-8);
+    if (y%2 == 2) {
+        if (x%2 == 2) x += 1;
+    }
+    bloques[y][x]->setTypeFloor();
+    matrizGame[y][x] = 9;
+    Enemigo *enemy;
+    enemy = new Enemigo;
+    enemy->setPos(x,y);
 }
 
 void MainWindow::removeBomb(Bomba *reBomba)

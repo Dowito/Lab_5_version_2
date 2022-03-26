@@ -12,7 +12,7 @@
 #define bombsPlayer 4
 
 //Enemigo
-#define MAX_DELAY 100
+#define MAX_ENEMIES 8
 
 //Bomba
 #define DELAY 3000

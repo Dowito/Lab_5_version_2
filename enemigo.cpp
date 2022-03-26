@@ -17,6 +17,13 @@ Enemigo::Enemigo(short type)
         tempo = 500;
         vel = 3;
     }
+    else {
+        sprite.load(":/images/Sprites/demonio.png");
+        tempo = 500;
+        vel = 3;
+    }
+    setSize(sizeGame);
+    setFrame(1);
 }
 
 void Enemigo::moveEnemy()

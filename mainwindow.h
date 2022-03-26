@@ -28,6 +28,7 @@ public:
     void keyPressEvent(QKeyEvent *i);
     void createMap();
     void loadMap();
+    void putEnemies();
 
 private slots:
     void removeExplotion(QVector<Explotion*> &explotions);
@@ -46,7 +47,7 @@ private:
     Bomba* findBomb(QPointF pos);
     short numBombas;
     QList<Bomba*> bombas;
-    Enemigo *enemigo[3];
+    QList<Enemigo*> *enemigos;
     Bloque *bloques[sizeMapY][sizeMapX];
     int **matrizGame;
     Personaje *personaje;
