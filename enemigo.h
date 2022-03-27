@@ -15,6 +15,9 @@ public:
     Enemigo(short type);
     void startEnemy();
 
+    QTimer *getTimer() const;
+    void setTimer(QTimer *newTimer);
+
 private slots:
     void moveEnemy();
 
@@ -38,7 +41,7 @@ private:
 
     short vel;
     short direction;
-    QTimer timer;
+    QTimer *timer;
 };
 
 #endif // ENEMIGO_H

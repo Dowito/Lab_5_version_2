@@ -8,11 +8,11 @@ Enemigo::Enemigo(short type)
     }
     else if (type == 1) {
         sprite.load(":/images/Sprites/furro.png");
-        vel = 6;
+        vel = 4;
     }
     else if (type == 2) {
         sprite.load(":/images/Sprites/demonio.png");
-        vel = 12;
+        vel = 8;
     }
     else {
         sprite.load(":/images/Sprites/explosion.png");
@@ -25,13 +25,13 @@ Enemigo::Enemigo(short type)
 
 void Enemigo::startEnemy()
 {
-    connect(&timer, &QTimer::timeout, this, &Enemigo::moveEnemy);
-    timer.start(TIMER_ENEMY);
+    connect(timer, &QTimer::timeout, this, &Enemigo::moveEnemy);
+    //timer.start(TIMER_ENEMY);
 }
 
 void Enemigo::moveEnemy()
 {
-    timer.stop();
+    //timer.stop();
     if (tryMove(direction)) { //si es posible el movimiento
         int mX = ((int)x())/(size_sprites*sizeGame);
         int mY = ((int)y())/(size_sprites*sizeGame);
@@ -49,7 +49,7 @@ void Enemigo::moveEnemy()
         direction = changeDirection();
         move(direction);
     }
-    timer.start(TIMER_ENEMY);
+    //timer.start(TIMER_ENEMY);
 }
 
 bool Enemigo::tryMove(short direction)
@@ -140,4 +140,14 @@ short Enemigo::changeDirection()
     if (count == 0) return 916;
     count = 0+rand()%(count-0);//genera numeros aleatorios en el rango de 0-count que corresponde a algun indice valido del buffer que contiene una direccion
     return buffer[count];
+}
+
+QTimer *Enemigo::getTimer() const
+{
+    return timer;
+}
+
+void Enemigo::setTimer(QTimer *newTimer)
+{
+    timer = newTimer;
 }
