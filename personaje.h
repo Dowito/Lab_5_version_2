@@ -18,7 +18,18 @@
 class Personaje : public Objeto
 {
 public:
-    Personaje(); //cargamos el sprite por difecto en el constructor
+    Personaje(); //cargamos el sprite por difecto en el constructor    
+    /*!
+     * \brief move mueve el objeto
+     * \param direction direccion hacia donde se mueva el objeto (0, 1, 2 o 3).
+     */
+    void move(short direction);
+    /*!
+     * \brief tryMove Si es valido el movimiento a realizar en dicha direccion
+     * \param direction direccion a la que se quiere mover el objeto (0, 1, 2 o 3)
+     * \return true si es valido el movimiento hacia dicha direccion, false de lo contrario.
+     */
+    bool tryMove(short direction);
 
     bool putBomb(Bomba *bomba);
 
@@ -26,6 +37,7 @@ public:
     void setBombs(short newBombs);
 
 private:
+    short vel;
     short bombs;
 };
 
