@@ -41,8 +41,6 @@ protected:
     QPixmap type; //se crearan funciones que solo cojan la parte de sprite que se quiere ver en pantalla
     short vel = 0;
     unsigned short size;
-    unsigned short width;
-    unsigned short height;
 };
 
 #endif // OBJETO_H

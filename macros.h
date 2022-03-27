@@ -5,15 +5,16 @@
 #define sizeMapY 11 //Solo numero impares
 #define size_sprites 48
 #define sizeGame 1
-#define dificult 0.2
+#define dificult 0.0
 #define clockGame 20
 
 //Personaje
-#define velPlayer 48
+#define velPlayer 12  //Solo multiplos de 48
 #define bombsPlayer 4
 
 //Enemigo
 #define MAX_ENEMIES 5
+#define IFMOVE true  //Para iniciar un juego con los enemigos moviendoce o quietos.
 
 //Bomba
 #define DELAY 3000

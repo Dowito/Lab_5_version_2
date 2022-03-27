@@ -19,6 +19,7 @@
  */
 class Personaje : public Objeto
 {
+    Q_OBJECT
 public:
     Personaje(); //cargamos el sprite por difecto en el constructor
 
@@ -30,9 +31,27 @@ public:
     QList<Enemigo *> *getEnemigos() const;
     void setEnemigos(QList<Enemigo *> *newEnemigos);
 
+    bool getState() const;
+    void setState(bool newState);
+
+    void setTypeDead(int typeX = 0, int typeY = 0);
+
+public slots:
+    void collidingWithEnemy();
+
+signals:
+    void stateChanged();
+
 private:
+    bool state = true; //Si esta vivo o muerto
     short bombs;
+    QPixmap spriteDead;
+    QPixmap typeDead;
     QList<Enemigo*> *enemigos;
+
+    // QGraphicsItem interface
+
+    // QGraphicsItem interface
 };
 
 #endif // PERSONAJE_H

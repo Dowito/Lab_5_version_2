@@ -9,5 +9,6 @@
         <file>Sprites/furro.png</file>
         <file>Sprites/bomba.png</file>
         <file>Sprites/explosion.png</file>
+        <file>Sprites/personaje_herido.png</file>
     </qresource>
 </RCC>

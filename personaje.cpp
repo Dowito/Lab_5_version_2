@@ -3,11 +3,19 @@
 Personaje::Personaje()
 {
     sprite.load(":/images/Sprites/personaje.png");
+    spriteDead.load(":/images/Sprites/personaje_herido.png");
     setSize(sizeGame);
     setFrame(1);
     vel = velPlayer;
     bombs = bombsPlayer;
 
+}
+
+void Personaje::setTypeDead(int typeX, int typeY)
+{
+    typeDead = spriteDead.copy(typeX*size_sprites, typeY*size_sprites, size_sprites, size_sprites)
+            .scaled(size, size);
+    setPixmap(typeDead);
 }
 
 bool Personaje::putBomb(Bomba *bomba)
@@ -83,4 +91,29 @@ QList<Enemigo *> *Personaje::getEnemigos() const
 void Personaje::setEnemigos(QList<Enemigo *> *newEnemigos)
 {
     enemigos = newEnemigos;
+}
+
+bool Personaje::getState() const
+{
+    return state;
+}
+
+void Personaje::setState(bool newState)
+{
+    if (state == newState)
+        return;
+    state = newState;
+    emit stateChanged();
+}
+
+void Personaje::collidingWithEnemy()
+{
+    for (auto enemy : *enemigos) {
+        if (collidesWithItem(enemy)) {
+            setState(false);
+            //animacionMuerte
+            setTypeDead(2);
+            break;
+        }
+    }
 }

@@ -1,7 +1,10 @@
 {\rtf1\ansi\ansicpg1252\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red255\green255\blue0;\red0\green0\blue255;\red255\green0\blue0;\red0\green255\blue0;}
 {\*\generator Riched20 10.0.22000}\viewkind4\uc1 
-\pard\sa200\sl276\slmult1\b\f0\fs22\lang10 CLASES:\par
+\pard\sa200\sl276\slmult1\b\f0\fs22\lang10 Cuando uso apuntadores de contenedores, es importantes reservar en el heap espacio para ellos, osino daran error.\par
+vector<Objeto*> *objeto; //Es un apuntador que apunta a un vector que guarda apuntadores que apuntan a Objetos\par
+objeto = new vector<Objeto*> asi ya tenemos en el heap un apuntador que apunta aun vector que guarda apuntadores a objetos.\par
+CLASES:\par
 \highlight1\b0 amarillo\highlight0  ideas que no tengo claras\highlight1\b\par
 \highlight2\b0 Azul\highlight0  posibles errores\highlight2\par
 \highlight3 rojo\highlight0  peligro, no  tengo claro o muy posible cambio\highlight3\par

@@ -30,6 +30,7 @@ public:
     void loadMap();
     void putPlayer();
     void putEnemies();
+    void connections();
 
 private slots:
     void removeExplotion(QVector<Explotion*> &explotions);

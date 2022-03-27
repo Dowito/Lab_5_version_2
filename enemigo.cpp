@@ -26,7 +26,7 @@ Enemigo::Enemigo(short type)
 
 void Enemigo::startEnemy()
 {
-    connect(timer, &QTimer::timeout, this, &Enemigo::moveEnemy);
+    if(IFMOVE) connect(timer, &QTimer::timeout, this, &Enemigo::moveEnemy);
 }
 
 void Enemigo::moveEnemy()

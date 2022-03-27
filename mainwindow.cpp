@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     loadMap();
     putPlayer();
     putEnemies();
+    connections();
 
     ui->graphicsView->setScene(escena);
     timer->start(clockGame);
@@ -37,36 +38,38 @@ MainWindow::~MainWindow()
 
 void MainWindow::keyPressEvent(QKeyEvent *i)
 {
-    if (i->key() == Qt::Key_S) {
-        if(personaje->tryMove(0)) personaje->move(0);
-    }
-    else if (i->key()  == Qt::Key_A) {
-        if(personaje->tryMove(1)) personaje->move(1);
-    }
-    else if (i->key() == Qt::Key_D) {
-        if(personaje->tryMove(2)) personaje->move(2);
-    }
-    else if (i->key() == Qt::Key_W) {
-        if(personaje->tryMove(3)) personaje->move(3);
-    }
-    else if (i->key() == Qt::Key_Space) {
-        if (numBombas < personaje->getBombs()){
-            Bomba *bomba = new Bomba;
-            bomba->setMatrizGame(matrizGame);
-            if(personaje->putBomb(bomba)){
-                int mY = bomba->y()/(size_sprites*sizeGame);
-                int mX = bomba->x()/(size_sprites*sizeGame);
-                matrizGame[mY][mX] = 2;
-                bombas.push_back(bomba);
-                connect(bomba, &Bomba::bombDestroyed, this, &MainWindow::removeBomb); //manda las coordenadas de la bomba a destruir a la funcion removeBomb
-                bomba->startBomb();
-                escena->addItem(bomba);
-                numBombas++;
-            }
-            else delete bomba;
+    if(personaje->getState()){
+        if (i->key() == Qt::Key_S) {
+            if(personaje->tryMove(0)) personaje->move(0);
         }
+        else if (i->key()  == Qt::Key_A) {
+            if(personaje->tryMove(1)) personaje->move(1);
+        }
+        else if (i->key() == Qt::Key_D) {
+            if(personaje->tryMove(2)) personaje->move(2);
+        }
+        else if (i->key() == Qt::Key_W) {
+            if(personaje->tryMove(3)) personaje->move(3);
+        }
+        else if (i->key() == Qt::Key_Space) {
+            if (numBombas < personaje->getBombs()){
+                Bomba *bomba = new Bomba;
+                bomba->setMatrizGame(matrizGame);
+                if(personaje->putBomb(bomba)){
+                    int mY = bomba->y()/(size_sprites*sizeGame);
+                    int mX = bomba->x()/(size_sprites*sizeGame);
+                    matrizGame[mY][mX] = 2;
+                    bombas.push_back(bomba);
+                    connect(bomba, &Bomba::bombDestroyed, this, &MainWindow::removeBomb); //manda las coordenadas de la bomba a destruir a la funcion removeBomb
+                    bomba->startBomb();
+                    escena->addItem(bomba);
+                    numBombas++;
+                }
+                else delete bomba;
+            }
+        }
+        else return;
     }
-    else return;
 }
 
 void MainWindow::createMap()
@@ -128,9 +131,14 @@ void MainWindow::putEnemies()
         enemy->setTimer(timer);
         enemy->startEnemy();
         enemigos->push_back(enemy);
-        //pasarcelos a personaje.
         escena->addItem(enemy);
     }
+}
+
+void MainWindow::connections()
+{
+    personaje->setEnemigos(enemigos);
+    connect(timer, &QTimer::timeout, personaje, &Personaje::collidingWithEnemy);
 }
 
 void MainWindow::removeBomb(Bomba *reBomba)
