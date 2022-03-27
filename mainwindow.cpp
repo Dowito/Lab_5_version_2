@@ -169,20 +169,19 @@ void MainWindow::removeBomb(Bomba *reBomba)
         //animacion de destruccion bloque
         bloques[mPos[1]][mPos[0]]->setTypeFloor();
     }
-    for (Explotion *value : qAsConst(explotions)) {
-        escena->addItem(value);
+    for (Explotion *explotion : qAsConst(explotions)) {
+        //explosiones->push_back(explotion);
+        connect(explotion, &Explotion::remove, this, &MainWindow::removeExplotion);
+        explotion->start();
+        escena->addItem(explotion);
     }
-    connect(this, &MainWindow::destroyExplotions, this, &MainWindow::removeExplotion);
-    emit destroyExplotions(explotions);
 }
 
-void MainWindow::removeExplotion(QVector<Explotion*> &explotions)
+void MainWindow::removeExplotion(Explotion *explosion)
 {
-    disconnect(this, &MainWindow::destroyExplotions, this, &MainWindow::removeExplotion);
-    for (Explotion *value : qAsConst(explotions)) {
-        escena->removeItem(value);
-    }
-
+    //explosiones->removeOne(explosion);
+    escena->removeItem(explosion);
+    delete explosion;
 }
 
 void MainWindow::on_pushButton_clicked()

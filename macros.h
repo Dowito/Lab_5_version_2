@@ -22,7 +22,7 @@
 #define POT 2
 
 //Explocion
-#define DELAY_EXPLOCION 500
+#define DELAY_EXPLOCION 500 //contador hasta que desaparece la explosion
 
 //Nivel
 

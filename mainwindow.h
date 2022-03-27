@@ -33,7 +33,7 @@ public:
     void connections();
 
 private slots:
-    void removeExplotion(QVector<Explotion*> &explotions);
+    void removeExplotion(Explotion* explosion);
 
     void removeBomb(Bomba *reBomba);
 
@@ -41,13 +41,11 @@ private slots:
 
     void on_quitarbomba_clicked();
 
-signals:
-    void destroyExplotions(QVector<Explotion*> &explotions);
-
 private:
 
     Bomba* findBomb(QPointF pos);
     short numBombas;
+    QList<Explotion*> *explosiones;
     QList<Bomba*> bombas;
     QList<Enemigo*> *enemigos;
     Bloque *bloques[sizeMapY][sizeMapX];
