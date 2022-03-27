@@ -184,20 +184,6 @@ void MainWindow::removeExplotion(Explotion *explosion)
     delete explosion;
 }
 
-void MainWindow::on_pushButton_clicked()
-{
-    /*bomba = new Bomba;
-    bomba->setPos(personaje->x(),personaje->y());
-    escena->addItem(bomba);*/
-}
-
-
-void MainWindow::on_quitarbomba_clicked()
-{
-    /*escena->removeItem(bomba);
-    bomba = nullptr;*/
-}
-
 Bomba *MainWindow::findBomb(QPointF pos)
 {
     for (auto value : qAsConst(bombas)) {
