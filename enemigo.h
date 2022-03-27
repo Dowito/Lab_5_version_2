@@ -15,6 +15,9 @@ public:
     Enemigo(short type);
     void startEnemy();
 
+    QTimer *getTimer() const;
+    void setTimer(QTimer *newTimer);
+
 private slots:
     void moveEnemy();
 
@@ -24,7 +27,8 @@ private:
      * \return 0=abajo, 1=izquierda, 2=derecha, 3=arriba, de lo contrario significa que es no hay ninguna direccion donde moverce.
      */
     short changeDirection();
-    QTimer timer;
+    short direction;
+    QTimer *timer;
 };
 
 #endif // ENEMIGO_H

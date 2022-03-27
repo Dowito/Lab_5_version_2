@@ -6,7 +6,7 @@
 #define size_sprites 48
 #define sizeGame 1
 #define dificult 0.2
-#define clockGame 100
+#define clockGame 20
 
 //Personaje
 #define velPlayer 48
@@ -14,8 +14,6 @@
 
 //Enemigo
 #define MAX_ENEMIES 5
-#define TIMER_ENEMY 100
-//#define MAX_ENEMIES 8
 
 //Bomba
 #define DELAY 3000

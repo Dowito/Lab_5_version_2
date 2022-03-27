@@ -114,7 +114,7 @@ void MainWindow::putEnemies()
     int y, x;
     for(short i = 0; i<MAX_ENEMIES; i++){
         y = 1+rand()%((sizeMapY-1)-1);
-        x = 6+rand()%((sizeMapX-1)-6);
+        x = 9+rand()%((sizeMapX-1)-9);
         if (y%2 == 0 && x%2 == 0) x += 1;
         bloques[y][x]->setTypeFloor();
         matrizGame[y][x] = 9;
@@ -123,6 +123,7 @@ void MainWindow::putEnemies()
         enemy = new Enemigo(type);
         enemy->setPos(x*enemy->getSize(),y*enemy->getSize());
         enemy->setMatrizGame(matrizGame);
+        enemy->setTimer(timer);
         enemy->startEnemy();
         enemigos->push_back(enemy);
         //pasarcelos a personaje.
