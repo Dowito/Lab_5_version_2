@@ -26,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    delete enemigos;
     delete personaje;
     delete **bloques;
     delete matrizGame;
@@ -146,15 +147,14 @@ void MainWindow::removeBomb(Bomba *reBomba)
     escena->removeItem(reBomba);
     bombas.removeOne(reBomba);
     delete reBomba;
-    /*//Cadena de Bombas
+    /*//Cadena de Bombas  crashea cuando se ponen dos bombas y luego entre esas dos se pone otra y explota la primera
     for (auto mChainPos : qAsConst(mBombs)) {
         qreal chainX = mChainPos[0]*(size_sprites*sizeGame);
         qreal chainY = mChainPos[1]*(size_sprites*sizeGame);
         QPointF chainPos = {static_cast<qreal>(chainX),static_cast<qreal>(chainY)};
         auto chainBomb = findBomb(chainPos);
         chainBomb->remove();
-    }
-    */
+    }*/
     for (auto mPos : qAsConst(mBlocks)) {
         matrizGame[mPos[1]][mPos[0]] = 9;
         //animacion de destruccion bloque
