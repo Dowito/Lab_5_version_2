@@ -3,8 +3,11 @@
 Personaje::Personaje()
 {
     sprite.load(":/images/Sprites/personaje.png");
+    setSize(sizeGame);
+    setFrame(1);
     vel = velPlayer;
     bombs = bombsPlayer;
+
 }
 
 bool Personaje::putBomb(Bomba *bomba)

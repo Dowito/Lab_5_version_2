@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     createMap();
     loadMap();
+    putPlayer();
     putEnemies();
 
     ui->graphicsView->setScene(escena);
@@ -92,13 +93,6 @@ void MainWindow::loadMap()
 {
     for (int y=0; y<sizeMapY; y++) {
         for (int x=0; x<sizeMapX; x++) {
-            if(x==1 && y==1) {
-                personaje = new Personaje;
-                personaje->setMatrizGame(matrizGame); //Le paso la matriz al personaje
-                personaje->setSize(sizeGame);
-                personaje->setFrame(1);
-                personaje->setPos(1*48,1*48);
-            }
             bloques[y][x] = new Bloque;
             bloques[y][x]->setSize(sizeGame);
             bloques[y][x]->setType(matrizGame[y][x]); //lo inicio segun el tipo que me de la matriz
@@ -106,7 +100,14 @@ void MainWindow::loadMap()
             escena->addItem(bloques[y][x]);
         }
     }
-    escena->addItem(personaje);//Aqui para que aparesca encima de los bloques y no alreves.
+}
+
+void MainWindow::putPlayer()
+{
+    personaje = new Personaje;
+    personaje->setMatrizGame(matrizGame); //Le paso la matriz al personaje
+    personaje->setPos(personaje->getSize(),personaje->getSize());
+    escena->addItem(personaje);
 }
 
 void MainWindow::putEnemies()

@@ -28,6 +28,7 @@ public:
     void keyPressEvent(QKeyEvent *i);
     void createMap();
     void loadMap();
+    void putPlayer();
     void putEnemies();
 
 private slots:
