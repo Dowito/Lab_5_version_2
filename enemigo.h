@@ -9,7 +9,7 @@
  */
 class Enemigo : public Objeto
 {
-
+    Q_OBJECT
 public:
     Enemigo() {};
     Enemigo(short type);

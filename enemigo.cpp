@@ -30,11 +30,7 @@ void Enemigo::startEnemy()
 
 void Enemigo::moveEnemy()
 {
-    static unsigned short count = 0;
     static short direction = 0;
-    count++;
-    if (count == 1){
-        count = 0;
         if (tryMove(direction)) { //si es posible el movimiento
             int mX = ((int)x())/(size_sprites*sizeGame);
             int mY = ((int)y())/(size_sprites*sizeGame);
@@ -52,7 +48,6 @@ void Enemigo::moveEnemy()
             direction = changeDirection();
             move(direction);
         }
-    }
 }
 
 short Enemigo::changeDirection()
