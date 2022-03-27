@@ -3,6 +3,8 @@
 
 #include <objeto.h>
 #include <bomba.h>
+#include <enemigo.h>
+#include <QList>
 /*!
  * \brief The Personaje class
  * Types:
@@ -25,8 +27,12 @@ public:
     short getBombs() const;
     void setBombs(short newBombs);
 
+    QList<Enemigo *> *getEnemigos() const;
+    void setEnemigos(QList<Enemigo *> *newEnemigos);
+
 private:
     short bombs;
+    QList<Enemigo*> *enemigos;
 };
 
 #endif // PERSONAJE_H

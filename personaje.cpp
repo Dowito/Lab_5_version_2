@@ -74,3 +74,13 @@ void Personaje::setBombs(short newBombs)
 {
     bombs = newBombs;
 }
+
+QList<Enemigo *> *Personaje::getEnemigos() const
+{
+    return enemigos;
+}
+
+void Personaje::setEnemigos(QList<Enemigo *> *newEnemigos)
+{
+    enemigos = newEnemigos;
+}
