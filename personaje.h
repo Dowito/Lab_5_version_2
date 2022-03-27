@@ -4,6 +4,7 @@
 #include <objeto.h>
 #include <bomba.h>
 #include <enemigo.h>
+#include <QTimer>
 #include <QList>
 /*!
  * \brief The Personaje class
@@ -36,6 +37,8 @@ public:
 
     void setTypeDead(int typeX = 0, int typeY = 0);
 
+    void setTimer(QTimer *newTimer);
+
 public slots:
     void collidingWithEnemy();
 
@@ -47,11 +50,12 @@ private:
     short bombs;
     QPixmap spriteDead;
     QPixmap typeDead;
+    QTimer *timer;
     QList<Enemigo*> *enemigos;
 
-    // QGraphicsItem interface
+private slots:
+    void deadAnimation();
 
-    // QGraphicsItem interface
 };
 
 #endif // PERSONAJE_H

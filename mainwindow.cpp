@@ -109,9 +109,10 @@ void MainWindow::loadMap()
 void MainWindow::putPlayer()
 {
     personaje = new Personaje;
-    personaje->setMatrizGame(matrizGame); //Le paso la matriz al personaje
     personaje->setPos(personaje->getSize(),personaje->getSize());
     escena->addItem(personaje);
+    personaje->setMatrizGame(matrizGame); //Le paso la matriz al personaje
+    personaje->setTimer(timer);
 }
 
 void MainWindow::putEnemies()

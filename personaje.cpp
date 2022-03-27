@@ -103,6 +103,7 @@ void Personaje::setState(bool newState)
     if (state == newState)
         return;
     state = newState;
+    connect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation()));
     emit stateChanged();
 }
 
@@ -112,8 +113,26 @@ void Personaje::collidingWithEnemy()
         if (collidesWithItem(enemy)) {
             setState(false);
             //animacionMuerte
-            setTypeDead(2);
+            //setTypeDead(2);
             break;
         }
     }
+}
+
+void Personaje::setTimer(QTimer *newTimer)
+{
+    timer = newTimer;
+}
+
+void Personaje::deadAnimation()
+{
+    static short  frame = 0;
+    static short count = 16;
+    if (count == 16) {
+        setTypeDead(frame);
+        count = 0;
+        frame+=1;
+        if(frame == 3) disconnect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation()));
+    }
+    count++;
 }
