@@ -45,6 +45,9 @@ public slots:
 signals:
     void stateChanged();
 
+private slots:
+    void deadAnimation();
+
 private:
     bool state = true; //Si esta vivo o muerto
     short bombs;
@@ -52,10 +55,6 @@ private:
     QPixmap typeDead;
     QTimer *timer;
     QList<Enemigo*> *enemigos;
-
-private slots:
-    void deadAnimation();
-
 };
 
 #endif // PERSONAJE_H

@@ -111,10 +111,10 @@ void Personaje::collidingWithEnemy()
 {
     for (auto enemy : *enemigos) {
         if (collidesWithItem(enemy)) {
-            setState(false);
-            //animacionMuerte
-            //setTypeDead(2);
-            break;
+            if(enemy->getState()){
+                setState(false);
+                break;
+            }
         }
     }
 }
@@ -127,8 +127,8 @@ void Personaje::setTimer(QTimer *newTimer)
 void Personaje::deadAnimation()
 {
     static short  frame = 0;
-    static short count = 16;
-    if (count == 16) {
+    static short count = SPEED_DEAD;
+    if (count == SPEED_DEAD) {
         setTypeDead(frame);
         count = 0;
         frame+=1;

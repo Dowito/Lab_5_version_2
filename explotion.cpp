@@ -18,3 +18,20 @@ void Explotion::removeExplotion()
     disconnect(&timer, SIGNAL(timeout()), this, SLOT(removeExplotion()));
     emit remove(this);
 }
+
+void Explotion::collidingWithEnemy()
+{
+    for (auto enemy : *enemigos) {
+        if (collidesWithItem(enemy)) {
+            enemy->setState(false);
+            //animacionMuerte
+            //setTypeDead(2);
+            break;
+        }
+    }
+}
+
+void Explotion::setEnemigos(QList<Enemigo *> *newEnemigos)
+{
+    enemigos = newEnemigos;
+}

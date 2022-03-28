@@ -131,6 +131,7 @@ void MainWindow::putEnemies()
         enemy->setMatrizGame(matrizGame);
         enemy->setTimer(timer);
         enemy->startEnemy();
+        connect(enemy, &Enemigo::remove, this, &MainWindow::removeEnemy);
         enemigos->push_back(enemy);
         escena->addItem(enemy);
     }
@@ -172,9 +173,18 @@ void MainWindow::removeBomb(Bomba *reBomba)
     for (Explotion *explotion : qAsConst(explotions)) {
         //explosiones->push_back(explotion);
         connect(explotion, &Explotion::remove, this, &MainWindow::removeExplotion);
+        explotion->setEnemigos(enemigos);
+        connect(timer, &QTimer::timeout, explotion, &Explotion::collidingWithEnemy);
         explotion->start();
         escena->addItem(explotion);
     }
+}
+
+void MainWindow::removeEnemy(Enemigo *enemy)
+{
+    enemigos->removeOne(enemy);
+    escena->removeItem(enemy);
+    delete enemy;
 }
 
 void MainWindow::removeExplotion(Explotion *explosion)

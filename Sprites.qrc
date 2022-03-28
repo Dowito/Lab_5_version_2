@@ -10,5 +10,8 @@
         <file>Sprites/bomba.png</file>
         <file>Sprites/explosion.png</file>
         <file>Sprites/personaje_herido.png</file>
+        <file>Sprites/demonio_dead.png</file>
+        <file>Sprites/furro_dead.png</file>
+        <file>Sprites/hombre_lobo_dead.png</file>
     </qresource>
 </RCC>

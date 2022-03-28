@@ -37,9 +37,7 @@ private slots:
 
     void removeBomb(Bomba *reBomba);
 
-    void on_pushButton_clicked();
-
-    void on_quitarbomba_clicked();
+    void removeEnemy(Enemigo *enemy);
 
 private:
 
