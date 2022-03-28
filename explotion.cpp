@@ -1,5 +1,5 @@
-#include "explotion.h"
-
+#include <explotion.h>
+#include <personaje.h>
 Explotion::Explotion()
 {
     sprite.load(":/images/Sprites/explosion.png");
@@ -29,6 +29,18 @@ void Explotion::collidingWithEnemy()
             break;
         }
     }
+}
+
+void Explotion::collidingWithPlayer()
+{
+    if(collidesWithItem(personaje)){
+        personaje->setState(false);
+    }
+}
+
+void Explotion::setPersonaje(Personaje *newPersonaje)
+{
+    personaje = newPersonaje;
 }
 
 void Explotion::setEnemigos(QList<Enemigo *> *newEnemigos)

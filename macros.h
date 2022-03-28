@@ -22,7 +22,7 @@
 #define POT 2
 
 //Explocion
-#define DELAY_EXPLOCION 1000 //default 500
+#define DELAY_EXPLOCION 200 //default 500
 
 //Nivel
 

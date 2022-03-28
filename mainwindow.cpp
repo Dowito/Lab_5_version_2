@@ -173,8 +173,10 @@ void MainWindow::removeBomb(Bomba *reBomba)
     for (Explotion *explotion : qAsConst(explotions)) {
         //explosiones->push_back(explotion);
         connect(explotion, &Explotion::remove, this, &MainWindow::removeExplotion);
-        explotion->setEnemigos(enemigos);
         connect(timer, &QTimer::timeout, explotion, &Explotion::collidingWithEnemy);
+        connect(timer, &QTimer::timeout, explotion, &Explotion::collidingWithPlayer);
+        explotion->setEnemigos(enemigos);
+        explotion->setPersonaje(personaje);
         explotion->start();
         escena->addItem(explotion);
     }
