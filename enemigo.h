@@ -19,13 +19,13 @@ public:
     void setState(bool newState);
     void setTypeDead(int typeX = 0, int typeY = 0);
     bool getState() const;
-    void moveAnimation();
 
 signals:
     void stateChanged();
     void remove(Enemigo *enemy);
 
 private slots:
+    void moveAnimation();
     void moveEnemy();
     void startDead();
     void deadAnimation();

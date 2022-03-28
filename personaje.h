@@ -28,20 +28,15 @@ public:
 
     short getBombs() const;
     void setBombs(short newBombs);
-
     QList<Enemigo *> *getEnemigos() const;
     void setEnemigos(QList<Enemigo *> *newEnemigos);
-
     bool getState() const;
     void setState(bool newState);
-
     void setTypeDead(int typeX = 0, int typeY = 0);
-
     void setTimer(QTimer *newTimer);
-
     bool getImmuneExplotions() const;
-
     void setImmuneExplotions(bool newImmuneExplotions);
+    void moveAnimation(short direction);
 
 public slots:
     void collidingWithEnemy();

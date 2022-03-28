@@ -150,9 +150,24 @@ void Personaje::setImmuneExplotions(bool newImmuneExplotions)
     immuneExplotions = newImmuneExplotions;
 }
 
-void Personaje::moveAnimation()
+void Personaje::moveAnimation(short direction)
 {
-
+    static short count = 1;
+    static short frame = 0;
+    if(direction>3) {
+        setFrame(1);
+    }
+    else setFrame(frame, direction); //Siempre se tiene que actualizar la nueva direccion
+    if(count == STEPS){
+        if(direction>3) {
+            setFrame(1);
+        }
+        else setFrame(frame, direction);
+        count = 1;
+        frame++;
+        if (frame == 3) frame = 0;
+    }
+    else count++;
 }
 
 bool Personaje::getImmuneExplotions() const

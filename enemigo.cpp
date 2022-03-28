@@ -60,9 +60,15 @@ void Enemigo::moveEnemy()
 
 void Enemigo::moveAnimation()
 {
-    setFrame(frame, direction); //Siempre se tiene que actualizar la nueva direccion
+    if(direction>3) {
+        setFrame(1);
+    }
+    else setFrame(frame, direction); //Siempre se tiene que actualizar la nueva direccion
     if(count == SPEED_MOVE_ANIMATION){
-        setFrame(frame, direction);
+        if(direction>3) {
+            setFrame(1);
+        }
+        else setFrame(frame, direction);
         count = 0;
         frame++;
         if (frame == 3) frame = 0;

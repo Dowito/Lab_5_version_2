@@ -13,6 +13,7 @@
 #define bombsPlayer 4
 #define SPEED_DEAD 16 //default 16 /velocidad en que cambian los frames en la animacion de muerte, 16 significa que cuenta 16 veces el clockGames antes de pasar al siguiente frame
 #define IMMUNE_EXPLOTION true //true para ser invulnerable a las explociones
+#define STEPS 3 //default 3 /Cada tantos pasos cambia de frame al moverse
 
 //Enemigo
 #define MAX_ENEMIES 5

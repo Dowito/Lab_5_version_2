@@ -40,16 +40,16 @@ void MainWindow::keyPressEvent(QKeyEvent *i)
 {
     if(personaje->getState()){
         if (i->key() == Qt::Key_S) {
-            if(personaje->tryMove(0)) personaje->move(0);
+            if(personaje->tryMove(0)) personaje->move(0), personaje->moveAnimation(0);
         }
         else if (i->key()  == Qt::Key_A) {
-            if(personaje->tryMove(1)) personaje->move(1);
+            if(personaje->tryMove(1)) personaje->move(1), personaje->moveAnimation(1);
         }
         else if (i->key() == Qt::Key_D) {
-            if(personaje->tryMove(2)) personaje->move(2);
+            if(personaje->tryMove(2)) personaje->move(2), personaje->moveAnimation(2);
         }
         else if (i->key() == Qt::Key_W) {
-            if(personaje->tryMove(3)) personaje->move(3);
+            if(personaje->tryMove(3)) personaje->move(3), personaje->moveAnimation(3);
         }
         else if (i->key() == Qt::Key_Space) {
             if (numBombas < personaje->getBombs()){
@@ -111,9 +111,11 @@ void MainWindow::putPlayer()
 {
     personaje = new Personaje;
     personaje->setPos(personaje->getSize(),personaje->getSize());
-    escena->addItem(personaje);
     personaje->setMatrizGame(matrizGame); //Le paso la matriz al personaje
+    personaje->setEnemigos(enemigos);
     personaje->setTimer(timer);
+    connect(timer, &QTimer::timeout, personaje, &Personaje::collidingWithEnemy);
+    escena->addItem(personaje);
 }
 
 void MainWindow::putEnemies()
@@ -140,8 +142,7 @@ void MainWindow::putEnemies()
 
 void MainWindow::connections()
 {
-    personaje->setEnemigos(enemigos);
-    connect(timer, &QTimer::timeout, personaje, &Personaje::collidingWithEnemy);
+
 }
 
 void MainWindow::removeBomb(Bomba *reBomba)
