@@ -31,7 +31,7 @@ int Bloque::mY()
 
 void Bloque::destroy()
 {
-
+    emit remove(this);
 }
 
 int Bloque::getCount() const

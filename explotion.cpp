@@ -1,5 +1,7 @@
 #include <explotion.h>
 #include <personaje.h>
+#include <bloque.h>
+
 Explotion::Explotion()
 {
     sprite.load(":/images/Sprites/explosion.png");
@@ -26,6 +28,7 @@ void Explotion::start()
 void Explotion::removeExplotion()
 {
     disconnect(&timer, SIGNAL(timeout()), this, SLOT(removeExplotion()));
+    if(bloque != nullptr) bloque->destroy();
     emit remove(this);
 }
 
@@ -46,6 +49,11 @@ void Explotion::collidingWithPlayer()
             personaje->setState(false);
         }
     }
+}
+
+void Explotion::setBloque(Bloque *newBloque)
+{
+    bloque = newBloque;
 }
 
 void Explotion::setPersonaje(Personaje *newPersonaje)

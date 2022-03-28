@@ -11,6 +11,7 @@ class Explosion;
  */
 class Bloque : public Objeto
 {
+    Q_OBJECT
 public:
     Bloque();
 
@@ -31,6 +32,9 @@ public:
 
 public slots:
     void destroy();
+
+signals:
+    void remove(Bloque *block);
 
 private:
     int count;

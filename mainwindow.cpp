@@ -162,9 +162,14 @@ void MainWindow::removeBomb(Bomba *reBomba)
         chainBomb->remove();
     }*/
     for (auto mPos : qAsConst(mBlocks)) {
-        matrizGame[mPos[1]][mPos[0]] = 9;
-        //animacion de destruccion bloque
-        bloques[mPos[1]][mPos[0]]->setTypeFloor();
+        Explotion *explotion;
+        explotion = new Explotion;
+        explotion->setPos(bloques[mPos[1]][mPos[0]]->pos());
+        explotion->setBloque(bloques[mPos[1]][mPos[0]]);
+        connect(explotion, &Explotion::remove, this, &MainWindow::removeExplotion);
+        connect(bloques[mPos[1]][mPos[0]], &Bloque::remove, this, &MainWindow::removeBlock);
+        explotion->start();
+        escena->addItem(explotion);
     }
     for (Explotion *explotion : qAsConst(explotions)) {
         //explosiones->push_back(explotion);

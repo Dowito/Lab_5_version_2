@@ -4,6 +4,7 @@
 #include <enemigo.h>
 #include <QTimer>
 class Personaje;
+class Bloque;
 
 class Explotion : public Objeto
 {
@@ -14,6 +15,8 @@ public:
     void start();
     void setEnemigos(QList<Enemigo *> *newEnemigos);
     void setPersonaje(Personaje *newPersonaje);
+
+    void setBloque(Bloque *newBloque);
 
 public slots:
     void animation();
@@ -28,6 +31,7 @@ private:
     int count;
     int typeX;
     int typeY;
+    Bloque *bloque = nullptr;
     Personaje *personaje;
     QList<Enemigo*> *enemigos;
     QTimer timerAnimation;
