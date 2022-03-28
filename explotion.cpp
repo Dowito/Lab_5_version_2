@@ -24,8 +24,6 @@ void Explotion::collidingWithEnemy()
     for (auto enemy : *enemigos) {
         if (collidesWithItem(enemy)) {
             enemy->setState(false);
-            //animacionMuerte
-            //setTypeDead(2);
             break;
         }
     }
@@ -33,8 +31,10 @@ void Explotion::collidingWithEnemy()
 
 void Explotion::collidingWithPlayer()
 {
-    if(collidesWithItem(personaje)){
-        personaje->setState(false);
+    if(!personaje->getImmuneExplotions()) {
+        if(collidesWithItem(personaje)){
+            personaje->setState(false);
+        }
     }
 }
 

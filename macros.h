@@ -9,12 +9,14 @@
 #define clockGame 20 //por defecto 20
 
 //Personaje
-#define velPlayer 48  //Solo multiplos de 48
+#define velPlayer 8  //Solo multiplos de 48
 #define bombsPlayer 4
-#define SPEED_DEAD 16 //default 16 /velocidad en que cambian los frames en la animaciond de muerte, 16 significa que cuenta 16 veces el clockGames antes de pasar al siguiente frame
+#define SPEED_DEAD 16 //default 16 /velocidad en que cambian los frames en la animacion de muerte, 16 significa que cuenta 16 veces el clockGames antes de pasar al siguiente frame
+#define IMMUNE_EXPLOTION true //true para ser invulnerable a las explociones
 
 //Enemigo
 #define MAX_ENEMIES 5
+#define SPEED_MOVE_ANIMATION 6 //velocidad en que cambian los frames en la animacion de muerte, 16 significa que cuenta 16 veces el clockGames antes de pasar al siguiente frame
 #define IFMOVE true  //Para iniciar un juego con los enemigos moviendoce o quietos.
 
 //Bomba

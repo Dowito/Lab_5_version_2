@@ -4,7 +4,7 @@ Enemigo::Enemigo(short type)
 {
     //vel solo puede tomar valores multiplos de 48
     if (type == 0) {
-        sprite.load(":/images/Sprites/hombre_lobo_dead.png");
+        sprite.load(":/images/Sprites/hombre_lobo.png");
         spriteDead.load(":/images/Sprites/hombre_lobo_dead.png");
         vel = 2;
     }
@@ -25,7 +25,7 @@ Enemigo::Enemigo(short type)
     }
     state = true;
     frame = 0;
-    count = SPEED_DEAD;
+    count = 0;
     direction = 0;
     setSize(sizeGame);
     setFrame(1);
@@ -33,7 +33,8 @@ Enemigo::Enemigo(short type)
 
 void Enemigo::startEnemy()
 {
-    if(IFMOVE) connect(timer, &QTimer::timeout, this, &Enemigo::moveEnemy);
+    if(IFMOVE) connect(timer, &QTimer::timeout, this, &Enemigo::moveEnemy),
+               connect(this, SIGNAL(stateChanged()), this, SLOT(startDead()));
 }
 
 void Enemigo::moveEnemy()
@@ -43,8 +44,9 @@ void Enemigo::moveEnemy()
             int mX = ((int)x())/(size_sprites*sizeGame);
             int mY = ((int)y())/(size_sprites*sizeGame);
             if ((int)x()%(size_sprites*sizeGame)==0 && (int)y()%(size_sprites*sizeGame)==0 && mX%2!=0 && mY%2!=0) { //si se esta en una intercepcion
-                if (even_aleatorio(0.9)) { //si cambia de direccion
+                if (even_aleatorio(0.5)) { //si cambia de direccion
                     direction = changeDirection();
+                    setFrame(frame, direction);
                 }
                 move(direction);
             }
@@ -56,7 +58,16 @@ void Enemigo::moveEnemy()
             direction = changeDirection();
             move(direction);
         }
+        moveAnimation();
     }
+}
+
+void Enemigo::startDead()
+{
+    disconnect(timer, SIGNAL(timeout()), this, SLOT(moveAnimation()));
+    count = SPEED_DEAD;
+    frame = 0;
+    connect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation()));
 }
 
 void Enemigo::deadAnimation()
@@ -73,6 +84,18 @@ void Enemigo::deadAnimation()
 
     }
     count++;
+}
+
+void Enemigo::moveAnimation()
+{
+    setFrame(frame, direction); //Siempre se tiene que actualizar la nueva direccion
+    if(count == SPEED_MOVE_ANIMATION){
+        setFrame(frame, direction);
+        count = 0;
+        frame++;
+        if (frame == 3) frame = 0;
+    }
+    else count++;
 }
 
 short Enemigo::changeDirection()
@@ -100,7 +123,6 @@ void Enemigo::setState(bool newState)
     if (state == newState)
         return;
     state = newState;
-    connect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation()));
     emit stateChanged();
 }
 

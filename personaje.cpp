@@ -6,8 +6,10 @@ Personaje::Personaje()
     spriteDead.load(":/images/Sprites/personaje_herido.png");
     setSize(sizeGame);
     setFrame(1);
+    state = true;
     vel = velPlayer;
     bombs = bombsPlayer;
+    immuneExplotions = IMMUNE_EXPLOTION;
     connect(this, SIGNAL(stateChanged()), this, SLOT(startDead()));
 }
 
@@ -108,11 +110,13 @@ void Personaje::setState(bool newState)
 
 void Personaje::collidingWithEnemy()
 {
-    for (auto enemy : *enemigos) {
-        if (collidesWithItem(enemy)) {
-            if(enemy->getState()){
-                setState(false);
-                break;
+    if(state){
+        for (auto enemy : *enemigos) {
+            if (collidesWithItem(enemy)) {
+                if(enemy->getState()){
+                    setState(false);
+                    break;
+                }
             }
         }
     }
@@ -139,4 +143,14 @@ void Personaje::deadAnimation()
         if(frame == 3) disconnect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation()));
     }
     count++;
+}
+
+void Personaje::setImmuneExplotions(bool newImmuneExplotions)
+{
+    immuneExplotions = newImmuneExplotions;
+}
+
+bool Personaje::getImmuneExplotions() const
+{
+    return immuneExplotions;
 }

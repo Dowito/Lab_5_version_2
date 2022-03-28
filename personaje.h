@@ -39,6 +39,10 @@ public:
 
     void setTimer(QTimer *newTimer);
 
+    bool getImmuneExplotions() const;
+
+    void setImmuneExplotions(bool newImmuneExplotions);
+
 public slots:
     void collidingWithEnemy();
 
@@ -50,7 +54,8 @@ private slots:
     void deadAnimation();
 
 private:
-    bool state = true; //Si esta vivo o muerto
+    bool state; //Si esta vivo o muerto
+    bool immuneExplotions;
     short bombs;
     QPixmap spriteDead;
     QPixmap typeDead;

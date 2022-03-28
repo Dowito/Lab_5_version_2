@@ -30,7 +30,9 @@ signals:
 
 private slots:
     void moveEnemy();
+    void startDead();
     void deadAnimation();
+    void moveAnimation();
 
 private:
     /*!

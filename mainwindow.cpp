@@ -56,6 +56,7 @@ void MainWindow::keyPressEvent(QKeyEvent *i)
                 Bomba *bomba = new Bomba;
                 bomba->setMatrizGame(matrizGame);
                 if(personaje->putBomb(bomba)){
+                    personaje->setPos(bomba->pos());
                     int mY = bomba->y()/(size_sprites*sizeGame);
                     int mX = bomba->x()/(size_sprites*sizeGame);
                     matrizGame[mY][mX] = 2;
