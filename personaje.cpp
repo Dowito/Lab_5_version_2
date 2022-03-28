@@ -7,6 +7,7 @@ Personaje::Personaje()
     setSize(sizeGame);
     setFrame(1);
     state = true;
+    lifes = LIFES;
     vel = velPlayer;
     bombs = bombsPlayer;
     immuneExplotions = IMMUNE_EXPLOTION;
@@ -33,7 +34,7 @@ bool Personaje::putBomb(Bomba *bomba)
             return true;
         }
     }
-    else if (pY == y()) { //el personajes esta por la derecha
+    else if (pY == y()) { //el personaje esta por la derecha
         if (x() <= (pX+((size-1)/2))) {
             mY = pY/size;
             mX = pX/size;
@@ -132,7 +133,7 @@ void Personaje::setTimer(QTimer *newTimer)
     timer = newTimer;
 }
 
-void Personaje::deadAnimation()
+void Personaje::deadAnimation() //se daña a la segunda muerte
 {
     static short  frame = 0;
     static short count = SPEED_DEAD;
@@ -140,24 +141,40 @@ void Personaje::deadAnimation()
         setTypeDead(frame);
         count = 0;
         frame+=1;
-        if(frame == 3) disconnect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation()));
+        if(frame == 3) {
+            disconnect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation()));
+            setLifes(getLifes()-1);
+            frame = 0;
+            count = SPEED_DEAD;
+            connect(timer, SIGNAL(timeout()), this, SLOT(afterDie()));
+        }
     }
     count++;
 }
 
-unsigned int Personaje::getPuntaje() const
+void Personaje::afterDie() //Se daña a la segunda muerte.
 {
-    return puntaje;
+    static int count = 0;
+    if (count == SPEED_DEAD*2) {
+        disconnect(timer, SIGNAL(timeout()), this, SLOT(afterDie()));
+        setPos(size,size);
+        setFrame(1);
+        state = true;
+        count = 0;
+    }else count++;
 }
 
-void Personaje::setPuntaje(unsigned int newPuntaje)
+int Personaje::getLifes() const
 {
-    puntaje = newPuntaje;
+    return lifes;
 }
 
-void Personaje::setImmuneExplotions(bool newImmuneExplotions)
+void Personaje::setLifes(int newLifes)
 {
-    immuneExplotions = newImmuneExplotions;
+    if (lifes == newLifes)
+        return;
+    lifes = newLifes;
+    emit lifesChanged();
 }
 
 void Personaje::moveAnimation(short direction)
@@ -178,6 +195,11 @@ void Personaje::moveAnimation(short direction)
         if (frame == 3) frame = 0;
     }
     else count++;
+}
+
+void Personaje::setImmuneExplotions(bool newImmuneExplotions)
+{
+    immuneExplotions = newImmuneExplotions;
 }
 
 bool Personaje::getImmuneExplotions() const

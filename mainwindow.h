@@ -37,6 +37,7 @@ private slots:
     void removeBomb(Bomba *reBomba);
     void removeEnemy(Enemigo *enemy);
     void removeBlock(Bloque *block);
+    void lcdUpdate();
 
 private:
 

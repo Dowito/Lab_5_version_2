@@ -25,7 +25,7 @@ public:
     Personaje(); //cargamos el sprite por difecto en el constructor
 
     bool putBomb(Bomba *bomba);
-
+    void moveAnimation(short direction);
     short getBombs() const;
     void setBombs(short newBombs);
     QList<Enemigo *> *getEnemigos() const;
@@ -36,19 +36,23 @@ public:
     void setTimer(QTimer *newTimer);
     bool getImmuneExplotions() const;
     void setImmuneExplotions(bool newImmuneExplotions);
-    void moveAnimation(short direction);
+    int getLifes() const;
+    void setLifes(int newLifes);
 
 public slots:
     void collidingWithEnemy();
 
 signals:
     void stateChanged();
+    void lifesChanged();
 
 private slots:
     void startDead();
     void deadAnimation();
+    void afterDie();
 
 private:
+    int lifes;
     bool state; //Si esta vivo o muerto
     bool immuneExplotions;
     short bombs;

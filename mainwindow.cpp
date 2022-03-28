@@ -5,21 +5,20 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    escena = new QGraphicsScene;
     enemigos = new QList<Enemigo*>;
     timer = new QTimer;
-
     ui->setupUi(this);
     setGeometry(0,0,48*sizeMapX*sizeGame,48*sizeMapY*sizeGame+2*48);
     ui->graphicsView->setGeometry(0,0,width(),height()-2*48);
-    ui->VIDAS->setGeometry(1*48*sizeGame,12*48*sizeGame,51,20);
-    escena = new QGraphicsScene;
+    ui->VIDAS->setGeometry(1*size_sprites*sizeGame,((sizeMapY)*size_sprites*sizeGame)+(size_sprites*sizeGame)/2,size_sprites*sizeGame,size_sprites*sizeGame);
+    ui->lcdVidas->setGeometry(2*size_sprites*sizeGame,((sizeMapY)*size_sprites*sizeGame)+(size_sprites*sizeGame)/2,size_sprites*sizeGame,size_sprites*sizeGame);
     escena->setSceneRect(0,0,ui->graphicsView->width()-2,ui->graphicsView->height()-2);
-
     createMap();
     loadMap();
     putPlayer();
     putEnemies();
-
+    lcdUpdate(); connect(personaje, &Personaje::lifesChanged, this, &MainWindow::lcdUpdate);
     ui->graphicsView->setScene(escena);
     timer->start(clockGame);
 }
@@ -139,6 +138,11 @@ void MainWindow::putEnemies()
     }
 }
 
+void MainWindow::lcdUpdate()
+{
+    ui->lcdVidas->display(personaje->getLifes());
+}
+
 void MainWindow::removeBomb(Bomba *reBomba)
 {
     disconnect(reBomba, &Bomba::remove, this, &MainWindow::removeBomb);
@@ -153,14 +157,6 @@ void MainWindow::removeBomb(Bomba *reBomba)
     escena->removeItem(reBomba);
     bombas.removeOne(reBomba);
     delete reBomba;
-    /*//Cadena de Bombas  crashea cuando se ponen dos bombas y luego entre esas dos se pone otra y explota la primera
-    for (auto mChainPos : qAsConst(mBombs)) {
-        qreal chainX = mChainPos[0]*(size_sprites*sizeGame);
-        qreal chainY = mChainPos[1]*(size_sprites*sizeGame);
-        QPointF chainPos = {static_cast<qreal>(chainX),static_cast<qreal>(chainY)};
-        auto chainBomb = findBomb(chainPos);
-        chainBomb->remove();
-    }*/
     for (auto mPos : qAsConst(mBlocks)) {
         Explotion *explotion;
         explotion = new Explotion;
