@@ -46,6 +46,7 @@ signals:
     void stateChanged();
 
 private slots:
+    void startDead();
     void deadAnimation();
 
 private:

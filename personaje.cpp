@@ -8,7 +8,7 @@ Personaje::Personaje()
     setFrame(1);
     vel = velPlayer;
     bombs = bombsPlayer;
-
+    connect(this, SIGNAL(stateChanged()), this, SLOT(startDead()));
 }
 
 void Personaje::setTypeDead(int typeX, int typeY)
@@ -103,7 +103,6 @@ void Personaje::setState(bool newState)
     if (state == newState)
         return;
     state = newState;
-    connect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation()));
     emit stateChanged();
 }
 
@@ -117,6 +116,11 @@ void Personaje::collidingWithEnemy()
             }
         }
     }
+}
+
+void Personaje::startDead()
+{
+    connect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation()));
 }
 
 void Personaje::setTimer(QTimer *newTimer)
