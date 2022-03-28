@@ -1,8 +1,8 @@
 #ifndef MACROS_H
 #define MACROS_H
 
-#define sizeMapX 15 //Solo numero impares
-#define sizeMapY 11 //Solo numero impares
+#define sizeMapX 37 //Solo numeros impares   Hay algunos numeros con los que no funciona poner bomba como con 31
+#define sizeMapY 13 //Solo numeros impares
 #define size_sprites 48
 #define sizeGame 1
 #define dificult 0.5
