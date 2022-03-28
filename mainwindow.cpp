@@ -19,7 +19,6 @@ MainWindow::MainWindow(QWidget *parent)
     loadMap();
     putPlayer();
     putEnemies();
-    connections();
 
     ui->graphicsView->setScene(escena);
     timer->start(clockGame);
@@ -61,7 +60,7 @@ void MainWindow::keyPressEvent(QKeyEvent *i)
                     int mX = bomba->x()/(size_sprites*sizeGame);
                     matrizGame[mY][mX] = 2;
                     bombas.push_back(bomba);
-                    connect(bomba, &Bomba::bombDestroyed, this, &MainWindow::removeBomb); //manda las coordenadas de la bomba a destruir a la funcion removeBomb
+                    connect(bomba, &Bomba::remove, this, &MainWindow::removeBomb); //manda las coordenadas de la bomba a destruir a la funcion removeBomb
                     bomba->startBomb();
                     escena->addItem(bomba);
                     numBombas++;
@@ -140,14 +139,9 @@ void MainWindow::putEnemies()
     }
 }
 
-void MainWindow::connections()
-{
-
-}
-
 void MainWindow::removeBomb(Bomba *reBomba)
 {
-    disconnect(reBomba, &Bomba::bombDestroyed, this, &MainWindow::removeBomb);
+    disconnect(reBomba, &Bomba::remove, this, &MainWindow::removeBomb);
     QVector<Explotion*> explotions;
     QVector<QVector<int>> mBlocks;
     QVector<QVector<int>> mBombs;
@@ -189,6 +183,13 @@ void MainWindow::removeEnemy(Enemigo *enemy)
     enemigos->removeOne(enemy);
     escena->removeItem(enemy);
     delete enemy;
+}
+
+void MainWindow::removeBlock(Bloque *block)
+{
+
+    matrizGame[block->mY()][block->mX()] = 9;
+    block->setTypeFloor();
 }
 
 void MainWindow::removeExplotion(Explotion *explosion)

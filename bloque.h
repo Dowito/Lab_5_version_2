@@ -1,6 +1,7 @@
 #ifndef BLOQUE_H
 #define BLOQUE_H
 #include <objeto.h>
+class Explosion;
 
 /*!
  * \brief The Bloque class
@@ -18,7 +19,21 @@ public:
      * \brief setTypeFloor sprite de piso.
      */
     void setTypeFloor();
+    int mX();
+    int mY();
+
+    void start();
+    const QTimer &getTimer() const;
+    void setTimer(const QTimer &newTimer);
+
+    int getCount() const;
+    void setCount(int newCount);
+
+public slots:
+    void destroy();
+
 private:
+    int count;
     QPixmap floor;//sprite del piso.
 };
 

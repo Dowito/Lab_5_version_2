@@ -25,10 +25,7 @@
 #define POT 2
 
 //Explocion
-#define DELAY_EXPLOCION 200 //default 500
-
-//Nivel
-
+#define DELAY_EXPLOCION 500 //default 500
 
 /*Matriz
 0 = bloque

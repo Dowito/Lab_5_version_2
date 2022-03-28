@@ -34,10 +34,9 @@ public:
 
 private slots:
     void removeExplotion(Explotion* explosion);
-
     void removeBomb(Bomba *reBomba);
-
     void removeEnemy(Enemigo *enemy);
+    void removeBlock(Bloque *block);
 
 private:
 

@@ -12,11 +12,11 @@ public:
     void explote(QVector<Explotion*> &explotions, QVector<QVector<int>> &mBlocks, QVector<QVector<int>> &mBombs);
 
 public slots:
-    void remove();
+    void startExplotion();
     void startBomb();
 
 signals:
-    void bombDestroyed(Bomba *reBomba); //manda las coordenadas de la bomba a destruir
+    void remove(Bomba *reBomba); //manda las coordenadas de la bomba a destruir
 
 private:
     QTimer timer;
