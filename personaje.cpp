@@ -145,6 +145,16 @@ void Personaje::deadAnimation()
     count++;
 }
 
+unsigned int Personaje::getPuntaje() const
+{
+    return puntaje;
+}
+
+void Personaje::setPuntaje(unsigned int newPuntaje)
+{
+    puntaje = newPuntaje;
+}
+
 void Personaje::setImmuneExplotions(bool newImmuneExplotions)
 {
     immuneExplotions = newImmuneExplotions;
