@@ -150,6 +150,11 @@ void Personaje::setImmuneExplotions(bool newImmuneExplotions)
     immuneExplotions = newImmuneExplotions;
 }
 
+void Personaje::moveAnimation()
+{
+
+}
+
 bool Personaje::getImmuneExplotions() const
 {
     return immuneExplotions;

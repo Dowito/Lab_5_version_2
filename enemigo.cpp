@@ -48,18 +48,26 @@ void Enemigo::moveEnemy()
                     direction = changeDirection();
                     setFrame(frame, direction);
                 }
-                move(direction);
-            }
-            else { //si no se esta en una intercepccion, entonces se realiza el movimiento
-                move(direction);
             }
         }
         else {//si no es posible el movimiento
             direction = changeDirection();
-            move(direction);
         }
+        move(direction);
         moveAnimation();
     }
+}
+
+void Enemigo::moveAnimation()
+{
+    setFrame(frame, direction); //Siempre se tiene que actualizar la nueva direccion
+    if(count == SPEED_MOVE_ANIMATION){
+        setFrame(frame, direction);
+        count = 0;
+        frame++;
+        if (frame == 3) frame = 0;
+    }
+    else count++;
 }
 
 void Enemigo::startDead()
@@ -84,18 +92,6 @@ void Enemigo::deadAnimation()
 
     }
     count++;
-}
-
-void Enemigo::moveAnimation()
-{
-    setFrame(frame, direction); //Siempre se tiene que actualizar la nueva direccion
-    if(count == SPEED_MOVE_ANIMATION){
-        setFrame(frame, direction);
-        count = 0;
-        frame++;
-        if (frame == 3) frame = 0;
-    }
-    else count++;
 }
 
 short Enemigo::changeDirection()

@@ -14,15 +14,12 @@ public:
     Enemigo() {};
     Enemigo(short type);
     void startEnemy();
-
     QTimer *getTimer() const;
     void setTimer(QTimer *newTimer);
-
     void setState(bool newState);
-
     void setTypeDead(int typeX = 0, int typeY = 0);
-
     bool getState() const;
+    void moveAnimation();
 
 signals:
     void stateChanged();
@@ -32,7 +29,6 @@ private slots:
     void moveEnemy();
     void startDead();
     void deadAnimation();
-    void moveAnimation();
 
 private:
     /*!
