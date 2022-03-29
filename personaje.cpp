@@ -153,39 +153,28 @@ void Personaje::collidingWithEnemy()
     }
 }
 
-void Personaje::setTimer(QTimer *newTimer)
-{
-    timer = newTimer;
-}
-
 void Personaje::deadAnimation() //se daña a la segunda muerte
 {
-    static short  frame = 0;
-    static short count = SPEED_DEAD;
     if (count == SPEED_DEAD) {
-        setTypeDead(frame);
-        count = 0;
-        frame+=1;
         if(frame == 3) {
             disconnect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation()));
             frame = 0;
             count = SPEED_DEAD;
-            connect(timer, SIGNAL(timeout()), this, SLOT(afterDie()));
+            setPos(size,size);
+            setFrame(1);
+            state = true;
         }
-    }
-    count++;
+        else{
+            setTypeDead(frame);
+            count = 0;
+            frame+=1;
+        }
+    }else count++;
 }
 
-void Personaje::afterDie() //Se daña a la segunda muerte.
+void Personaje::setTimer(QTimer *newTimer)
 {
-    static int count = 0;
-    if (count == SPEED_DEAD*2) {
-        disconnect(timer, SIGNAL(timeout()), this, SLOT(afterDie()));
-        setPos(size,size);
-        setFrame(1);
-        state = true;
-        count = 0;
-    }else count++;
+    timer = newTimer;
 }
 
 int Personaje::getLifes() const

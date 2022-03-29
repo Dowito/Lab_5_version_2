@@ -45,11 +45,11 @@ public slots:
     void collidingWithEnemy();
 
 private slots:
-    void startDead();
     void deadAnimation();
-    void afterDie();
 
 private:
+    short frame = 0;
+    short count = SPEED_DEAD;
     int lifes;
     bool state; //Si esta vivo o muerto
     bool immuneExplotions;
