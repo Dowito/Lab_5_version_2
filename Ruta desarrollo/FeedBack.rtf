@@ -28,8 +28,9 @@ Literalmente, toda la line de codigo de cada una de esas funciones put, se deber
 
 \pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1\b Personaje:\b0\par
 
-\pard\li720\sa200\sl276\slmult1 Las propiedades, deberia de tener dentro de ellas apuntadores hacia los contenedores de los objetos con los que vaya a interactuar o que sean necesario para su funcionamiento.\par
-Por ejemplo el contenedor con la informacion del mapa, bloques, los enemigo o explosiones si es que se hace la interaccion en esta misma clase.\par
+\pard\li1440\sa200\sl276\slmult1 Las propiedades, deberia de tener dentro de ellas apuntadores hacia los contenedores de los objetos con los que vaya a interactuar o que sean necesario para su funcionamiento.\par
+
+\pard\li720\sa200\sl276\slmult1 Por ejemplo el contenedor con la informacion del mapa, bloques, los enemigo o explosiones si es que se hace la interaccion en esta misma clase.\par
 \highlight1 Crear un constructor que al llamarce inicie la clase con todo lo necesario para iniciar el juego incluyendo que se agregue el mismo a la escena. Asi que tocaria tener un atributo que fuece el apuntador a la escena.\par
 \highlight0 Hacer la colision internamente con el personaje es una estupides, es mejor hacer la colision del enemigo con el personaje, solo habria que pasar el apuntador del personaje a cada enemigo, y que cada uno revise si colisiona con el personaje, es mucho mas facil hacerlo asi.\par
 Esas se\'f1ales de cambio de estados (vidas, puntaje, estado vivo o muerto, etc) no son necesario, \highlight2 con solo pasar el ui, \highlight0 ya se puede actualizar el lcd del conteo de vidas dentro de la misma clase en el momento en que muere sin necesidad de ninguna se\'f1al. Lo unico necesario seria un contador para que al momento de cambiar su  estado a muerto, por medio del timer del juego, este vuelva a su estado vivo siempre y cuando le quedden vidas, osino talvez ahi si mandar una se\'f1al de que se acabo el juego para cambiar de pantalla. El resto de cosas estan bien, podriar hacer la clase aumentos, que modifican los demas atributos.\par
@@ -38,7 +39,18 @@ Esas se\'f1ales de cambio de estados (vidas, puntaje, estado vivo o muerto, etc)
 \highlight4 Putbomb que todo el proceso de poner la bomba se haga internamente. Desde mirar si puede ponerla, hasta crearla la bomba, inicializarla con todos los parametros que necesite y ponerla y hacer las conecciones.\par
 \highlight0 Despues la Bomba cuando termine de contar su contador interno, tenga una funcion que hace que se elimine asi misma, que seria explotar(); y desde ahi la bomba tiene que ser capaz de eliminarse asi misma, y crear las distintas explosiones, con la informacion y todo loq ue encesiten para comenzar e interactuar.\par
 Con respecto a la colision con un enemig, morir y actualizar la tabla, lo mejor seria que al momento de morir, en vez de llamar una se\'f1al, es mejor hacer todo dentro de la misma funcion, actualizar las vidas del jugador, del lcd y luego activar la animacion de muerte.\par
- \par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li360\sa200\sl276\slmult1\b Bomba:\b0\par
+
+\pard\li720\sa200\sl276\slmult1 El personajes pondra una bomba: 1.mira si la puede poner, 2.calcula las coordenadas. 3.se crea una bomba llamando el constructor tendra todo el proceso de ponerla, por ende, el constructor le entraran las coordenadas de la bomba, y el main que tiene todo lo necesario para ponerla. Solo se conectara el timer con explote.\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li360\sa200\sl276\slmult1\b Explosion:\b0\par
+
+\pard\li720\sa200\sl276\slmult1 Despues de que la bomba explote, esta va creando las explosiones, primero se calcula posicion de la explosion, luego se llama el constructor que recibe el mainwindows y la pos de la bomba como parametros, y ahi dentro se inicia como se debe de iniciar hasta poniendoce en la escena e iniciando su coneccion con desaparecer.\par
+Para cada direccion, se recorre un ciclo for hasta la pot de la bomba, si encuentra un 0 para el ciclo, si encuentra un 9 se pone la explosion y sigue, si encuentra un 1 o un 2 la explosion se pone y para el ciclo.\par
+\par
+
+\pard\li720\sa200\sl276\slmult1  \par
 
 \pard\li1080\sa200\sl276\slmult1     \par
 
