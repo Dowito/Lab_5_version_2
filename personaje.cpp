@@ -37,6 +37,7 @@ Personaje::Personaje(MainWindow *caca)
     vel = velPlayer;
     bombs = bombsPlayer;
     immuneExplotions = IMMUNE_EXPLOTION;
+    mainwindow = caca;
     connect(timer, SIGNAL(timeout()), this, SLOT(collidingWithEnemy()));
     escena->addItem(this);
 }
@@ -143,7 +144,7 @@ void Personaje::collidingWithEnemy()
                 if(enemy->getState()){
                     state = false; //no hay ninguna necesidad de mandar señal.
                     lifes -= 1;
-                    //actualizar el lcd
+                    mainwindow->lcdUpdate(); //actualizar el lcd
                     connect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation())); //inicia animacion de muerte
                     break;
                 }
@@ -167,7 +168,6 @@ void Personaje::deadAnimation() //se daña a la segunda muerte
         frame+=1;
         if(frame == 3) {
             disconnect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation()));
-            setLifes(getLifes()-1);
             frame = 0;
             count = SPEED_DEAD;
             connect(timer, SIGNAL(timeout()), this, SLOT(afterDie()));
@@ -198,7 +198,6 @@ void Personaje::setLifes(int newLifes)
     if (lifes == newLifes)
         return;
     lifes = newLifes;
-    emit lifesChanged();
 }
 
 void Personaje::moveAnimation(short direction)

@@ -31,6 +31,7 @@ public:
     void loadMap();//CACA
     void putPlayer();//CACA
     void putEnemies();//CACA
+    void lcdUpdate();//CACA
 
     short getNumBombas() const;
     void setNumBombas(short newNumBombas);
@@ -56,7 +57,7 @@ private slots:
     void removeBomb(Bomba *reBomba);//CACA
     void removeEnemy(Enemigo *enemy);//CACA
     void removeBlock(Bloque *block);//CACA
-    void lcdUpdate();//CACA
+
 
 private:
 

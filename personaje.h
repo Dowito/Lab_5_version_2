@@ -44,9 +44,6 @@ public:
 public slots:
     void collidingWithEnemy();
 
-signals:
-    void lifesChanged();
-
 private slots:
     void startDead();
     void deadAnimation();
@@ -62,6 +59,7 @@ private:
     QTimer *timer;
     QList<Enemigo*> *enemigos;
     QGraphicsScene *escena;
+    MainWindow *mainwindow;
 };
 
 #endif // PERSONAJE_H

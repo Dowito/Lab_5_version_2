@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     loadMap();
     putPlayer();
     putEnemies();
-    lcdUpdate(); connect(personaje, &Personaje::lifesChanged, this, &MainWindow::lcdUpdate);
+    lcdUpdate();
     ui->graphicsView->setScene(escena);
     timer->start(clockGame);
 }
