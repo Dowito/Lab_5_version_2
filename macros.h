@@ -5,7 +5,7 @@
 #define sizeMapY 13 //Solo numeros impares
 #define size_sprites 48 //Default 48  ->/No funciona con otro numero
 #define sizeGame 1 //No funciona bien
-#define dificult 0.5
+#define dificult 0.1
 #define clockGame 20 //por defecto 20
 
 //Personaje
@@ -17,7 +17,7 @@
 #define LIFES 3
 
 //Enemigo
-#define MAX_ENEMIES 500
+#define MAX_ENEMIES 5
 #define SPEED_MOVE_ANIMATION 6 //velocidad en que cambian los frames en la animacion de muerte, 16 significa que cuenta 16 veces el clockGames antes de pasar al siguiente frame
 #define IFMOVE true  //Para iniciar un juego con los enemigos moviendoce o quietos.
 

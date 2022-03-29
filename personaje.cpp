@@ -1,17 +1,24 @@
 #include "personaje.h"
 
-Personaje::Personaje()
+Personaje::Personaje(int **matrizGame, QList<Enemigo*> *enemigos, QTimer *timer, QGraphicsScene *escena)
 {
     sprite.load(":/images/Sprites/personaje.png");
     spriteDead.load(":/images/Sprites/personaje_herido.png");
     setSize(sizeGame);
     setFrame(1);
+    setPos(size,size);
+    this->matrizGame = matrizGame;
+    this->enemigos = enemigos;
+    this->timer = timer;
+    this->escena = escena;
     state = true;
     lifes = LIFES;
     vel = velPlayer;
     bombs = bombsPlayer;
     immuneExplotions = IMMUNE_EXPLOTION;
+    connect(timer, SIGNAL(timeout()), this, SLOT(collidingWithEnemy()));
     connect(this, SIGNAL(stateChanged()), this, SLOT(startDead()));
+    escena->addItem(this);
 }
 
 void Personaje::setTypeDead(int typeX, int typeY)

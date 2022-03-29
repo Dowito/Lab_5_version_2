@@ -2,6 +2,7 @@
 #define PERSONAJE_H
 
 #include <objeto.h>
+#include <QGraphicsScene>
 #include <bomba.h>
 #include <enemigo.h>
 #include <QTimer>
@@ -22,7 +23,7 @@ class Personaje : public Objeto
 {
     Q_OBJECT
 public:
-    Personaje(); //cargamos el sprite por difecto en el constructor
+    Personaje(int **matrizGame, QList<Enemigo *> *enemigos, QTimer *timer, QGraphicsScene *escena); //cargamos el sprite por difecto en el constructor
 
     bool putBomb(Bomba *bomba);
     void moveAnimation(short direction);
@@ -60,6 +61,7 @@ private:
     QPixmap typeDead;
     QTimer *timer;
     QList<Enemigo*> *enemigos;
+    QGraphicsScene *escena;
 };
 
 #endif // PERSONAJE_H
