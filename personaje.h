@@ -45,7 +45,6 @@ public slots:
     void collidingWithEnemy();
 
 signals:
-    void stateChanged();
     void lifesChanged();
 
 private slots:

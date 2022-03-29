@@ -28,17 +28,16 @@ Personaje::Personaje(MainWindow *caca)
     setSize(sizeGame);
     setFrame(1);
     setPos(size,size);
-    this->matrizGame = caca->getMatrizGame();
-    this->enemigos = caca->getEnemigos();
-    this->timer = caca->getTimer();
-    this->escena = caca->getEscena();
+    matrizGame = caca->getMatrizGame();
+    enemigos = caca->getEnemigos();
+    timer = caca->getTimer();
+    escena = caca->getEscena();
     state = true;
     lifes = LIFES;
     vel = velPlayer;
     bombs = bombsPlayer;
     immuneExplotions = IMMUNE_EXPLOTION;
     connect(timer, SIGNAL(timeout()), this, SLOT(collidingWithEnemy()));
-    connect(this, SIGNAL(stateChanged()), this, SLOT(startDead()));
     escena->addItem(this);
 }
 
@@ -134,7 +133,6 @@ void Personaje::setState(bool newState)
     if (state == newState)
         return;
     state = newState;
-    emit stateChanged();
 }
 
 void Personaje::collidingWithEnemy()
@@ -143,17 +141,15 @@ void Personaje::collidingWithEnemy()
         for (auto enemy : *enemigos) {
             if (collidesWithItem(enemy)) {
                 if(enemy->getState()){
-                    setState(false);
+                    state = false; //no hay ninguna necesidad de mandar señal.
+                    lifes -= 1;
+                    //actualizar el lcd
+                    connect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation())); //inicia animacion de muerte
                     break;
                 }
             }
         }
     }
-}
-
-void Personaje::startDead()
-{
-    connect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation()));
 }
 
 void Personaje::setTimer(QTimer *newTimer)
