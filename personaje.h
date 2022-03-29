@@ -7,7 +7,7 @@
 #include <enemigo.h>
 #include <QTimer>
 #include <QList>
-#include <mainwindow.h>
+class MainWindow;
 /*!
  * \brief The Personaje class
  * Types:
@@ -24,7 +24,7 @@ class Personaje : public Objeto
 {
     Q_OBJECT
 public:
-    //Personaje(int **matrizGame, QList<Enemigo *> *enemigos, QTimer *timer, QGraphicsScene *escena); //cargamos el sprite por difecto en el constructor
+    Personaje(int **matrizGame, QList<Enemigo *> *enemigos, QTimer *timer, QGraphicsScene *escena); //cargamos el sprite por difecto en el constructor
     Personaje(MainWindow *caca);
     bool putBomb(Bomba *bomba);
     void moveAnimation(short direction);

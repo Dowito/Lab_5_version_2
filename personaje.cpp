@@ -1,5 +1,5 @@
 #include "personaje.h"
-/*
+#include <mainwindow.h>
 Personaje::Personaje(int **matrizGame, QList<Enemigo*> *enemigos, QTimer *timer, QGraphicsScene *escena)
 {
     sprite.load(":/images/Sprites/personaje.png");
@@ -20,7 +20,7 @@ Personaje::Personaje(int **matrizGame, QList<Enemigo*> *enemigos, QTimer *timer,
     connect(this, SIGNAL(stateChanged()), this, SLOT(startDead()));
     escena->addItem(this);
 }
-*/
+
 Personaje::Personaje(MainWindow *caca)
 {
     sprite.load(":/images/Sprites/personaje.png");

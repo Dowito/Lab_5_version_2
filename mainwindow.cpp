@@ -109,11 +109,6 @@ void MainWindow::loadMap()
 void MainWindow::putPlayer()
 {
     personaje = new Personaje(this);
-    //personaje->setMatrizGame(matrizGame); //Le paso la matriz al personaje
-    //personaje->setEnemigos(enemigos);
-    //personaje->setTimer(timer);
-    //connect(timer, &QTimer::timeout, personaje, &Personaje::collidingWithEnemy);
-    //escena->addItem(personaje);
 }
 
 void MainWindow::putEnemies()
