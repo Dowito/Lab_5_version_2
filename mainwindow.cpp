@@ -113,23 +113,8 @@ void MainWindow::putPlayer()
 
 void MainWindow::putEnemies()
 {
-    //int y, x;
     for(short i = 0; i<MAX_ENEMIES; i++){
-        //y = 1+rand()%((sizeMapY-1)-1);
-        //x = 9+rand()%((sizeMapX-1)-9);
-        //if (y%2 == 0 && x%2 == 0) x += 1;
-        //bloques[y][x]->setTypeFloor();
-        //matrizGame[y][x] = 9;
-        short type = 0+rand()%(3-0);
-        Enemigo *enemy;
-        enemy = new Enemigo(type, this);
-        //enemy->setPos(x*enemy->getSize(),y*enemy->getSize());
-        enemy->setMatrizGame(matrizGame);
-        enemy->setTimer(timer);
-        enemy->startEnemy();
-        connect(enemy, &Enemigo::remove, this, &MainWindow::removeEnemy);
-        enemigos->push_back(enemy);
-        escena->addItem(enemy);
+        new Enemigo(this);
     }
 }
 

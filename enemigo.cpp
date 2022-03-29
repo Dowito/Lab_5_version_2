@@ -1,41 +1,27 @@
 #include "enemigo.h"
 #include <mainwindow.h>
-Enemigo::Enemigo(short type, MainWindow *mainwindow)
+Enemigo::Enemigo(MainWindow *mainwindow)
 {
-    //vel solo puede tomar valores multiplos de 48
     this->mainwindow = mainwindow;
-    int y = 1+rand()%((sizeMapY-1)-1);
-    int x = 9+rand()%((sizeMapX-1)-9);
-    if (y%2 == 0 && x%2 == 0) x += 1;
-    mainwindow->bloques[y][x]->setTypeFloor();
-    mainwindow->getMatrizGame()[y][x] = 9;
-    if (type == 0) {
-        sprite.load(":/images/Sprites/hombre_lobo.png");
-        spriteDead.load(":/images/Sprites/hombre_lobo_dead.png");
-        vel = 2;
-    }
-    else if (type == 1) {
-        sprite.load(":/images/Sprites/furro.png");
-        spriteDead.load(":/images/Sprites/furro_dead.png");
-        vel = 4;
-    }
-    else if (type == 2) {
-        sprite.load(":/images/Sprites/demonio.png");
-        spriteDead.load(":/images/Sprites/demonio_dead.png");
-        vel = 6;
-    }
-    else {
-        sprite.load(":/images/Sprites/explosion.png");
-        spriteDead.load(":/images/Sprites/personaje_herido.png");
-        vel = 999;
-    }
+    matrizGame = mainwindow->getMatrizGame();
+    enemigos = mainwindow->getEnemigos();
+    escena = mainwindow->getEscena();
     state = true;
     frame = 0;
     count = 0;
     direction = 0;
+    timer = mainwindow->getTimer();
     setSize(sizeGame);
+    generateType();
     setFrame(1);
-    setPos(x*getSize(),y*getSize());
+    generateRandomPos();
+    if(IFMOVE) {
+        connect(timer, &QTimer::timeout, this, &Enemigo::moveEnemy);
+        connect(this, SIGNAL(stateChanged()), this, SLOT(startDead()));
+    }
+    connect(this, &Enemigo::remove, mainwindow, &MainWindow::removeEnemy);
+    enemigos->push_back(this);
+    escena->addItem(this);
 }
 /*
 Enemigo::Enemigo(MainWindow *mainwindow)
@@ -82,12 +68,6 @@ Enemigo::Enemigo(MainWindow *mainwindow)
     //escena->addItem(this);
 }
 */
-void Enemigo::startEnemy()
-{
-    if(IFMOVE) connect(timer, &QTimer::timeout, this, &Enemigo::moveEnemy),
-               connect(this, SIGNAL(stateChanged()), this, SLOT(startDead()));
-}
-
 void Enemigo::moveEnemy()
 {
     if(state){
@@ -149,6 +129,41 @@ void Enemigo::deadAnimation()
 
     }
     count++;
+}
+
+void Enemigo::generateType()
+{
+    short type = 0+rand()%(3-0);
+    if (type == 0) {
+        sprite.load(":/images/Sprites/hombre_lobo.png");
+        spriteDead.load(":/images/Sprites/hombre_lobo_dead.png");
+        vel = 2;
+    }
+    else if (type == 1) {
+        sprite.load(":/images/Sprites/furro.png");
+        spriteDead.load(":/images/Sprites/furro_dead.png");
+        vel = 4;
+    }
+    else if (type == 2) {
+        sprite.load(":/images/Sprites/demonio.png");
+        spriteDead.load(":/images/Sprites/demonio_dead.png");
+        vel = 6;
+    }
+    else {
+        sprite.load(":/images/Sprites/explosion.png");
+        spriteDead.load(":/images/Sprites/personaje_herido.png");
+        vel = 999;
+    }
+}
+
+void Enemigo::generateRandomPos()
+{
+    int y = 1+rand()%((sizeMapY-1)-1);
+    int x = 9+rand()%((sizeMapX-1)-9);
+    if (y%2 == 0 && x%2 == 0) x += 1;
+    this->mainwindow->bloques[y][x]->setTypeFloor();
+    matrizGame[y][x] = 9;
+    setPos(x*getSize(),y*getSize());
 }
 
 short Enemigo::changeDirection()
