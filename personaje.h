@@ -42,7 +42,6 @@ public:
     void setLifes(int newLifes);
 
 public slots:
-    void collidingWithEnemy();
     void deadAnimation();
 
 private:

@@ -1,21 +1,24 @@
 #include "enemigo.h"
 #include <mainwindow.h>
+#include <personaje.h>
 Enemigo::Enemigo(MainWindow *mainwindow)
 {
     this->mainwindow = mainwindow;
     matrizGame = mainwindow->getMatrizGame();
+    personaje = mainwindow->getPersonaje();
     enemigos = mainwindow->getEnemigos();
     escena = mainwindow->getEscena();
+    timer = mainwindow->getTimer();
     state = true;
     frame = 0;
     count = 0;
     direction = 0;
-    timer = mainwindow->getTimer();
     setSize(sizeGame);
     generateType();
     setFrame(1);
     generateRandomPos();
-    if(IFMOVE) connect(timer, &QTimer::timeout, this, &Enemigo::moveEnemy);
+    if(IFMOVE) connect(timer, SIGNAL(timeout()), this, SLOT(moveEnemy()));
+    connect(timer, SIGNAL(timeout()), this, SLOT(collidingWithPlayer()));
     enemigos->push_back(this);
     escena->addItem(this);
 }
@@ -126,6 +129,18 @@ void Enemigo::deadAnimation()
 
     }
     count++;
+}
+
+void Enemigo::collidingWithPlayer()
+{
+    if(state && personaje->getState()){ //si el personaje esta vivo
+        if (collidesWithItem(personaje)) {
+            personaje->setState(false);
+            personaje->setLifes(personaje->getLifes()-1);
+            mainwindow->lcdUpdate();
+            connect(timer, SIGNAL(timeout()), personaje, SLOT(deadAnimation()));
+        }
+    }
 }
 
 void Enemigo::generateType()

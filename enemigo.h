@@ -27,10 +27,6 @@ public:
 public slots:
     void deadAnimation();
 
-private slots:
-    void moveAnimation();
-    void moveEnemy();
-
 private:
     /*!
      * \brief changeDirection cambia la direccion por una direccion valida.
@@ -50,6 +46,12 @@ private:
     QList<Enemigo*> *enemigos;
     QGraphicsScene *escena;
     MainWindow *mainwindow;
+
+private slots:
+    void collidingWithPlayer();
+    void moveAnimation();
+    void moveEnemy();
+
 };
 
 #endif // ENEMIGO_H

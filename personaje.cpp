@@ -1,5 +1,7 @@
 #include "personaje.h"
 #include <mainwindow.h>
+#include <enemigo.h>
+#include <bomba.h>
 Personaje::Personaje(MainWindow *mainwindow)
 {
     this->mainwindow = mainwindow;
@@ -17,7 +19,6 @@ Personaje::Personaje(MainWindow *mainwindow)
     vel = velPlayer;
     bombs = bombsPlayer;
     immuneExplotions = IMMUNE_EXPLOTION;
-    connect(timer, SIGNAL(timeout()), this, SLOT(collidingWithEnemy()));
     mainwindow->setPersonaje(this);
     escena->addItem(this);
 }
@@ -114,23 +115,6 @@ void Personaje::setState(bool newState)
     if (state == newState)
         return;
     state = newState;
-}
-
-void Personaje::collidingWithEnemy()
-{
-    if(state){
-        for (auto enemy : *enemigos) {
-            if (collidesWithItem(enemy)) {
-                if(enemy->getState()){
-                    state = false; //no hay ninguna necesidad de mandar señal.
-                    lifes -= 1;
-                    mainwindow->lcdUpdate(); //actualizar el lcd
-                    connect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation())); //inicia animacion de muerte
-                    break;
-                }
-            }
-        }
-    }
 }
 
 void Personaje::deadAnimation() //se daña a la segunda muerte

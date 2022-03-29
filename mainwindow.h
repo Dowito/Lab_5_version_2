@@ -2,23 +2,22 @@
 #define MAINWINDOW_H
 #include <macros.h>
 #include <QMainWindow>
+#include <time.h>
 #include <QGraphicsScene> //Para mostrar objetos enel graphicsview por medio de la escena
 #include <QKeyEvent> //para leer las señales de las teclas
 #include <QTimer> //temporalizador
 #include <QKeyEvent>
 #include <QVector>
 #include <QList>
-#include <bloque.h>
-#include <enemigo.h>
-#include <bomba.h>
-#include <time.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
-
+class Enemigo;
 class Personaje;
-
+class Bomba;
+class Bloque;
+class Explotion;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -52,6 +51,7 @@ public:
     Ui::MainWindow *getUi() const;
     void setUi(Ui::MainWindow *newUi);
     Bloque *bloques[sizeMapY][sizeMapX];
+
 public slots:
     void removeExplotion(Explotion* explosion); //CACA
     void removeBomb(Bomba *reBomba);//CACA

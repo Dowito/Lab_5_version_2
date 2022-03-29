@@ -1,7 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <enemigo.h>
 #include <personaje.h>
-
+#include <bloque.h>
+#include <bomba.h>
+#include <explotion.h>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
