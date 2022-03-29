@@ -1,5 +1,5 @@
 #include "personaje.h"
-
+/*
 Personaje::Personaje(int **matrizGame, QList<Enemigo*> *enemigos, QTimer *timer, QGraphicsScene *escena)
 {
     sprite.load(":/images/Sprites/personaje.png");
@@ -11,6 +11,27 @@ Personaje::Personaje(int **matrizGame, QList<Enemigo*> *enemigos, QTimer *timer,
     this->enemigos = enemigos;
     this->timer = timer;
     this->escena = escena;
+    state = true;
+    lifes = LIFES;
+    vel = velPlayer;
+    bombs = bombsPlayer;
+    immuneExplotions = IMMUNE_EXPLOTION;
+    connect(timer, SIGNAL(timeout()), this, SLOT(collidingWithEnemy()));
+    connect(this, SIGNAL(stateChanged()), this, SLOT(startDead()));
+    escena->addItem(this);
+}
+*/
+Personaje::Personaje(MainWindow *caca)
+{
+    sprite.load(":/images/Sprites/personaje.png");
+    spriteDead.load(":/images/Sprites/personaje_herido.png");
+    setSize(sizeGame);
+    setFrame(1);
+    setPos(size,size);
+    this->matrizGame = caca->getMatrizGame();
+    this->enemigos = caca->getEnemigos();
+    this->timer = caca->getTimer();
+    this->escena = caca->getEscena();
     state = true;
     lifes = LIFES;
     vel = velPlayer;

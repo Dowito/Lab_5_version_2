@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <personaje.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -107,7 +108,7 @@ void MainWindow::loadMap()
 
 void MainWindow::putPlayer()
 {
-    personaje = new Personaje(matrizGame, enemigos, timer, escena);
+    personaje = new Personaje(this);
     //personaje->setMatrizGame(matrizGame); //Le paso la matriz al personaje
     //personaje->setEnemigos(enemigos);
     //personaje->setTimer(timer);
@@ -206,5 +207,95 @@ Bomba *MainWindow::findBomb(QPointF pos)
     }
     Bomba *bomb = nullptr;
     return bomb;
+}
+
+short MainWindow::getNumBombas() const
+{
+    return numBombas;
+}
+
+void MainWindow::setNumBombas(short newNumBombas)
+{
+    numBombas = newNumBombas;
+}
+
+QList<Explotion *> *MainWindow::getExplosiones() const
+{
+    return explosiones;
+}
+
+void MainWindow::setExplosiones(QList<Explotion *> *newExplosiones)
+{
+    explosiones = newExplosiones;
+}
+
+const QList<Bomba *> &MainWindow::getBombas() const
+{
+    return bombas;
+}
+
+void MainWindow::setBombas(const QList<Bomba *> &newBombas)
+{
+    bombas = newBombas;
+}
+
+QList<Enemigo *> *MainWindow::getEnemigos() const
+{
+    return enemigos;
+}
+
+void MainWindow::setEnemigos(QList<Enemigo *> *newEnemigos)
+{
+    enemigos = newEnemigos;
+}
+
+int **MainWindow::getMatrizGame() const
+{
+    return matrizGame;
+}
+
+void MainWindow::setMatrizGame(int **newMatrizGame)
+{
+    matrizGame = newMatrizGame;
+}
+
+Personaje *MainWindow::getPersonaje() const
+{
+    return personaje;
+}
+
+void MainWindow::setPersonaje(Personaje *newPersonaje)
+{
+    personaje = newPersonaje;
+}
+
+QTimer *MainWindow::getTimer() const
+{
+    return timer;
+}
+
+void MainWindow::setTimer(QTimer *newTimer)
+{
+    timer = newTimer;
+}
+
+QGraphicsScene *MainWindow::getEscena() const
+{
+    return escena;
+}
+
+void MainWindow::setEscena(QGraphicsScene *newEscena)
+{
+    escena = newEscena;
+}
+
+Ui::MainWindow *MainWindow::getUi() const
+{
+    return ui;
+}
+
+void MainWindow::setUi(Ui::MainWindow *newUi)
+{
+    ui = newUi;
 }
 

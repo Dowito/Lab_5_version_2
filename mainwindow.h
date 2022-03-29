@@ -8,7 +8,6 @@
 #include <QKeyEvent>
 #include <QVector>
 #include <QList>
-#include <personaje.h>
 #include <bloque.h>
 #include <enemigo.h>
 #include <bomba.h>
@@ -17,6 +16,8 @@
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
+
+class Personaje;
 
 class MainWindow : public QMainWindow
 {
@@ -30,6 +31,25 @@ public:
     void loadMap();//CACA
     void putPlayer();//CACA
     void putEnemies();//CACA
+
+    short getNumBombas() const;
+    void setNumBombas(short newNumBombas);
+    QList<Explotion *> *getExplosiones() const;
+    void setExplosiones(QList<Explotion *> *newExplosiones);
+    const QList<Bomba *> &getBombas() const;
+    void setBombas(const QList<Bomba *> &newBombas);
+    QList<Enemigo *> *getEnemigos() const;
+    void setEnemigos(QList<Enemigo *> *newEnemigos);
+    int **getMatrizGame() const;
+    void setMatrizGame(int **newMatrizGame);
+    Personaje *getPersonaje() const;
+    void setPersonaje(Personaje *newPersonaje);
+    QTimer *getTimer() const;
+    void setTimer(QTimer *newTimer);
+    QGraphicsScene *getEscena() const;
+    void setEscena(QGraphicsScene *newEscena);
+    Ui::MainWindow *getUi() const;
+    void setUi(Ui::MainWindow *newUi);
 
 private slots:
     void removeExplotion(Explotion* explosion); //CACA
