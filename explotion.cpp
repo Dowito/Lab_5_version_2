@@ -46,7 +46,7 @@ void Explotion::collidingWithPlayer()
 {
     if(!personaje->getImmuneExplotions()) {
         if(collidesWithItem(personaje)){
-            personaje->setState(false);
+            personaje->setState(false); //Con la escena, simplmente lo eliminaria aqui mismo sin encesidad de señales.
         }
     }
 }

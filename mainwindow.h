@@ -26,18 +26,17 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void keyPressEvent(QKeyEvent *i);
-    void createMap();
-    void loadMap();
-    void putPlayer();
-    void putEnemies();
-    void connections();
+    void createMap();//CACA
+    void loadMap();//CACA
+    void putPlayer();//CACA
+    void putEnemies();//CACA
 
 private slots:
-    void removeExplotion(Explotion* explosion);
-    void removeBomb(Bomba *reBomba);
-    void removeEnemy(Enemigo *enemy);
-    void removeBlock(Bloque *block);
-    void lcdUpdate();
+    void removeExplotion(Explotion* explosion); //CACA
+    void removeBomb(Bomba *reBomba);//CACA
+    void removeEnemy(Enemigo *enemy);//CACA
+    void removeBlock(Bloque *block);//CACA
+    void lcdUpdate();//CACA
 
 private:
 
@@ -46,8 +45,8 @@ private:
     QList<Explotion*> *explosiones;
     QList<Bomba*> bombas;
     QList<Enemigo*> *enemigos;
-    Bloque *bloques[sizeMapY][sizeMapX];
-    int **matrizGame;
+    Bloque *bloques[sizeMapY][sizeMapX]; //Cambiar a vector<vector<Bloque>> o usar una matriz bonica como la que use en matrizGames
+    int **matrizGame; //Cambiar a vector<vector<int>>
     Personaje *personaje;
     QTimer *timer;
     QGraphicsScene *escena;
