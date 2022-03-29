@@ -51,8 +51,8 @@ public:
     void setEscena(QGraphicsScene *newEscena);
     Ui::MainWindow *getUi() const;
     void setUi(Ui::MainWindow *newUi);
-
-private slots:
+    Bloque *bloques[sizeMapY][sizeMapX];
+public slots:
     void removeExplotion(Explotion* explosion); //CACA
     void removeBomb(Bomba *reBomba);//CACA
     void removeEnemy(Enemigo *enemy);//CACA
@@ -65,8 +65,7 @@ private:
     short numBombas;
     QList<Explotion*> *explosiones;
     QList<Bomba*> bombas;
-    QList<Enemigo*> *enemigos;
-    Bloque *bloques[sizeMapY][sizeMapX]; //Cambiar a vector<vector<Bloque>> o usar una matriz bonica como la que use en matrizGames
+    QList<Enemigo*> *enemigos; //Cambiar a vector<vector<Bloque>> o usar una matriz bonica como la que use en matrizGames
     int **matrizGame; //Cambiar a vector<vector<int>>
     Personaje *personaje;
     QTimer *timer;

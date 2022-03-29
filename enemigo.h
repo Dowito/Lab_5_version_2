@@ -7,12 +7,13 @@
  * sprites: Los sprites son iguales a los del personajes
  * existiran varios tipos de enemigos, unos mas veloces que otros.
  */
+class MainWindow;
 class Enemigo : public Objeto
 {
     Q_OBJECT
 public:
     Enemigo() {};
-    Enemigo(short type);
+    Enemigo(short type, MainWindow *mainwindow);
     void startEnemy();
     QTimer *getTimer() const;
     void setTimer(QTimer *newTimer);
@@ -43,6 +44,7 @@ private:
     QTimer *timer;
     QPixmap typeDead;
     QPixmap spriteDead;
+    MainWindow *mainwindow;
 };
 
 #endif // ENEMIGO_H
