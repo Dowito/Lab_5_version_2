@@ -41,10 +41,8 @@ public:
     int getLifes() const;
     void setLifes(int newLifes);
 
-public slots:
-    void collidingWithEnemy();
-
 private slots:
+    void collidingWithEnemy();
     void deadAnimation();
 
 private:

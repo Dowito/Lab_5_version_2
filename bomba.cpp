@@ -72,6 +72,16 @@ void Bomba::explote(QVector<Explotion *> &explotions, QVector<QVector<int> > &mB
     }
 }
 
+void Bomba::mX()
+{
+
+}
+
+void Bomba::mY()
+{
+
+}
+
 void Bomba::startExplotion()
 {
     disconnect(&timer, &QTimer::timeout, this, &Bomba::startExplotion);

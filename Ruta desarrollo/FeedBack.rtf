@@ -1,5 +1,5 @@
 {\rtf1\ansi\ansicpg1252\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset2 Symbol;}}
-{\colortbl ;\red255\green255\blue0;\red255\green0\blue0;\red0\green255\blue0;}
+{\colortbl ;\red255\green255\blue0;\red255\green0\blue0;\red0\green255\blue0;\red0\green255\blue255;}
 {\*\generator Riched20 10.0.22000}\viewkind4\uc1 
 \pard\sa200\sl276\slmult1\b\f0\fs22\lang10 Problemas Generales de dise\'f1o:\b0\par
 Hacer toda la logica dentro de la smismas clases, y que en el main lo unico que haya sean las conecciones con el timer principal, y el flujo de las pantallas que se mostraran.\par
@@ -34,7 +34,10 @@ Por ejemplo el contenedor con la informacion del mapa, bloques, los enemigo o ex
 \highlight0 Hacer la colision internamente con el personaje es una estupides, es mejor hacer la colision del enemigo con el personaje, solo habria que pasar el apuntador del personaje a cada enemigo, y que cada uno revise si colisiona con el personaje, es mucho mas facil hacerlo asi.\par
 Esas se\'f1ales de cambio de estados (vidas, puntaje, estado vivo o muerto, etc) no son necesario, \highlight2 con solo pasar el ui, \highlight0 ya se puede actualizar el lcd del conteo de vidas dentro de la misma clase en el momento en que muere sin necesidad de ninguna se\'f1al. Lo unico necesario seria un contador para que al momento de cambiar su  estado a muerto, por medio del timer del juego, este vuelva a su estado vivo siempre y cuando le quedden vidas, osino talvez ahi si mandar una se\'f1al de que se acabo el juego para cambiar de pantalla. El resto de cosas estan bien, podriar hacer la clase aumentos, que modifican los demas atributos.\par
 \highlight1 Veo que lo ideal es crear funciones en el main windows que actualizen los distintos elementos de la interfaz, y luego pasar un apuntador al mainwindow y cambiar esos elemento desde las clases usando dichas funciones.\par
-\highlight3 La idea de hacer que cada constructor reciba un apuntador al main windows, y que cada atributo se actualize usando getters del main es de las mejores cosas que se me han ocurrido.\highlight0\par
+\highlight3 La idea de hacer que cada constructor reciba un apuntador al MainWindows(this), y que cada atributo se actualize usando getters del mainwindow es de las mejores cosas que se me han ocurrido.\par
+\highlight4 Putbomb que todo el proceso de poner la bomba se haga internamente. Desde mirar si puede ponerla, hasta crearla la bomba, inicializarla con todos los parametros que necesite y ponerla y hacer las conecciones.\par
+\highlight0 Despues la Bomba cuando termine de contar su contador interno, tenga una funcion que hace que se elimine asi misma, que seria explotar(); y desde ahi la bomba tiene que ser capaz de eliminarse asi misma, y crear las distintas explosiones, con la informacion y todo loq ue encesiten para comenzar e interactuar.\par
+Con respecto a la colision con un enemig, morir y actualizar la tabla, lo mejor seria que al momento de morir, en vez de llamar una se\'f1al, es mejor hacer todo dentro de la misma funcion, actualizar las vidas del jugador, del lcd y luego activar la animacion de muerte.\par
  \par
 
 \pard\li1080\sa200\sl276\slmult1     \par
