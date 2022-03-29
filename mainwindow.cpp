@@ -108,7 +108,7 @@ void MainWindow::loadMap()
 
 void MainWindow::putPlayer()
 {
-    personaje = new Personaje(this);
+    new Personaje(this);
 }
 
 void MainWindow::putEnemies()
@@ -154,16 +154,10 @@ void MainWindow::removeBomb(Bomba *reBomba)
         connect(timer, &QTimer::timeout, explotion, &Explotion::collidingWithPlayer);
         explotion->setEnemigos(enemigos);
         explotion->setPersonaje(personaje);
+        explotion->setGameClock(timer);
         explotion->start();
         escena->addItem(explotion);
     }
-}
-
-void MainWindow::removeEnemy(Enemigo *enemy)
-{
-    enemigos->removeOne(enemy);
-    escena->removeItem(enemy);
-    delete enemy;
 }
 
 void MainWindow::removeBlock(Bloque *block)

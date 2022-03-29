@@ -15,13 +15,15 @@ Enemigo::Enemigo(MainWindow *mainwindow)
     generateType();
     setFrame(1);
     generateRandomPos();
-    if(IFMOVE) {
-        connect(timer, &QTimer::timeout, this, &Enemigo::moveEnemy);
-        connect(this, SIGNAL(stateChanged()), this, SLOT(startDead()));
-    }
-    connect(this, &Enemigo::remove, mainwindow, &MainWindow::removeEnemy);
+    if(IFMOVE) connect(timer, &QTimer::timeout, this, &Enemigo::moveEnemy);
     enemigos->push_back(this);
     escena->addItem(this);
+}
+
+void Enemigo::prepare2Die()
+{
+    count = SPEED_DEAD;
+    frame = 0;
 }
 /*
 Enemigo::Enemigo(MainWindow *mainwindow)
@@ -107,20 +109,15 @@ void Enemigo::moveAnimation()
     else count++;
 }
 
-void Enemigo::startDead()
-{
-    disconnect(timer, SIGNAL(timeout()), this, SLOT(moveAnimation()));
-    count = SPEED_DEAD;
-    frame = 0;
-    connect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation()));
-}
-
 void Enemigo::deadAnimation()
 {
+
     if (count == SPEED_DEAD) {
         if(frame == 3) {
-            disconnect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation()));
-            emit remove(this);
+            disconnect(timer, &QTimer::timeout, this, &Enemigo::deadAnimation);//disconnect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation()));
+            enemigos->removeOne(this);
+            escena->removeItem(this);
+            delete this;
             return;
         }
         setTypeDead(frame);
@@ -191,7 +188,6 @@ void Enemigo::setState(bool newState)
     if (state == newState)
         return;
     state = newState;
-    emit stateChanged();
 }
 
 void Enemigo::setTypeDead(int typeX, int typeY)

@@ -1,7 +1,7 @@
 #include <explotion.h>
 #include <personaje.h>
 #include <bloque.h>
-
+#include <enemigo.h>
 Explotion::Explotion()
 {
     sprite.load(":/images/Sprites/explosion.png");
@@ -37,6 +37,9 @@ void Explotion::collidingWithEnemy()
     for (auto enemy : *enemigos) {
         if (collidesWithItem(enemy)) {
             enemy->setState(false);
+            disconnect(gameClock, &QTimer::timeout, enemy, &Enemigo::deadAnimation);
+            enemy->prepare2Die();
+            connect(gameClock, &QTimer::timeout, enemy, &Enemigo::deadAnimation);
             break;
         }
     }
@@ -49,6 +52,11 @@ void Explotion::collidingWithPlayer()
             personaje->setState(false); //Con la escena, simplmente lo eliminaria aqui mismo sin encesidad de señales.
         }
     }
+}
+
+void Explotion::setGameClock(QTimer *newGameClock)
+{
+    gameClock = newGameClock;
 }
 
 void Explotion::setBloque(Bloque *newBloque)

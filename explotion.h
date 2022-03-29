@@ -1,11 +1,10 @@
 #ifndef EXPLOTION_H
 #define EXPLOTION_H
 #include <objeto.h>
-#include <enemigo.h>
 #include <QTimer>
 class Personaje;
 class Bloque;
-
+class Enemigo;
 class Explotion : public Objeto
 {
     Q_OBJECT
@@ -17,6 +16,9 @@ public:
     void setPersonaje(Personaje *newPersonaje);
 
     void setBloque(Bloque *newBloque);
+
+
+    void setGameClock(QTimer *newGameClock);
 
 public slots:
     void animation();
@@ -36,6 +38,7 @@ private:
     QList<Enemigo*> *enemigos;
     QTimer timerAnimation;
     QTimer timer;
+    QTimer *gameClock;
 };
 
 #endif // EXPLOTION_H

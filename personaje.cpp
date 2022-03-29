@@ -1,44 +1,24 @@
 #include "personaje.h"
 #include <mainwindow.h>
-Personaje::Personaje(int **matrizGame, QList<Enemigo*> *enemigos, QTimer *timer, QGraphicsScene *escena)
+Personaje::Personaje(MainWindow *mainwindow)
 {
+    this->mainwindow = mainwindow;
+    matrizGame = mainwindow->getMatrizGame();
+    enemigos = mainwindow->getEnemigos();
+    timer = mainwindow->getTimer();
+    escena = mainwindow->getEscena();
     sprite.load(":/images/Sprites/personaje.png");
     spriteDead.load(":/images/Sprites/personaje_herido.png");
     setSize(sizeGame);
     setFrame(1);
     setPos(size,size);
-    this->matrizGame = matrizGame;
-    this->enemigos = enemigos;
-    this->timer = timer;
-    this->escena = escena;
     state = true;
     lifes = LIFES;
     vel = velPlayer;
     bombs = bombsPlayer;
     immuneExplotions = IMMUNE_EXPLOTION;
     connect(timer, SIGNAL(timeout()), this, SLOT(collidingWithEnemy()));
-    connect(this, SIGNAL(stateChanged()), this, SLOT(startDead()));
-    escena->addItem(this);
-}
-
-Personaje::Personaje(MainWindow *caca)
-{
-    sprite.load(":/images/Sprites/personaje.png");
-    spriteDead.load(":/images/Sprites/personaje_herido.png");
-    setSize(sizeGame);
-    setFrame(1);
-    setPos(size,size);
-    matrizGame = caca->getMatrizGame();
-    enemigos = caca->getEnemigos();
-    timer = caca->getTimer();
-    escena = caca->getEscena();
-    state = true;
-    lifes = LIFES;
-    vel = velPlayer;
-    bombs = bombsPlayer;
-    immuneExplotions = IMMUNE_EXPLOTION;
-    mainwindow = caca;
-    connect(timer, SIGNAL(timeout()), this, SLOT(collidingWithEnemy()));
+    mainwindow->setPersonaje(this);
     escena->addItem(this);
 }
 

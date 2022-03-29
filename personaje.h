@@ -3,11 +3,11 @@
 
 #include <objeto.h>
 #include <QGraphicsScene>
-#include <bomba.h>
-#include <enemigo.h>
 #include <QTimer>
 #include <QList>
 class MainWindow;
+class Bomba;
+class Enemigo;
 /*!
  * \brief The Personaje class
  * Types:
@@ -24,24 +24,24 @@ class Personaje : public Objeto
 {
     Q_OBJECT
 public:
-    Personaje(int **matrizGame, QList<Enemigo *> *enemigos, QTimer *timer, QGraphicsScene *escena); //cargamos el sprite por difecto en el constructor
-    Personaje(MainWindow *caca);
+    Personaje(MainWindow *mainwindow);
     bool putBomb(Bomba *bomba);
     void moveAnimation(short direction);
+    void setTypeDead(int typeX = 0, int typeY = 0);
+
     short getBombs() const;
     void setBombs(short newBombs);
     QList<Enemigo *> *getEnemigos() const;
     void setEnemigos(QList<Enemigo *> *newEnemigos);
     bool getState() const;
     void setState(bool newState);
-    void setTypeDead(int typeX = 0, int typeY = 0);
     void setTimer(QTimer *newTimer);
     bool getImmuneExplotions() const;
     void setImmuneExplotions(bool newImmuneExplotions);
     int getLifes() const;
     void setLifes(int newLifes);
 
-private slots:
+public slots:
     void collidingWithEnemy();
     void deadAnimation();
 

@@ -10,27 +10,26 @@
  */
 class MainWindow;
 class QGraphicsScene;
+class Personaje;
 class Enemigo : public Objeto
 {
     Q_OBJECT
 public:
     Enemigo() {};
     Enemigo(MainWindow *mainwindow);
+    void prepare2Die();
+    void setTypeDead(int typeX = 0, int typeY = 0);
     QTimer *getTimer() const;
     void setTimer(QTimer *newTimer);
     void setState(bool newState);
-    void setTypeDead(int typeX = 0, int typeY = 0);
     bool getState() const;
 
-signals:
-    void stateChanged();
-    void remove(Enemigo *enemy);
+public slots:
+    void deadAnimation();
 
 private slots:
     void moveAnimation();
     void moveEnemy();
-    void startDead();
-    void deadAnimation();
 
 private:
     /*!
@@ -47,6 +46,7 @@ private:
     QTimer *timer;
     QPixmap typeDead;
     QPixmap spriteDead;
+    Personaje *personaje;
     QList<Enemigo*> *enemigos;
     QGraphicsScene *escena;
     MainWindow *mainwindow;
