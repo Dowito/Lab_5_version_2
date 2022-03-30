@@ -55,21 +55,7 @@ void MainWindow::keyPressEvent(QKeyEvent *i)
         }
         else if (i->key() == Qt::Key_Space) {
             if (numBombas < personaje->getBombs()){
-                Bomba *bomba = new Bomba;
-                bomba->setMatrizGame(matrizGame);
-                if(personaje->putBomb(bomba)){
-                    personaje->putBomb2(bomba);
-                    //personaje->setPos(bomba->pos());
-                    //int mY = bomba->y()/(size_sprites*sizeGame);
-                    //int mX = bomba->x()/(size_sprites*sizeGame);
-                    //matrizGame[mY][mX] = 2;
-                    //bombas.push_back(bomba); //intentar meter todo dentro de constructor de la bomba, y que el constructor reciba mainwindow o personaje.
-                    //connect(bomba, &Bomba::remove, this, &MainWindow::removeBomb); //Conectarlo con explote y quitar el resto de señales//manda las coordenadas de la bomba a destruir a la funcion removeBomb
-                    //bomba->startBomb();
-                    //escena->addItem(bomba);
-                    //numBombas++;
-                }
-                else delete bomba;
+                personaje->putBomb();
             }
         }
         else return;

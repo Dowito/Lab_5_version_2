@@ -4,11 +4,13 @@
 #include <explotion.h>
 #include <QTimer>
 #include <QVector>
+class MainWindow;
 class Bomba : public Objeto
 {
     Q_OBJECT
 public:
     Bomba();
+    Bomba(QPointF pos, MainWindow mainwindow);
     void explote(QVector<Explotion*> &explotions, QVector<QVector<int>> &mBlocks, QVector<QVector<int>> &mBombs);
     int mX();
     int mY();

@@ -26,8 +26,7 @@ class Personaje : public Objeto
     Q_OBJECT
 public:
     Personaje(MainWindow *mainwindow);
-    bool putBomb(Bomba *bomba);
-    void putBomb2(Bomba *bomba);
+    void putBomb();
     void moveAnimation(short direction);
     void setTypeDead(int typeX = 0, int typeY = 0);
 
@@ -44,6 +43,7 @@ public:
     void setLifes(int newLifes);
 
 public slots:
+    bool tryBomb(Bomba *bomba);
     void deadAnimation();
 
 private:

@@ -32,7 +32,22 @@ void Personaje::setTypeDead(int typeX, int typeY)
     setPixmap(typeDead);
 }
 
-bool Personaje::putBomb(Bomba *bomba)
+void Personaje::putBomb()
+{
+    Bomba *bomba = new Bomba;
+    bomba->setMatrizGame(matrizGame);
+    if(tryBomb(bomba)){
+        setPos(bomba->pos());
+        matrizGame[bomba->mY()][bomba->mX()] = 2;
+        bombas.push_back(bomba);
+        connect(bomba, &Bomba::remove, mainwindow, &MainWindow::removeBomb);
+        bomba->startBomb();
+        escena->addItem(bomba);
+        mainwindow->setNumBombas(mainwindow->getNumBombas()+1);
+    }else delete bomba;
+}
+
+bool Personaje::tryBomb(Bomba *bomba)
 {
     int pX = ((int)x()/size)*size;
     int pY = ((int)y()/size)*size;
@@ -85,17 +100,6 @@ bool Personaje::putBomb(Bomba *bomba)
     }
     else return false;
     return false;
-}
-
-void Personaje::putBomb2(Bomba *bomba)
-{
-    setPos(bomba->pos());
-    matrizGame[bomba->mY()][bomba->mX()] = 2;
-    bombas.push_back(bomba);
-    connect(bomba, &Bomba::remove, mainwindow, &MainWindow::removeBomb);
-    bomba->startBomb();
-    escena->addItem(bomba);
-    mainwindow->setNumBombas(mainwindow->getNumBombas()+1);
 }
 
 short Personaje::getBombs() const
