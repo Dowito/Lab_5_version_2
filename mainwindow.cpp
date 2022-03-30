@@ -54,7 +54,7 @@ void MainWindow::keyPressEvent(QKeyEvent *i)
             if(personaje->tryMove(3)) personaje->move(3), personaje->moveAnimation(3);
         }
         else if (i->key() == Qt::Key_Space) {
-            if (numBombas < personaje->getBombs()){
+            if (numBombs < personaje->getBombs()){
                 personaje->putBomb();
             }
         }
@@ -118,7 +118,7 @@ void MainWindow::removeBomb(Bomba *reBomba)
     disconnect(reBomba, &Bomba::remove, this, &MainWindow::removeBomb);
     QVector<Explotion*> explotions;
     QVector<QVector<int>> mBlocks;
-    numBombas -= 1;
+    numBombs -= 1;
     reBomba->explote(explotions, mBlocks);
     int mY = reBomba->y()/(size_sprites*sizeGame);
     int mX = reBomba->x()/(size_sprites*sizeGame);
@@ -155,21 +155,21 @@ void MainWindow::removeBlock(Bloque *block)
     block->setTypeFloor();
 }
 
+short MainWindow::getNumBombs() const
+{
+    return numBombs;
+}
+
+void MainWindow::setNumBombs(short newNumBombs)
+{
+    numBombs = newNumBombs;
+}
+
 void MainWindow::removeExplotion(Explotion *explosion)
 {
     //explosiones->removeOne(explosion);
     escena->removeItem(explosion);
     delete explosion;
-}
-
-short MainWindow::getNumBombas() const
-{
-    return numBombas;
-}
-
-void MainWindow::setNumBombas(short newNumBombas)
-{
-    numBombas = newNumBombas;
 }
 
 QList<Explotion *> *MainWindow::getExplosiones() const

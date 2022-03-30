@@ -30,10 +30,8 @@ public:
     void loadMap();//CACA
     void putPlayer();//CACA
     void putEnemies();//CACA
-    void lcdUpdate();//CACA
+    void lcdUpdate();
 
-    short getNumBombas() const;
-    void setNumBombas(short newNumBombas);
     QList<Explotion *> *getExplosiones() const;
     void setExplosiones(QList<Explotion *> *newExplosiones);
     QList<Enemigo *> *getEnemigos() const;
@@ -50,13 +48,17 @@ public:
     void setUi(Ui::MainWindow *newUi);
     Bloque *bloques[sizeMapY][sizeMapX];
 
+
+    short getNumBombs() const;
+    void setNumBombs(short newNumBombs);
+
 public slots:
     void removeExplotion(Explotion* explosion); //CACA
     void removeBomb(Bomba *reBomba);//CACA
     void removeBlock(Bloque *block);//CACA
 
 private:
-    short numBombas;
+    short numBombs;
     QList<Explotion*> *explosiones;
     QList<Enemigo*> *enemigos; //Cambiar a vector<vector<Bloque>> o usar una matriz bonica como la que use en matrizGames
     int **matrizGame; //Cambiar a vector<vector<int>>

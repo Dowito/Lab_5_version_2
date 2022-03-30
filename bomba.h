@@ -15,6 +15,7 @@ public:
     void explote(QVector<Explotion*> &explotions, QVector<QVector<int>> &mBlocks);
     int mX();
     int mY();
+    void removeBomb();
 
 signals:
     void remove(Bomba *reBomba); //manda las coordenadas de la bomba a destruir

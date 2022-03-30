@@ -5,7 +5,6 @@ Bomba::Bomba(QPointF pos, MainWindow *mainwindow)
 {
     this->mainwindow = mainwindow;
     matrizGame = mainwindow->getMatrizGame();
-    numBombs = mainwindow->getNumBombas();
     escena = mainwindow->getEscena();
     timer = mainwindow->getTimer();
     sprite.load(":/images/Sprites/bomba.png");
@@ -17,8 +16,8 @@ Bomba::Bomba(QPointF pos, MainWindow *mainwindow)
     matrizGame[mY()][mX()] = 2;
     connect(timer, SIGNAL(timeout()), this, SLOT(explote()));
     connect(this, &Bomba::remove, mainwindow, &MainWindow::removeBomb); //CACA hacer el remove dentro de la misma clase.
-    mainwindow->setNumBombas(mainwindow->getNumBombas()+1);
-    mainwindow->getEscena()->addItem(this);
+    mainwindow->setNumBombs(mainwindow->getNumBombs()+1);
+    escena->addItem(this);
 }
 
 int Bomba::mX()
@@ -31,6 +30,11 @@ int Bomba::mY()
 {
     int mY = y()/(size_sprites*sizeGame);
     return mY;
+}
+
+void Bomba::removeBomb()
+{
+    mainwindow->setNumBombs(mainwindow->getNumBombs()-1);
 }
 
 void Bomba::explote()
