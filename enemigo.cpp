@@ -1,6 +1,7 @@
 #include "enemigo.h"
 #include <mainwindow.h>
 #include <personaje.h>
+#include <bloque.h>
 Enemigo::Enemigo(MainWindow *mainwindow)
 {
     this->mainwindow = mainwindow;

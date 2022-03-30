@@ -7,6 +7,7 @@
 #include <QList>
 class MainWindow;
 class Bomba;
+class Bloque;
 class Enemigo;
 /*!
  * \brief The Personaje class
@@ -26,6 +27,7 @@ class Personaje : public Objeto
 public:
     Personaje(MainWindow *mainwindow);
     bool putBomb(Bomba *bomba);
+    void putBomb2(Bomba *bomba);
     void moveAnimation(short direction);
     void setTypeDead(int typeX = 0, int typeY = 0);
 
@@ -51,6 +53,7 @@ private:
     bool state; //Si esta vivo o muerto
     bool immuneExplotions;
     short bombs;
+    QList<Bomba*> bombas;
     QPixmap spriteDead;
     QPixmap typeDead;
     QTimer *timer;

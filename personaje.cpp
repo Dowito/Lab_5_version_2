@@ -2,11 +2,13 @@
 #include <mainwindow.h>
 #include <enemigo.h>
 #include <bomba.h>
+#include <bloque.h>
 Personaje::Personaje(MainWindow *mainwindow)
 {
     this->mainwindow = mainwindow;
     matrizGame = mainwindow->getMatrizGame();
     enemigos = mainwindow->getEnemigos();
+    bombas = mainwindow->getBombas();
     timer = mainwindow->getTimer();
     escena = mainwindow->getEscena();
     sprite.load(":/images/Sprites/personaje.png");
@@ -83,6 +85,17 @@ bool Personaje::putBomb(Bomba *bomba)
     }
     else return false;
     return false;
+}
+
+void Personaje::putBomb2(Bomba *bomba)
+{
+    setPos(bomba->pos());
+    matrizGame[bomba->mY()][bomba->mX()] = 2;
+    bombas.push_back(bomba);
+    connect(bomba, &Bomba::remove, mainwindow, &MainWindow::removeBomb);
+    bomba->startBomb();
+    escena->addItem(bomba);
+    mainwindow->setNumBombas(mainwindow->getNumBombas()+1);
 }
 
 short Personaje::getBombs() const

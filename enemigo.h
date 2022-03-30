@@ -10,6 +10,7 @@
  */
 class MainWindow;
 class QGraphicsScene;
+class Bloque;
 class Personaje;
 class Enemigo : public Objeto
 {

@@ -72,14 +72,16 @@ void Bomba::explote(QVector<Explotion *> &explotions, QVector<QVector<int> > &mB
     }
 }
 
-void Bomba::mX()
+int Bomba::mX()
 {
-
+    int mX = x()/(size_sprites*sizeGame);
+    return mX;
 }
 
-void Bomba::mY()
+int Bomba::mY()
 {
-
+    int mY = y()/(size_sprites*sizeGame);
+    return mY;
 }
 
 void Bomba::startExplotion()
