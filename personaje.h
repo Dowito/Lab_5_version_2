@@ -50,6 +50,7 @@ private:
     QTimer *timer;
     QGraphicsScene *escena;
     MainWindow *mainwindow;
+    Contenedores *contenedores;
 };
 
 #endif // PERSONAJE_H

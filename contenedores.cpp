@@ -9,5 +9,5 @@ Contenedores::Contenedores(MainWindow *mainwindow)
     escena = mainwindow->getEscena();
     enemigos = mainwindow->getEnemigos();
     //Bloque *bloques[sizeMapY][sizeMapX];
-    //bombas = mainwindow->getBombas();
+    //bombas = mainwindow->bombas();
 }

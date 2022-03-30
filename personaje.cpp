@@ -22,7 +22,6 @@ Personaje::Personaje(MainWindow *mainwindow)
     vel = velPlayer;
     bombs = bombsPlayer;
     immuneExplotions = IMMUNE_EXPLOTION;
-    mainwindow->setPersonaje(this);
     escena->addItem(this);
 }
 

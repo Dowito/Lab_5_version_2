@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     escena = new QGraphicsScene;
     enemigos = new QList<Enemigo*>;
     timer = new QTimer;
+    contenedores = new Contenedores(this);
     ui->setupUi(this);
     setGeometry(0,0,48*sizeMapX*sizeGame,48*sizeMapY*sizeGame+2*48);
     ui->graphicsView->setGeometry(0,0,width(),height()-2*48);
@@ -96,7 +97,7 @@ void MainWindow::loadMap()
 
 void MainWindow::putPlayer()
 {
-    new Personaje(this);
+    personaje = new Personaje(this);
 }
 
 void MainWindow::putEnemies()
@@ -154,9 +155,4 @@ short *MainWindow::getNumBombas() const
 void MainWindow::setPersonaje(Personaje *newPersonaje)
 {
     personaje = newPersonaje;
-}
-
-void MainWindow::updateContainers()
-{
-
 }
