@@ -1,22 +1,22 @@
 #include "bomba.h"
 #include <mainwindow.h>
+#include <explotion.h>
 Bomba::Bomba(QPointF pos, MainWindow *mainwindow)
 {
     this->mainwindow = mainwindow;
     matrizGame = mainwindow->getMatrizGame();
-    //bombas = mainwindow->getBombas();
+    numBombs = mainwindow->getNumBombas();
+    escena = mainwindow->getEscena();
     timer = mainwindow->getTimer();
     sprite.load(":/images/Sprites/bomba.png");
     setSize(sizeGame);
     setFrame(1);
-    delay = DELAY;
+    setPos(pos);
     steps = 0;
     pot = POT;
-    setPos(pos);
     matrizGame[mY()][mX()] = 2;
     connect(timer, SIGNAL(timeout()), this, SLOT(explote()));
     connect(this, &Bomba::remove, mainwindow, &MainWindow::removeBomb); //CACA hacer el remove dentro de la misma clase.
-    bombTimer.start(delay);
     mainwindow->setNumBombas(mainwindow->getNumBombas()+1);
     mainwindow->getEscena()->addItem(this);
 }
@@ -35,7 +35,7 @@ int Bomba::mY()
 
 void Bomba::explote()
 {
-    if(steps == ((int)(DElAY_BOMB/clockGame))){ //DElAY_BOMB/clockGame
+    if(steps >= ((int)(DElAY_BOMB/clockGame))){ //DElAY_BOMB/clockGame
         disconnect(timer, SIGNAL(timeout()), this, SLOT(explote()));
         emit remove(this); //Todo lo que tenga que ver con la explosion de la bomba.
     }else steps++;

@@ -1,11 +1,12 @@
 #ifndef BOMBA_H
 #define BOMBA_H
 #include <objeto.h>
-#include <explotion.h>
+#include <QGraphicsScene>
 #include <QTimer>
 #include <QVector>
 #include <QList>
 class MainWindow;
+class Explotion;
 class Bomba : public Objeto
 {
     Q_OBJECT
@@ -21,10 +22,9 @@ signals:
 private:
     int steps;
     short pot;
-    int delay;
-    MainWindow *mainwindow;
     QTimer *timer;
-    QTimer bombTimer;
+    QGraphicsScene *escena;
+    MainWindow *mainwindow;
 
 private slots:
     void explote();
