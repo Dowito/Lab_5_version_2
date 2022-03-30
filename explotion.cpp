@@ -70,7 +70,6 @@ void Explotion::collidingWithEnemy()
     for (auto enemy : *enemigos) {
         if (collidesWithItem(enemy)) {
             enemy->setState(false);
-            disconnect(timer, &QTimer::timeout, enemy, &Enemigo::deadAnimation);
             enemy->prepare2Die();
             connect(timer, &QTimer::timeout, enemy, &Enemigo::deadAnimation);
             break;

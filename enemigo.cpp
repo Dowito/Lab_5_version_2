@@ -26,54 +26,10 @@ Enemigo::Enemigo(MainWindow *mainwindow)
 
 void Enemigo::prepare2Die()
 {
-    count = SPEED_DEAD;
+    count = SPEED_DEAD_ENEMY;
     frame = 0;
 }
-/*
-Enemigo::Enemigo(MainWindow *mainwindow)
-{
-    setSize(sizeGame);
-    state = true;
-    frame = 0;
-    count = 0;
-    direction = 0;
-    enemigos = mainwindow->getEnemigos();
-    matrizGame = mainwindow->getMatrizGame();
-    timer = mainwindow->getTimer();
-    mY = 1+rand()%((sizeMapY-1)-1);
-    mX = 9+rand()%((sizeMapX-1)-9);
-    if (mY%2 == 0 && mX%2 == 0) mX += 1;
-    matrizGame[mY][mX] = 9;
-    mainwindow->bloques[mY][mX]->setTypeFloor();
-    setPos(mX*size,mY*size);
-    short type = 0+rand()%(3-0);
-    if (type == 0) {
-        sprite.load(":/images/Sprites/hombre_lobo.png");
-        spriteDead.load(":/images/Sprites/hombre_lobo_dead.png");
-        vel = 2;
-    }
-    else if (type == 1) {
-        sprite.load(":/images/Sprites/furro.png");
-        spriteDead.load(":/images/Sprites/furro_dead.png");
-        vel = 4;
-    }
-    else if (type == 2) {
-        sprite.load(":/images/Sprites/demonio.png");
-        spriteDead.load(":/images/Sprites/demonio_dead.png");
-        vel = 6;
-    }
-    else {
-        sprite.load(":/images/Sprites/explosion.png");
-        spriteDead.load(":/images/Sprites/personaje_herido.png");
-        vel = 999;
-    }
-    setFrame(1);
-    startEnemy();
-    connect(this, &Enemigo::remove, mainwindow, &MainWindow::removeEnemy);
-    //enemigos->push_back(this);
-    //escena->addItem(this);
-}
-*/
+
 void Enemigo::moveEnemy()
 {
     if(state){
@@ -116,7 +72,7 @@ void Enemigo::moveAnimation()
 void Enemigo::deadAnimation()
 {
 
-    if (count == SPEED_DEAD) {
+    if (count == SPEED_DEAD_ENEMY) {
         if(frame == 3) {
             disconnect(timer, &QTimer::timeout, this, &Enemigo::deadAnimation);//disconnect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation()));
             enemigos->removeOne(this);

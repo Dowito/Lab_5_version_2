@@ -14,6 +14,8 @@ Personaje::Personaje(MainWindow *mainwindow)
     setFrame(1);
     setPos(size,size);
     state = true;
+    frame = 0;
+    count = SPEED_DEAD;
     lifes = LIFES;
     vel = velPlayer;
     bombs = bombsPlayer;

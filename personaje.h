@@ -43,8 +43,8 @@ public slots:
 
 private:
     bool tryBomb(QPointF &pos);
-    short frame = 0;
-    short count = SPEED_DEAD;
+    short frame;
+    short count;
     int lifes;
     bool state; //Si esta vivo o muerto
     bool immuneExplotions;
