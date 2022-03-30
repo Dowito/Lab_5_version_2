@@ -28,7 +28,7 @@
 #define POT 20
 
 //Explocion
-#define STEPS_EXPLOTION_ANIMATION 15
+#define STEPS_EXPLOTION_ANIMATION 2
 #define DELAY_EXPLOCION 500 //default 500
 
 /*Matriz

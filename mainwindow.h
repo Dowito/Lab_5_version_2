@@ -57,7 +57,6 @@ public slots:
 
 private:
     short numBombs = 0;
-    QList<Explotion*> *explosiones;
     QList<Enemigo*> *enemigos; //Cambiar a vector<vector<Bloque>> o usar una matriz bonica como la que use en matrizGames
     int **matrizGame; //Cambiar a vector<vector<int>>
     Personaje *personaje;

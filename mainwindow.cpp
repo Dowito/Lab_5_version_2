@@ -172,16 +172,6 @@ void MainWindow::removeExplotion(Explotion *explosion)
     delete explosion;
 }
 
-QList<Explotion *> *MainWindow::getExplosiones() const
-{
-    return explosiones;
-}
-
-void MainWindow::setExplosiones(QList<Explotion *> *newExplosiones)
-{
-    explosiones = newExplosiones;
-}
-
 QList<Enemigo *> *MainWindow::getEnemigos() const
 {
     return enemigos;

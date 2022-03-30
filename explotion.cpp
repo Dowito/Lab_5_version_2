@@ -3,21 +3,14 @@
 #include <personaje.h>
 #include <bloque.h>
 #include <enemigo.h>
-Explotion::Explotion()
-{
-    sprite.load(":/images/Sprites/explosion.png");
-    setSize(sizeGame);
-    setFrame(0,1);
-}
-
 Explotion::Explotion(QPointF pos, MainWindow *mainwindow)
 {
     this->mainwindow = mainwindow;
     matrizGame = mainwindow->getMatrizGame();
     personaje = mainwindow->getPersonaje();
     enemigos = mainwindow->getEnemigos();
-    gameClock = mainwindow->getTimer();
     escena = mainwindow->getEscena();
+    timer = mainwindow->getTimer();
     sprite.load(":/images/Sprites/explosion.png");
     setSize(sizeGame);
     setFrame(0,1);
@@ -25,9 +18,9 @@ Explotion::Explotion(QPointF pos, MainWindow *mainwindow)
     typeX = 0;
     typeY = 1;
     steps = STEPS_EXPLOTION_ANIMATION;
-    connect(gameClock, SIGNAL(timeout()), this, SLOT(animation()));
-    connect(gameClock, &QTimer::timeout, this, &Explotion::collidingWithEnemy);
-    connect(gameClock, &QTimer::timeout, this, &Explotion::collidingWithPlayer);
+    connect(timer, SIGNAL(timeout()), this, SLOT(animation()));
+    connect(timer, SIGNAL(timeout()), this, SLOT(collidingWithEnemy()));
+    connect(timer, SIGNAL(timeout()), this, SLOT(collidingWithPlayer()));
     escena->addItem(this);
 }
 
@@ -63,7 +56,7 @@ void Explotion::animation()
 
 void Explotion::remove()
 {
-    disconnect(gameClock, SIGNAL(timeout()), this, SLOT(remove()));
+    disconnect(timer, SIGNAL(timeout()), this, SLOT(remove()));
     escena->removeItem(this);
     if(matrizGame[mY()][mX()] == 1){
         matrizGame[mY()][mX()] = 9;
@@ -77,9 +70,9 @@ void Explotion::collidingWithEnemy()
     for (auto enemy : *enemigos) {
         if (collidesWithItem(enemy)) {
             enemy->setState(false);
-            disconnect(gameClock, &QTimer::timeout, enemy, &Enemigo::deadAnimation);
+            disconnect(timer, &QTimer::timeout, enemy, &Enemigo::deadAnimation);
             enemy->prepare2Die();
-            connect(gameClock, &QTimer::timeout, enemy, &Enemigo::deadAnimation);
+            connect(timer, &QTimer::timeout, enemy, &Enemigo::deadAnimation);
             break;
         }
     }
