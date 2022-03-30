@@ -17,7 +17,6 @@ public:
     int mY();
 
 public slots:
-    void animation();
     void collidingWithEnemy();
     void collidingWithPlayer();
 
@@ -38,7 +37,8 @@ private:
     MainWindow *mainwindow;
 
 private slots:
-    void die();
+    void animation();
+    void remove();
 };
 
 #endif // EXPLOTION_H
