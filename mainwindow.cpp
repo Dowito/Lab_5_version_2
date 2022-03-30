@@ -85,13 +85,9 @@ void MainWindow::createMap()
 
 void MainWindow::loadMap()
 {
-    for (int y=0; y<sizeMapY; y++) {
-        for (int x=0; x<sizeMapX; x++) {
-            bloques[y][x] = new Bloque;
-            bloques[y][x]->setSize(sizeGame);
-            bloques[y][x]->setType(matrizGame[y][x]); //lo inicio segun el tipo que me de la matriz
-            bloques[y][x]->setPos(x*size_sprites*sizeGame, y*size_sprites*sizeGame); //con hacemos una cuadicula, en al que cada casilla sera del tamaño de los sprites
-            escena->addItem(bloques[y][x]);
+    for (int mY=0; mY<sizeMapY; mY++) {
+        for (int mX=0; mX<sizeMapX; mX++) {
+            new Bloque(mX, mY, this);
         }
     }
 }
@@ -112,48 +108,6 @@ void MainWindow::lcdUpdate()
 {
     ui->lcdVidas->display(personaje->getLifes());
 }
-/*
-void MainWindow::removeBomb(Bomba *reBomba)
-{
-    disconnect(reBomba, &Bomba::remove, this, &MainWindow::removeBomb);
-    QVector<Explotion*> explotions;
-    QVector<QVector<int>> mBlocks;
-    numBombs -= 1;
-    reBomba->explote(explotions, mBlocks);
-    int mY = reBomba->y()/(size_sprites*sizeGame);
-    int mX = reBomba->x()/(size_sprites*sizeGame);
-    matrizGame[mY][mX] = 9;
-    escena->removeItem(reBomba);
-    delete reBomba;
-    for (auto mPos : qAsConst(mBlocks)) {
-        Explotion *explotion;
-        explotion = new Explotion;
-        explotion->setPos(bloques[mPos[1]][mPos[0]]->pos());
-        explotion->setBloque(bloques[mPos[1]][mPos[0]]);
-        connect(explotion, &Explotion::remove, this, &MainWindow::removeExplotion);
-        connect(bloques[mPos[1]][mPos[0]], &Bloque::remove, this, &MainWindow::removeBlock); //esto lo hare dentro de la muerte de la bomba.
-        explotion->start();
-        escena->addItem(explotion);
-    }
-    for (Explotion *explotion : qAsConst(explotions)) {
-        //explosiones->push_back(explotion);
-        connect(explotion, &Explotion::remove, this, &MainWindow::removeExplotion); //innecesario
-        connect(timer, &QTimer::timeout, explotion, &Explotion::collidingWithEnemy);
-        connect(timer, &QTimer::timeout, explotion, &Explotion::collidingWithPlayer);
-        explotion->setEnemigos(enemigos);
-        explotion->setPersonaje(personaje);
-        explotion->setGameClock(timer);
-        explotion->start();
-        escena->addItem(explotion);
-    }
-}
-*/
-void MainWindow::removeBlock(Bloque *block)
-{
-
-    matrizGame[block->mY()][block->mX()] = 9;
-    block->setTypeFloor();
-}
 
 short MainWindow::getNumBombs() const
 {
@@ -165,21 +119,9 @@ void MainWindow::setNumBombs(short newNumBombs)
     numBombs = newNumBombs;
 }
 
-void MainWindow::removeExplotion(Explotion *explosion)
-{
-    //explosiones->removeOne(explosion);
-    escena->removeItem(explosion);
-    delete explosion;
-}
-
 QList<Enemigo *> *MainWindow::getEnemigos() const
 {
     return enemigos;
-}
-
-void MainWindow::setEnemigos(QList<Enemigo *> *newEnemigos)
-{
-    enemigos = newEnemigos;
 }
 
 int **MainWindow::getMatrizGame() const
@@ -187,19 +129,9 @@ int **MainWindow::getMatrizGame() const
     return matrizGame;
 }
 
-void MainWindow::setMatrizGame(int **newMatrizGame)
-{
-    matrizGame = newMatrizGame;
-}
-
 Personaje *MainWindow::getPersonaje() const
 {
     return personaje;
-}
-
-void MainWindow::setPersonaje(Personaje *newPersonaje)
-{
-    personaje = newPersonaje;
 }
 
 QTimer *MainWindow::getTimer() const
@@ -207,28 +139,12 @@ QTimer *MainWindow::getTimer() const
     return timer;
 }
 
-void MainWindow::setTimer(QTimer *newTimer)
-{
-    timer = newTimer;
-}
-
 QGraphicsScene *MainWindow::getEscena() const
 {
     return escena;
 }
 
-void MainWindow::setEscena(QGraphicsScene *newEscena)
+void MainWindow::setPersonaje(Personaje *newPersonaje)
 {
-    escena = newEscena;
+    personaje = newPersonaje;
 }
-
-Ui::MainWindow *MainWindow::getUi() const
-{
-    return ui;
-}
-
-void MainWindow::setUi(Ui::MainWindow *newUi)
-{
-    ui = newUi;
-}
-

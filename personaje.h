@@ -8,7 +8,6 @@
 class MainWindow;
 class Bomba;
 class Bloque;
-class Enemigo;
 /*!
  * \brief The Personaje class
  * Types:
@@ -32,11 +31,8 @@ public:
 
     short getBombs() const;
     void setBombs(short newBombs);
-    QList<Enemigo *> *getEnemigos() const;
-    void setEnemigos(QList<Enemigo *> *newEnemigos);
     bool getState() const;
     void setState(bool newState);
-    void setTimer(QTimer *newTimer);
     bool getImmuneExplotions() const;
     void setImmuneExplotions(bool newImmuneExplotions);
     int getLifes() const;
@@ -56,7 +52,6 @@ private:
     QPixmap spriteDead;
     QPixmap typeDead;
     QTimer *timer;
-    QList<Enemigo*> *enemigos;
     QGraphicsScene *escena;
     MainWindow *mainwindow;
 };

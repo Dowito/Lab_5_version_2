@@ -1,8 +1,9 @@
 #ifndef BLOQUE_H
 #define BLOQUE_H
 #include <objeto.h>
+class MainWindow;
 class Explosion;
-
+class QGraphicsScene;
 /*!
  * \brief The Bloque class
  * type:
@@ -14,31 +15,21 @@ class Bloque : public Objeto
     Q_OBJECT
 public:
     Bloque();
-
+    Bloque(int mX, int mY, MainWindow *mainwindow);
     void setType(int type);
-    /*!
-     * \brief setTypeFloor sprite de piso.
-     */
     void setTypeFloor();
     int mX();
     int mY();
 
-    void start();
     const QTimer &getTimer() const;
     void setTimer(const QTimer &newTimer);
-
     int getCount() const;
     void setCount(int newCount);
-
-public slots:
-    void destroy();
-
-signals:
-    void remove(Bloque *block);
 
 private:
     int count;
     QPixmap floor;//sprite del piso.
+    QGraphicsScene *escena;
 };
 
 #endif // BLOQUE_H

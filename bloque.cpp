@@ -1,5 +1,6 @@
 #include "bloque.h"
 #include <explotion.h>
+#include <mainwindow.h>
 Bloque::Bloque()
 {
     sprite.load(":/images/Sprites/Bloques.png");
@@ -7,6 +8,19 @@ Bloque::Bloque()
     count = 0;
 }
 
+Bloque::Bloque(int mX, int mY, MainWindow *mainwindow)
+{
+    matrizGame = mainwindow->getMatrizGame();
+    escena = mainwindow->getEscena();
+    mainwindow->bloques[mY][mX] = this;
+    sprite.load(":/images/Sprites/Bloques.png");
+    floor.load(":/images/Sprites/piso.png");
+    setSize(sizeGame);
+    setType(matrizGame[mY][mX]);
+    setPos(mX*size, mY*size);
+    count = 0;
+    escena->addItem(this);
+}
 void Bloque::setType(int type)
 {
     if(type!=9) this->type = sprite.copy(type*size_sprites, 0, size_sprites, size_sprites).scaled(this->size, this->size);
@@ -27,11 +41,6 @@ int Bloque::mX()
 int Bloque::mY()
 {
     return y()/size;
-}
-
-void Bloque::destroy()
-{
-    emit remove(this);
 }
 
 int Bloque::getCount() const

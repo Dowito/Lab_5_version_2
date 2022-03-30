@@ -1,13 +1,11 @@
 #include "personaje.h"
 #include <mainwindow.h>
-#include <enemigo.h>
 #include <bomba.h>
 #include <bloque.h>
 Personaje::Personaje(MainWindow *mainwindow)
 {
     this->mainwindow = mainwindow;
     matrizGame = mainwindow->getMatrizGame();
-    enemigos = mainwindow->getEnemigos();
     timer = mainwindow->getTimer();
     escena = mainwindow->getEscena();
     sprite.load(":/images/Sprites/personaje.png");
@@ -102,16 +100,6 @@ void Personaje::setBombs(short newBombs)
     bombs = newBombs;
 }
 
-QList<Enemigo *> *Personaje::getEnemigos() const
-{
-    return enemigos;
-}
-
-void Personaje::setEnemigos(QList<Enemigo *> *newEnemigos)
-{
-    enemigos = newEnemigos;
-}
-
 bool Personaje::getState() const
 {
     return state;
@@ -141,11 +129,6 @@ void Personaje::deadAnimation() //se daña a la segunda muerte
             frame+=1;
         }
     }else count++;
-}
-
-void Personaje::setTimer(QTimer *newTimer)
-{
-    timer = newTimer;
 }
 
 int Personaje::getLifes() const

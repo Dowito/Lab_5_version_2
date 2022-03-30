@@ -32,28 +32,16 @@ public:
     void putEnemies();//CACA
     void lcdUpdate();
 
-    QList<Explotion *> *getExplosiones() const;
-    void setExplosiones(QList<Explotion *> *newExplosiones);
-    QList<Enemigo *> *getEnemigos() const;
-    void setEnemigos(QList<Enemigo *> *newEnemigos);
+    short getNumBombs() const;
+    void setNumBombs(short newNumBombs);
     int **getMatrizGame() const;
-    void setMatrizGame(int **newMatrizGame);
+    QList<Enemigo *> *getEnemigos() const;
     Personaje *getPersonaje() const;
     void setPersonaje(Personaje *newPersonaje);
     QTimer *getTimer() const;
-    void setTimer(QTimer *newTimer);
     QGraphicsScene *getEscena() const;
-    void setEscena(QGraphicsScene *newEscena);
-    Ui::MainWindow *getUi() const;
-    void setUi(Ui::MainWindow *newUi);
-    short getNumBombs() const;
-    void setNumBombs(short newNumBombs);
 
     Bloque *bloques[sizeMapY][sizeMapX];
-
-public slots:
-    void removeExplotion(Explotion* explosion); //CACA
-    void removeBlock(Bloque *block);//CACA
 
 private:
     short numBombs = 0;
