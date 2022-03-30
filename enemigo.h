@@ -1,17 +1,12 @@
 #ifndef ENEMIGO_H
 #define ENEMIGO_H
 #include <objeto.h>
-#include <QTimer>
-#include <QList>
+#include <contenedores.h>
 /*!
  * \brief The Enemigo class:
  * sprites: Los sprites son iguales a los del personajes
  * existiran varios tipos de enemigos, unos mas veloces que otros.
  */
-class MainWindow;
-class QGraphicsScene;
-class Bloque;
-class Personaje;
 class Enemigo : public Objeto
 {
     Q_OBJECT

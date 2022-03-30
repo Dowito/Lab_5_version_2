@@ -1,12 +1,7 @@
 #ifndef EXPLOTION_H
 #define EXPLOTION_H
 #include <objeto.h>
-#include <QTimer>
-class MainWindow;
-class Personaje;
-class Bloque;
-class Enemigo;
-class QGraphicsScene;
+#include <contenedores.h>
 class Explotion : public Objeto
 {
     Q_OBJECT

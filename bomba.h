@@ -1,12 +1,7 @@
 #ifndef BOMBA_H
 #define BOMBA_H
 #include <objeto.h>
-#include <QGraphicsScene>
-#include <QTimer>
-#include <QVector>
-#include <QList>
-class MainWindow;
-class Explotion;
+#include <contenedores.h>
 class Bomba : public Objeto
 {
     Q_OBJECT

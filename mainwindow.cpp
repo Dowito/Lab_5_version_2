@@ -5,6 +5,8 @@
 #include <bloque.h>
 #include <bomba.h>
 #include <explotion.h>
+#include <QTimer>
+#include <QKeyEvent>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -144,7 +146,17 @@ QGraphicsScene *MainWindow::getEscena() const
     return escena;
 }
 
+short *MainWindow::getNumBombas() const
+{
+    return numBombas;
+}
+
 void MainWindow::setPersonaje(Personaje *newPersonaje)
 {
     personaje = newPersonaje;
+}
+
+void MainWindow::updateContainers()
+{
+
 }

@@ -1,6 +1,7 @@
 #include "bloque.h"
 #include <explotion.h>
 #include <mainwindow.h>
+#include <QGraphicsScene>
 Bloque::Bloque()
 {
     sprite.load(":/images/Sprites/Bloques.png");

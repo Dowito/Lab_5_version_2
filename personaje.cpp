@@ -2,6 +2,8 @@
 #include <mainwindow.h>
 #include <bomba.h>
 #include <bloque.h>
+#include <QGraphicsScene>
+#include <QTimer>
 Personaje::Personaje(MainWindow *mainwindow)
 {
     this->mainwindow = mainwindow;

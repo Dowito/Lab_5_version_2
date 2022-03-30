@@ -1,8 +1,7 @@
 #ifndef BLOQUE_H
 #define BLOQUE_H
 #include <objeto.h>
-class MainWindow;
-class Explosion;
+#include <contenedores.h>
 class QGraphicsScene;
 /*!
  * \brief The Bloque class

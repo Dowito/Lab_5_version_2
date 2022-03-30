@@ -2,9 +2,7 @@
 #define OBJETO_H
 #include <QObject>
 #include <QGraphicsPixmapItem>
-#include <macros.h>
-#include <auxiliar.h>
-
+#include <contenedores.h>
 class Objeto : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT

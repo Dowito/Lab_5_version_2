@@ -1,6 +1,8 @@
 #include "bomba.h"
 #include <mainwindow.h>
 #include <explotion.h>
+#include <QTimer>
+#include <QGraphicsScene>
 Bomba::Bomba(QPointF pos, MainWindow *mainwindow)
 {
     mainwindow->bombas.push_back(this);

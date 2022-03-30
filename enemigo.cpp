@@ -2,6 +2,8 @@
 #include <mainwindow.h>
 #include <personaje.h>
 #include <bloque.h>
+#include <QTimer>
+#include <QGraphicsScene>
 Enemigo::Enemigo(MainWindow *mainwindow)
 {
     this->mainwindow = mainwindow;

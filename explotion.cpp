@@ -4,6 +4,8 @@
 #include <bloque.h>
 #include <bomba.h>
 #include <enemigo.h>
+#include <QTimer>
+#include <QGraphicsScene>
 Explotion::Explotion(QPointF pos, MainWindow *mainwindow)
 {
     this->mainwindow = mainwindow;

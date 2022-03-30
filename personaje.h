@@ -2,12 +2,7 @@
 #define PERSONAJE_H
 
 #include <objeto.h>
-#include <QGraphicsScene>
-#include <QTimer>
-#include <QList>
-class MainWindow;
-class Bomba;
-class Bloque;
+#include <contenedores.h>
 /*!
  * \brief The Personaje class
  * Types:
