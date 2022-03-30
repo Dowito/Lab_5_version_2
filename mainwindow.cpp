@@ -118,9 +118,8 @@ void MainWindow::removeBomb(Bomba *reBomba)
     disconnect(reBomba, &Bomba::remove, this, &MainWindow::removeBomb);
     QVector<Explotion*> explotions;
     QVector<QVector<int>> mBlocks;
-    QVector<QVector<int>> mBombs;
     numBombas -= 1;
-    reBomba->explote(explotions, mBlocks, mBombs);
+    reBomba->explote(explotions, mBlocks);
     int mY = reBomba->y()/(size_sprites*sizeGame);
     int mX = reBomba->x()/(size_sprites*sizeGame);
     matrizGame[mY][mX] = 9;

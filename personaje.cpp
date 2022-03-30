@@ -33,22 +33,14 @@ void Personaje::setTypeDead(int typeX, int typeY)
 
 void Personaje::putBomb()
 {
-    /*Bomba *bomba = new Bomba;
-    bomba->setMatrizGame(matrizGame);
-    if(tryBomb(bomba)){
-        setPos(bomba->pos());
-        matrizGame[bomba->mY()][bomba->mX()] = 2;
-        //
-        connect(bomba, &Bomba::remove, mainwindow, &MainWindow::removeBomb);
-        bomba->startBomb();
-        //
-        escena->addItem(bomba);
-        mainwindow->setNumBombas(mainwindow->getNumBombas()+1);
-    }else delete bomba;*/
-    tryBomb();
+    QPointF pos;
+    if(tryBomb(pos)) {
+        setPos(pos);
+        new Bomba(pos, mainwindow);
+    }
 }
 
-bool Personaje::tryBomb(Bomba *bomba)
+bool Personaje::tryBomb(QPointF &pos)
 {
     int pX = ((int)x()/size)*size;
     int pY = ((int)y()/size)*size;
@@ -57,7 +49,7 @@ bool Personaje::tryBomb(Bomba *bomba)
         mY = pY/size;
         mX = pX/size;
         if (matrizGame[mY][mX] != 2) {
-            bomba->setPos(pX, pY);
+            pos = {static_cast<qreal>(pX), static_cast<qreal>(pY)};
             return true;
         }
     }
@@ -66,7 +58,7 @@ bool Personaje::tryBomb(Bomba *bomba)
             mY = pY/size;
             mX = pX/size;
             if (matrizGame[mY][mX] != 2) {
-                bomba->setPos(pX, pY);
+                pos = {static_cast<qreal>(pX), static_cast<qreal>(pY)};
                 return true;
             }
         }
@@ -74,18 +66,17 @@ bool Personaje::tryBomb(Bomba *bomba)
             mY = pY/size;
             mX = (pX+size)/size;
             if (matrizGame[mY][mX] != 2){
-                bomba->setPos(pX+size, pY);
+                pos = {static_cast<qreal>(pX+size), static_cast<qreal>(pY)};
                 return true;
             }
-        }
-        else return false;
+        }else return false;
     }
     else if (pX == x()) { //el personaje esta abajo
         if (y() <= (pY+((size-1)/2))) {
             mY = pY/size;
             mX = pX/size;
             if (matrizGame[mY][mX] != 2) {
-                bomba->setPos(pX, pY);
+                pos = {static_cast<qreal>(pX), static_cast<qreal>(pY)};
                 return true;
             }
         }
@@ -93,60 +84,12 @@ bool Personaje::tryBomb(Bomba *bomba)
             mY = (pY+size)/size;
             mX = pX/size;
             if (matrizGame[mY][mX] != 2) {
-                bomba->setPos(pX, pY+size);
+                pos = {static_cast<qreal>(pX), static_cast<qreal>(pY+size)};
                 return true;
             }
-        }
-        else return false;
+        }else return false;
     }
-    else return false;
     return false;
-}
-
-void Personaje::tryBomb()
-{
-    int pX = ((int)x()/size)*size;
-    int pY = ((int)y()/size)*size;
-    int mX, mY;
-    if (pX == x() && pY == y()) {
-        mY = pY/size;
-        mX = pX/size;
-        if (matrizGame[mY][mX] != 2) {
-            new Bomba({static_cast<qreal>(pX), static_cast<qreal>(pY)}, mainwindow);
-        }
-    }
-    else if (pY == y()) { //el personaje esta por la derecha
-        if (x() <= (pX+((size-1)/2))) {
-            mY = pY/size;
-            mX = pX/size;
-            if (matrizGame[mY][mX] != 2) {
-                new Bomba({static_cast<qreal>(pX), static_cast<qreal>(pY)}, mainwindow);
-            }
-        }
-        else if (x() > (pX+((size-1)/2))) {
-            mY = pY/size;
-            mX = (pX+size)/size;
-            if (matrizGame[mY][mX] != 2){
-                new Bomba({static_cast<qreal>(pX+size), static_cast<qreal>(pY)}, mainwindow);
-            }
-        }
-    }
-    else if (pX == x()) { //el personaje esta abajo
-        if (y() <= (pY+((size-1)/2))) {
-            mY = pY/size;
-            mX = pX/size;
-            if (matrizGame[mY][mX] != 2) {
-                new Bomba({static_cast<qreal>(pX), static_cast<qreal>(pY)}, mainwindow);
-            }
-        }
-        else if (y() > (pY+((size-1)/2))) {
-            mY = (pY+size)/size;
-            mX = pX/size;
-            if (matrizGame[mY][mX] != 2) {
-                new Bomba({static_cast<qreal>(pX), static_cast<qreal>(pY+size)}, mainwindow);
-            }
-        }
-    }
 }
 
 short Personaje::getBombs() const

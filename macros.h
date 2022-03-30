@@ -23,6 +23,8 @@
 
 //Bomba
 #define DELAY 3000 //default 3000
+#define DElAY_BOMB 1400 //default 3000
+#define STEPS_BOMB 25 //  Delay/Timer = #steps para tener el delay deseado antes de que explote la bomba
 #define POT 20
 
 //Explocion

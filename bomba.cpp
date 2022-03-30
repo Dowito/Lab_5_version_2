@@ -1,14 +1,5 @@
 #include "bomba.h"
 #include <mainwindow.h>
-Bomba::Bomba()
-{
-    sprite.load(":/images/Sprites/bomba.png");
-    setSize(sizeGame);
-    setFrame(1);
-    delay = DELAY;
-    pot = POT;
-}
-
 Bomba::Bomba(QPointF pos, MainWindow *mainwindow)
 {
     this->mainwindow = mainwindow;
@@ -19,16 +10,38 @@ Bomba::Bomba(QPointF pos, MainWindow *mainwindow)
     setSize(sizeGame);
     setFrame(1);
     delay = DELAY;
+    steps = 0;
     pot = POT;
     setPos(pos);
     matrizGame[mY()][mX()] = 2;
-    connect(this, &Bomba::remove, mainwindow, &MainWindow::removeBomb);
-    startBomb();
+    connect(timer, SIGNAL(timeout()), this, SLOT(explote()));
+    connect(this, &Bomba::remove, mainwindow, &MainWindow::removeBomb); //CACA hacer el remove dentro de la misma clase.
+    bombTimer.start(delay);
     mainwindow->setNumBombas(mainwindow->getNumBombas()+1);
     mainwindow->getEscena()->addItem(this);
 }
 
-void Bomba::explote(QVector<Explotion *> &explotions, QVector<QVector<int> > &mBlocks, QVector<QVector<int> > &mBombs)
+int Bomba::mX()
+{
+    int mX = x()/(size_sprites*sizeGame);
+    return mX;
+}
+
+int Bomba::mY()
+{
+    int mY = y()/(size_sprites*sizeGame);
+    return mY;
+}
+
+void Bomba::explote()
+{
+    if(steps == ((int)(DElAY_BOMB/clockGame))){ //DElAY_BOMB/clockGame
+        disconnect(timer, SIGNAL(timeout()), this, SLOT(explote()));
+        emit remove(this); //Todo lo que tenga que ver con la explosion de la bomba.
+    }else steps++;
+}
+
+void Bomba::explote(QVector<Explotion *> &explotions, QVector<QVector<int> > &mBlocks)
 {
     Explotion *explotion;
     explotion = new Explotion;
@@ -89,29 +102,6 @@ void Bomba::explote(QVector<Explotion *> &explotions, QVector<QVector<int> > &mB
         }
         else break;
     }
+
 }
 
-int Bomba::mX()
-{
-    int mX = x()/(size_sprites*sizeGame);
-    return mX;
-}
-
-int Bomba::mY()
-{
-    int mY = y()/(size_sprites*sizeGame);
-    return mY;
-}
-
-void Bomba::startExplotion()
-{
-    disconnect(&bombTimer, &QTimer::timeout, this, &Bomba::startExplotion);
-    bombTimer.stop();
-    emit remove(this);
-}
-
-void Bomba::startBomb()
-{
-    connect(&bombTimer, &QTimer::timeout, this, &Bomba::startExplotion);
-    bombTimer.start(delay);
-}

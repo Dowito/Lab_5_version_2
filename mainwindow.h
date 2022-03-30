@@ -64,6 +64,5 @@ private:
     QTimer *timer;
     QGraphicsScene *escena;
     Ui::MainWindow *ui;
-
 };
 #endif // MAINWINDOW_H

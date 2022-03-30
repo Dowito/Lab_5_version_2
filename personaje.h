@@ -46,15 +46,13 @@ public slots:
     void deadAnimation();
 
 private:
-    bool tryBomb(Bomba *bomba);
-    void tryBomb();
+    bool tryBomb(QPointF &pos);
     short frame = 0;
     short count = SPEED_DEAD;
     int lifes;
     bool state; //Si esta vivo o muerto
     bool immuneExplotions;
     short bombs;
-    QList<Bomba*> *bombas;
     QPixmap spriteDead;
     QPixmap typeDead;
     QTimer *timer;
