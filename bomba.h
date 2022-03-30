@@ -29,6 +29,7 @@ private:
 
 private slots:
     void explote();
+    void explote2();
 };
 
 #endif // BOMBA_H

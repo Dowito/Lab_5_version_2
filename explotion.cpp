@@ -1,8 +1,16 @@
 #include <explotion.h>
+#include <mainwindow.h>
 #include <personaje.h>
 #include <bloque.h>
 #include <enemigo.h>
 Explotion::Explotion()
+{
+    sprite.load(":/images/Sprites/explosion.png");
+    setSize(sizeGame);
+    setFrame(0,1);
+}
+
+Explotion::Explotion(MainWindow *mainwindow)
 {
     sprite.load(":/images/Sprites/explosion.png");
     setSize(sizeGame);

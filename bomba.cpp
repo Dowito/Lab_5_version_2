@@ -14,27 +14,27 @@ Bomba::Bomba(QPointF pos, MainWindow *mainwindow)
     steps = 0;
     pot = POT;
     matrizGame[mY()][mX()] = 2;
-    connect(timer, SIGNAL(timeout()), this, SLOT(explote()));
-    connect(this, &Bomba::remove, mainwindow, &MainWindow::removeBomb); //CACA hacer el remove dentro de la misma clase.
+    connect(timer, SIGNAL(timeout()), this, SLOT(explote2()));
+    //connect(this, &Bomba::remove, mainwindow, &MainWindow::removeBomb); //CACA hacer el remove dentro de la misma clase.
     mainwindow->setNumBombs(mainwindow->getNumBombs()+1);
     escena->addItem(this);
 }
 
 int Bomba::mX()
 {
-    int mX = x()/(size_sprites*sizeGame);
+    int mX = (int)(x()/(size_sprites*sizeGame));
     return mX;
 }
 
 int Bomba::mY()
 {
-    int mY = y()/(size_sprites*sizeGame);
+    int mY = (int)(y()/(size_sprites*sizeGame));
     return mY;
 }
 
 void Bomba::removeBomb()
 {
-    mainwindow->setNumBombs(mainwindow->getNumBombs()-1);
+
 }
 
 void Bomba::explote()
@@ -42,6 +42,18 @@ void Bomba::explote()
     if(steps >= ((int)(DElAY_BOMB/clockGame))){ //DElAY_BOMB/clockGame
         disconnect(timer, SIGNAL(timeout()), this, SLOT(explote()));
         emit remove(this); //Todo lo que tenga que ver con la explosion de la bomba.
+    }else steps++;
+}
+
+void Bomba::explote2()
+{
+    if(steps >= ((int)(DElAY_BOMB/clockGame))){ //DElAY_BOMB/clockGame
+        disconnect(timer, SIGNAL(timeout()), this, SLOT(explote()));
+        mainwindow->setNumBombs(mainwindow->getNumBombs()-1);
+        Explotion *explotion;
+        explotion = new Explotion;
+        escena->removeItem(this);
+        delete this;
     }else steps++;
 }
 

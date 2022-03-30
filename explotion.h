@@ -2,6 +2,7 @@
 #define EXPLOTION_H
 #include <objeto.h>
 #include <QTimer>
+class MainWindow;
 class Personaje;
 class Bloque;
 class Enemigo;
@@ -10,6 +11,7 @@ class Explotion : public Objeto
     Q_OBJECT
 public:
     Explotion();
+    Explotion(MainWindow *mainwindow);
     void setExploteBlockSprite();
     void start();
     void setEnemigos(QList<Enemigo *> *newEnemigos);
