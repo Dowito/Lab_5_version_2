@@ -42,6 +42,7 @@ public:
     QGraphicsScene *getEscena() const;
 
     Bloque *bloques[sizeMapY][sizeMapX];
+    QList<Bomba*> bombas;
 
 private:
     short numBombs = 0;

@@ -14,11 +14,13 @@ public:
     Bomba(QPointF pos, MainWindow *mainwindow);
     int mX();
     int mY();
+    void chainExplote();
 
 private:
     void generateExplotions();
     int steps;
     short pot;
+    QList<Bomba*> *bombas;
     QTimer *timer;
     QGraphicsScene *escena;
     MainWindow *mainwindow;

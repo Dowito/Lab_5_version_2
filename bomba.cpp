@@ -3,6 +3,7 @@
 #include <explotion.h>
 Bomba::Bomba(QPointF pos, MainWindow *mainwindow)
 {
+    mainwindow->bombas.push_back(this);
     this->mainwindow = mainwindow;
     matrizGame = mainwindow->getMatrizGame();
     escena = mainwindow->getEscena();
@@ -31,10 +32,22 @@ int Bomba::mY()
     return mY;
 }
 
+void Bomba::chainExplote()
+{
+    disconnect(timer, SIGNAL(timeout()), this, SLOT(explote()));
+    mainwindow->bombas.removeOne(this);
+    mainwindow->setNumBombs(mainwindow->getNumBombs()-1);
+    matrizGame[mY()][mX()] = 9;
+    escena->removeItem(this);
+    generateExplotions();
+    delete this;
+}
+
 void Bomba::explote()
 {
     if(steps >= ((int)(STEPS_BOMB))){
         disconnect(timer, SIGNAL(timeout()), this, SLOT(explote()));
+        mainwindow->bombas.removeOne(this);
         mainwindow->setNumBombs(mainwindow->getNumBombs()-1);
         matrizGame[mY()][mX()] = 9;
         escena->removeItem(this);

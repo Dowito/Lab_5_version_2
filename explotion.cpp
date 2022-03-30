@@ -2,6 +2,7 @@
 #include <mainwindow.h>
 #include <personaje.h>
 #include <bloque.h>
+#include <bomba.h>
 #include <enemigo.h>
 Explotion::Explotion(QPointF pos, MainWindow *mainwindow)
 {
@@ -21,6 +22,7 @@ Explotion::Explotion(QPointF pos, MainWindow *mainwindow)
     connect(timer, SIGNAL(timeout()), this, SLOT(animation()));
     connect(timer, SIGNAL(timeout()), this, SLOT(collidingWithEnemy()));
     connect(timer, SIGNAL(timeout()), this, SLOT(collidingWithPlayer()));
+    connect(timer, SIGNAL(timeout()), this, SLOT(collidingWithBomb()));
     escena->addItem(this);
 }
 
@@ -80,6 +82,16 @@ void Explotion::collidingWithPlayer()
     if(!personaje->getImmuneExplotions() && personaje->getState()) {
         if(collidesWithItem(personaje)){
             personaje->die();
+        }
+    }
+}
+
+void Explotion::collidingWithBomb()
+{
+    for (auto bomb : mainwindow->bombas) {
+        if (collidesWithItem(bomb)) {
+            bomb->chainExplote();
+            break;
         }
     }
 }

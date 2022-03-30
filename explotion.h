@@ -15,10 +15,6 @@ public:
     int mX();
     int mY();
 
-public slots:
-    void collidingWithEnemy();
-    void collidingWithPlayer();
-
 private:
     int steps;
     int typeX;
@@ -32,6 +28,9 @@ private:
 private slots:
     void animation();
     void remove();
+    void collidingWithEnemy();
+    void collidingWithPlayer();
+    void collidingWithBomb();
 };
 
 #endif // EXPLOTION_H
