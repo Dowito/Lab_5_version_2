@@ -125,7 +125,6 @@ void MainWindow::removeBomb(Bomba *reBomba)
     int mX = reBomba->x()/(size_sprites*sizeGame);
     matrizGame[mY][mX] = 9;
     escena->removeItem(reBomba);
-    bombas.removeOne(reBomba);
     delete reBomba;
     for (auto mPos : qAsConst(mBlocks)) {
         Explotion *explotion;
@@ -164,15 +163,6 @@ void MainWindow::removeExplotion(Explotion *explosion)
     delete explosion;
 }
 
-Bomba *MainWindow::findBomb(QPointF pos)
-{
-    for (auto value : qAsConst(bombas)) {
-        if(value->pos() == pos) return value;
-    }
-    Bomba *bomb = nullptr;
-    return bomb;
-}
-
 short MainWindow::getNumBombas() const
 {
     return numBombas;
@@ -191,16 +181,6 @@ QList<Explotion *> *MainWindow::getExplosiones() const
 void MainWindow::setExplosiones(QList<Explotion *> *newExplosiones)
 {
     explosiones = newExplosiones;
-}
-
-const QList<Bomba *> &MainWindow::getBombas() const
-{
-    return bombas;
-}
-
-void MainWindow::setBombas(const QList<Bomba *> &newBombas)
-{
-    bombas = newBombas;
 }
 
 QList<Enemigo *> *MainWindow::getEnemigos() const

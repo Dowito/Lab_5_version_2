@@ -36,8 +36,6 @@ public:
     void setNumBombas(short newNumBombas);
     QList<Explotion *> *getExplosiones() const;
     void setExplosiones(QList<Explotion *> *newExplosiones);
-    const QList<Bomba *> &getBombas() const;
-    void setBombas(const QList<Bomba *> &newBombas);
     QList<Enemigo *> *getEnemigos() const;
     void setEnemigos(QList<Enemigo *> *newEnemigos);
     int **getMatrizGame() const;
@@ -57,13 +55,9 @@ public slots:
     void removeBomb(Bomba *reBomba);//CACA
     void removeBlock(Bloque *block);//CACA
 
-
 private:
-
-    Bomba* findBomb(QPointF pos);
     short numBombas;
     QList<Explotion*> *explosiones;
-    QList<Bomba*> bombas;
     QList<Enemigo*> *enemigos; //Cambiar a vector<vector<Bloque>> o usar una matriz bonica como la que use en matrizGames
     int **matrizGame; //Cambiar a vector<vector<int>>
     Personaje *personaje;

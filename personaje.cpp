@@ -8,7 +8,6 @@ Personaje::Personaje(MainWindow *mainwindow)
     this->mainwindow = mainwindow;
     matrizGame = mainwindow->getMatrizGame();
     enemigos = mainwindow->getEnemigos();
-    bombas = mainwindow->getBombas();
     timer = mainwindow->getTimer();
     escena = mainwindow->getEscena();
     sprite.load(":/images/Sprites/personaje.png");
@@ -39,7 +38,6 @@ void Personaje::putBomb()
     if(tryBomb(bomba)){
         setPos(bomba->pos());
         matrizGame[bomba->mY()][bomba->mX()] = 2;
-        bombas.push_back(bomba);
         //
         connect(bomba, &Bomba::remove, mainwindow, &MainWindow::removeBomb);
         bomba->startBomb();

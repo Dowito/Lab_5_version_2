@@ -53,7 +53,7 @@ private:
     bool state; //Si esta vivo o muerto
     bool immuneExplotions;
     short bombs;
-    QList<Bomba*> bombas;
+    QList<Bomba*> *bombas;
     QPixmap spriteDead;
     QPixmap typeDead;
     QTimer *timer;
