@@ -112,7 +112,7 @@ void MainWindow::lcdUpdate()
 {
     ui->lcdVidas->display(personaje->getLifes());
 }
-
+/*
 void MainWindow::removeBomb(Bomba *reBomba)
 {
     disconnect(reBomba, &Bomba::remove, this, &MainWindow::removeBomb);
@@ -131,13 +131,13 @@ void MainWindow::removeBomb(Bomba *reBomba)
         explotion->setPos(bloques[mPos[1]][mPos[0]]->pos());
         explotion->setBloque(bloques[mPos[1]][mPos[0]]);
         connect(explotion, &Explotion::remove, this, &MainWindow::removeExplotion);
-        connect(bloques[mPos[1]][mPos[0]], &Bloque::remove, this, &MainWindow::removeBlock);
+        connect(bloques[mPos[1]][mPos[0]], &Bloque::remove, this, &MainWindow::removeBlock); //esto lo hare dentro de la muerte de la bomba.
         explotion->start();
         escena->addItem(explotion);
     }
     for (Explotion *explotion : qAsConst(explotions)) {
         //explosiones->push_back(explotion);
-        connect(explotion, &Explotion::remove, this, &MainWindow::removeExplotion);
+        connect(explotion, &Explotion::remove, this, &MainWindow::removeExplotion); //innecesario
         connect(timer, &QTimer::timeout, explotion, &Explotion::collidingWithEnemy);
         connect(timer, &QTimer::timeout, explotion, &Explotion::collidingWithPlayer);
         explotion->setEnemigos(enemigos);
@@ -147,7 +147,7 @@ void MainWindow::removeBomb(Bomba *reBomba)
         escena->addItem(explotion);
     }
 }
-
+*/
 void MainWindow::removeBlock(Bloque *block)
 {
 

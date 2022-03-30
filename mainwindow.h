@@ -53,7 +53,6 @@ public:
 
 public slots:
     void removeExplotion(Explotion* explosion); //CACA
-    void removeBomb(Bomba *reBomba);//CACA
     void removeBlock(Bloque *block);//CACA
 
 private:

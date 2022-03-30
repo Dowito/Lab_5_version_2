@@ -13,6 +13,7 @@ Explotion::Explotion()
 Explotion::Explotion(QPointF pos, MainWindow *mainwindow)
 {
     this->mainwindow = mainwindow;
+    //matrizGame = mainwindow->getMatrizGame();
     personaje = mainwindow->getPersonaje();
     enemigos = mainwindow->getEnemigos();
     gameClock = mainwindow->getTimer();
@@ -26,24 +27,20 @@ Explotion::Explotion(QPointF pos, MainWindow *mainwindow)
     steps = 0;
     connect(gameClock, SIGNAL(timeout()), this, SLOT(die()));
     connect(gameClock, &QTimer::timeout, this, &Explotion::collidingWithEnemy);
+    connect(gameClock, &QTimer::timeout, this, &Explotion::collidingWithPlayer);
     escena->addItem(this);
 }
 
-void Explotion::start()
+int Explotion::mX()
 {
-    connect(&timer, SIGNAL(timeout()), this, SLOT(removeExplotion()));
-    connect(&timerAnimation, SIGNAL(timeout()), this, SLOT(animation()));
-    typeX = 0;
-    typeY = 1;
-    timer.start(DELAY_EXPLOCION);
-    timerAnimation.start((int)(DELAY_EXPLOCION/6));
+    int mX = (int)(x()/(size_sprites*sizeGame));
+    return mX;
 }
 
-void Explotion::removeExplotion()
+int Explotion::mY()
 {
-    disconnect(&timer, SIGNAL(timeout()), this, SLOT(removeExplotion()));
-    if(bloque != nullptr) bloque->destroy();
-    emit remove(this);
+    int mY = (int)(x()/(size_sprites*sizeGame));
+    return mY;
 }
 
 void Explotion::collidingWithEnemy()
@@ -68,28 +65,18 @@ void Explotion::collidingWithPlayer()
     }
 }
 
-void Explotion::setGameClock(QTimer *newGameClock)
-{
-    gameClock = newGameClock;
-}
-
 void Explotion::die()
 {
+    //Animacion
     if (steps >= 50) {
         disconnect(gameClock, SIGNAL(timeout()), this, SLOT(die()));
         escena->removeItem(this);
+        /*if(matrizGame[mY()][mX()] == 1){
+            matrizGame[mY()][mX()] = 9;
+            mainwindow->bloques[mY()][mX()]->setTypeFloor();
+        }*/
         delete this;
     }else steps++;
-}
-
-void Explotion::setBloque(Bloque *newBloque)
-{
-    bloque = newBloque;
-}
-
-void Explotion::setPersonaje(Personaje *newPersonaje)
-{
-    personaje = newPersonaje;
 }
 
 void Explotion::animation()
@@ -101,9 +88,4 @@ void Explotion::animation()
         typeX = 0;
         typeY = 0;
     }
-}
-
-void Explotion::setEnemigos(QList<Enemigo *> *newEnemigos)
-{
-    enemigos = newEnemigos;
 }

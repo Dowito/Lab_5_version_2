@@ -13,16 +13,11 @@ class Explotion : public Objeto
 public:
     Explotion();
     Explotion(QPointF pos, MainWindow *mainwindow);
-    void start();
-    void setEnemigos(QList<Enemigo *> *newEnemigos);
-    void setPersonaje(Personaje *newPersonaje);
-    void setBloque(Bloque *newBloque);
-
-    void setGameClock(QTimer *newGameClock);
+    int mX();
+    int mY();
 
 public slots:
     void animation();
-    void removeExplotion();
     void collidingWithEnemy();
     void collidingWithPlayer();
 
