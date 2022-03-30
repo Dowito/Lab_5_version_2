@@ -21,6 +21,7 @@ signals:
     void remove(Bomba *reBomba); //manda las coordenadas de la bomba a destruir
 
 private:
+    void generateExplotions();
     int steps;
     short pot;
     QTimer *timer;

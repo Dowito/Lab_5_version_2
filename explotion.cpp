@@ -10,17 +10,23 @@ Explotion::Explotion()
     setFrame(0,1);
 }
 
-Explotion::Explotion(MainWindow *mainwindow)
+Explotion::Explotion(QPointF pos, MainWindow *mainwindow)
 {
+    this->mainwindow = mainwindow;
+    personaje = mainwindow->getPersonaje();
+    enemigos = mainwindow->getEnemigos();
+    gameClock = mainwindow->getTimer();
+    escena = mainwindow->getEscena();
     sprite.load(":/images/Sprites/explosion.png");
     setSize(sizeGame);
     setFrame(0,1);
-}
-
-void Explotion::setExploteBlockSprite()
-{
-    sprite.load(":/images/Sprites/bloque_Explosion.png");
-    count = 0;
+    setPos(pos);
+    typeX = 0;
+    typeY = 1;
+    steps = 0;
+    connect(gameClock, SIGNAL(timeout()), this, SLOT(die()));
+    connect(gameClock, &QTimer::timeout, this, &Explotion::collidingWithEnemy);
+    escena->addItem(this);
 }
 
 void Explotion::start()
@@ -65,6 +71,15 @@ void Explotion::collidingWithPlayer()
 void Explotion::setGameClock(QTimer *newGameClock)
 {
     gameClock = newGameClock;
+}
+
+void Explotion::die()
+{
+    if (steps >= 50) {
+        disconnect(gameClock, SIGNAL(timeout()), this, SLOT(die()));
+        escena->removeItem(this);
+        delete this;
+    }else steps++;
 }
 
 void Explotion::setBloque(Bloque *newBloque)

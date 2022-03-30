@@ -32,9 +32,33 @@ int Bomba::mY()
     return mY;
 }
 
-void Bomba::removeBomb()
+void Bomba::generateExplotions()
 {
-
+    new Explotion(pos(), mainwindow);
+    for (short i = 1; i<=pot; i++) { //direccion 0
+        if (matrizGame[mY()+i][mX()] != 0) {
+            new Explotion({x(), y()+(i*size)}, mainwindow);
+            if (matrizGame[mY()+i][mX()] == 1 || matrizGame[mY()+i][mX()] == 2) break;
+        }else break;
+    }
+    for (short i = 1; i<=pot; i++) { //direccion 1
+        if (matrizGame[mY()][mX()-i] != 0) {
+            new Explotion({x()-(i*size), y()}, mainwindow);
+            if(matrizGame[mY()][mX()-i] == 1 || matrizGame[mY()][mX()-i] == 2) break;
+        }else break;
+    }
+    for (short i = 1; i<=pot; i++) { //direccion 2
+        if (matrizGame[mY()][mX()+i] != 0) {
+            new Explotion({x()+(i*size), y()}, mainwindow);
+            if(matrizGame[mY()][mX()+i] == 1 || matrizGame[mY()][mX()+i] == 2) break;
+        } else break;
+    }
+    for (short i = 1; i<=pot; i++) { //direccion 3
+        if (matrizGame[mY()-i][mX()] != 0) {
+            new Explotion({x(), y()-(i*size)}, mainwindow);
+            if(matrizGame[mY()-i][mX()] == 1 || matrizGame[mY()-i][mX()] == 2) break;
+        }else break;
+    }
 }
 
 void Bomba::explote()
@@ -50,9 +74,9 @@ void Bomba::explote2()
     if(steps >= ((int)(DElAY_BOMB/clockGame))){ //DElAY_BOMB/clockGame
         disconnect(timer, SIGNAL(timeout()), this, SLOT(explote()));
         mainwindow->setNumBombs(mainwindow->getNumBombs()-1);
-        Explotion *explotion;
-        explotion = new Explotion;
+        matrizGame[mY()][mX()] = 9;
         escena->removeItem(this);
+        generateExplotions();
         delete this;
     }else steps++;
 }

@@ -6,19 +6,17 @@ class MainWindow;
 class Personaje;
 class Bloque;
 class Enemigo;
+class QGraphicsScene;
 class Explotion : public Objeto
 {
     Q_OBJECT
 public:
     Explotion();
-    Explotion(MainWindow *mainwindow);
-    void setExploteBlockSprite();
+    Explotion(QPointF pos, MainWindow *mainwindow);
     void start();
     void setEnemigos(QList<Enemigo *> *newEnemigos);
     void setPersonaje(Personaje *newPersonaje);
-
     void setBloque(Bloque *newBloque);
-
 
     void setGameClock(QTimer *newGameClock);
 
@@ -32,7 +30,7 @@ signals:
     void remove(Explotion *explotion);
 
 private:
-    int count;
+    int steps;
     int typeX;
     int typeY;
     Bloque *bloque = nullptr;
@@ -41,6 +39,11 @@ private:
     QTimer timerAnimation;
     QTimer timer;
     QTimer *gameClock;
+    QGraphicsScene *escena;
+    MainWindow *mainwindow;
+
+private slots:
+    void die();
 };
 
 #endif // EXPLOTION_H

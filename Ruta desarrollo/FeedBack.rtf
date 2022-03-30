@@ -37,20 +37,48 @@ Esas se\'f1ales de cambio de estados (vidas, puntaje, estado vivo o muerto, etc)
 \highlight1 Veo que lo ideal es crear funciones en el main windows que actualizen los distintos elementos de la interfaz, y luego pasar un apuntador al mainwindow y cambiar esos elemento desde las clases usando dichas funciones.\par
 \highlight3 La idea de hacer que cada constructor reciba un apuntador al MainWindows(this), y que cada atributo se actualize usando getters del mainwindow es de las mejores cosas que se me han ocurrido.\par
 \highlight4 Putbomb que todo el proceso de poner la bomba se haga internamente. Desde mirar si puede ponerla, hasta crearla la bomba, inicializarla con todos los parametros que necesite y ponerla y hacer las conecciones.\par
-\highlight0 Despues la Bomba cuando termine de contar su contador interno, tenga una funcion que hace que se elimine asi misma, que seria explotar(); y desde ahi la bomba tiene que ser capaz de eliminarse asi misma, y crear las distintas explosiones, con la informacion y todo loq ue encesiten para comenzar e interactuar.\par
+\highlight0 Primero es mirar si se puede poner la bomba, esto lo meto dentro de otra funcion privada.\par
+Despues la Bomba cuando termine de contar su contador interno, tenga una funcion que hace que se elimine asi misma, que seria explotar(); y desde ahi la bomba tiene que ser capaz de eliminarse asi misma, y crear las distintas explosiones, con la informacion y todo loq ue encesiten para comenzar e interactuar.\par
 Con respecto a la colision con un enemig, morir y actualizar la tabla, lo mejor seria que al momento de morir, en vez de llamar una se\'f1al, es mejor hacer todo dentro de la misma funcion, actualizar las vidas del jugador, del lcd y luego activar la animacion de muerte.\par
 
 \pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li360\sa200\sl276\slmult1\b Bomba:\b0\par
 
 \pard\li720\sa200\sl276\slmult1 El personajes pondra una bomba: 1.mira si la puede poner, 2.calcula las coordenadas. 3.se crea una bomba llamando el constructor tendra todo el proceso de ponerla, por ende, el constructor le entraran las coordenadas de la bomba, y el main que tiene todo lo necesario para ponerla. Solo se conectara el timer con explote.\par
+Primero, usay el mismo reloj del juego para que explote la bomba y conectarlo con la funcion que explota y controlar el tiempo que se demora en explotar con un contador interno.\par
+Despues de que se cuenta el contador, se desconecte dicho proceso, y empiza la explosion. Esto incluye que desde ahi dentro la bomba sea capaz de destruir los bloques, de poner todas las explosiones y de removerse y eliminarce asi misma. Todo dentro de la funcion explote.\par
+Habrian que calcular las explosiones, y los bloques a destruir, y las bombas a explotar. e ir agregando una explosion a una, asi me evito usar contenedores.\par
 
 \pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li360\sa200\sl276\slmult1\b Explosion:\b0\par
 
 \pard\li720\sa200\sl276\slmult1 Despues de que la bomba explote, esta va creando las explosiones, primero se calcula posicion de la explosion, luego se llama el constructor que recibe el mainwindows y la pos de la bomba como parametros, y ahi dentro se inicia como se debe de iniciar hasta poniendoce en la escena e iniciando su coneccion con desaparecer.\par
 Para cada direccion, se recorre un ciclo for hasta la pot de la bomba, si encuentra un 0 para el ciclo, si encuentra un 9 se pone la explosion y sigue, si encuentra un 1 o un 2 la explosion se pone y para el ciclo.\par
-\par
+mientras se vayan calculando las posiciones, se haran el respectiva destruccion de los bloques.\par
 
-\pard\li720\sa200\sl276\slmult1  \par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl276\slmult1 explotion = new Explotion;\par
+{\pntext\f1\'B7\tab}explotion->setPos(x(), y()+(i*size));\par
+{\pntext\f1\'B7\tab}explotions.push_back(explotion);\par
+{\pntext\f1\'B7\tab}connect(explotion, &Explotion::remove, this, &MainWindow::removeExplotion);\par
+{\pntext\f1\'B7\tab}connect(timer, &QTimer::timeout, explotion, &Explotion::collidingWithEnemy);\par
+{\pntext\f1\'B7\tab}connect(timer, &QTimer::timeout, explotion, &Explotion::collidingWithPlayer);\par
+{\pntext\f1\'B7\tab}explotion->setEnemigos(enemigos);\par
+{\pntext\f1\'B7\tab}explotion->setPersonaje(personaje);\par
+{\pntext\f1\'B7\tab}explotion->setGameClock(timer);\par
+{\pntext\f1\'B7\tab}explotion->start();\par
+{\pntext\f1\'B7\tab}escena->addItem(explotion);\par
+
+\pard\li1080\sa200\sl276\slmult1 un gran error es destruir los bloques por fuera, asi que cada vez que se calcule que la explosion e pondra encima de un bloque destruible, de una vez activar su delay para que se destruya y que se destruya el mismo.\par
+Tambien que solo conecte ocn un unico timer y que tenga un contador que controle el delay.\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li360\sa200\sl276\slmult1\b Enemigo:\b0\par
+
+\pard\li720\sa200\sl276\slmult1 El constructo debe de generar el enemigo, eso inclulye generar sus posiciones aleatorias, ponerlo en escena, y definir su tipo y pasarle toda la informacion enccesaria para que este pueda funcionar bien.\par
+Divir la generacion de posiciona leatoria en un problema aparte y que usar la funcion dentro del mismo constructor.\par
+Con respecto a las conecciones.\par
+Se conecta una se\'f1al, que cuando el estado del enemigo cambia, se inicia su muerte, y otra que cuando termina toda la animacion de muerte, se activa el remove.\par
+La idea e shacer todo esto dentro de la misma clase que se encarga de interactuar y eliminarla.\par
+Asi si muere por culpa de la explosion, dentro de la misma explosion, se cambiara el estado del enemigo,  se iniciara su animacion de muerte, y dentro de la misma animacion de muerte del enemigo se eliminara de la escena. \par
+\par
+ \par
 
 \pard\li1080\sa200\sl276\slmult1     \par
 
