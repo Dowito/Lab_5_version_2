@@ -40,8 +40,10 @@ void Personaje::putBomb()
         setPos(bomba->pos());
         matrizGame[bomba->mY()][bomba->mX()] = 2;
         bombas.push_back(bomba);
+        //
         connect(bomba, &Bomba::remove, mainwindow, &MainWindow::removeBomb);
         bomba->startBomb();
+        //
         escena->addItem(bomba);
         mainwindow->setNumBombas(mainwindow->getNumBombas()+1);
     }else delete bomba;

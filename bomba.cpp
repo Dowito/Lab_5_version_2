@@ -1,5 +1,5 @@
 #include "bomba.h"
-
+#include <mainwindow.h>
 Bomba::Bomba()
 {
     sprite.load(":/images/Sprites/bomba.png");
@@ -7,6 +7,25 @@ Bomba::Bomba()
     setFrame(1);
     delay = DELAY;
     pot = POT;
+}
+
+Bomba::Bomba(QPointF pos, MainWindow *mainwindow)
+{
+    this->mainwindow = mainwindow;
+    matrizGame = mainwindow->getMatrizGame();
+    //bombas = mainwindow->getBombas();
+    timer = mainwindow->getTimer();
+    sprite.load(":/images/Sprites/bomba.png");
+    setSize(sizeGame);
+    setFrame(1);
+    delay = DELAY;
+    pot = POT;
+    setPos(pos);
+    matrizGame[mY()][mX()] = 2;
+    connect(this, &Bomba::remove, mainwindow, &MainWindow::removeBomb);
+    startBomb();
+    mainwindow->setNumBombas(mainwindow->getNumBombas()+1);
+    mainwindow->getEscena()->addItem(this);
 }
 
 void Bomba::explote(QVector<Explotion *> &explotions, QVector<QVector<int> > &mBlocks, QVector<QVector<int> > &mBombs)
@@ -86,13 +105,13 @@ int Bomba::mY()
 
 void Bomba::startExplotion()
 {
-    disconnect(&timer, &QTimer::timeout, this, &Bomba::startExplotion);
-    timer.stop();
+    disconnect(&bombTimer, &QTimer::timeout, this, &Bomba::startExplotion);
+    bombTimer.stop();
     emit remove(this);
 }
 
 void Bomba::startBomb()
 {
-    connect(&timer, &QTimer::timeout, this, &Bomba::startExplotion);
-    timer.start(delay);
+    connect(&bombTimer, &QTimer::timeout, this, &Bomba::startExplotion);
+    bombTimer.start(delay);
 }
