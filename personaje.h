@@ -43,10 +43,11 @@ public:
     void setLifes(int newLifes);
 
 public slots:
-    bool tryBomb(Bomba *bomba);
     void deadAnimation();
 
 private:
+    bool tryBomb(Bomba *bomba);
+    void tryBomb();
     short frame = 0;
     short count = SPEED_DEAD;
     int lifes;
