@@ -9,7 +9,7 @@ class Objeto : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    Objeto();
+    Objeto() {};
 
     void setSize(unsigned short size);
     unsigned short getSize() const;

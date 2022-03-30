@@ -24,12 +24,6 @@ Enemigo::Enemigo(MainWindow *mainwindow)
     escena->addItem(this);
 }
 
-void Enemigo::prepare2Die()
-{
-    count = SPEED_DEAD_ENEMY;
-    frame = 0;
-}
-
 void Enemigo::moveEnemy()
 {
     if(state){
@@ -69,13 +63,22 @@ void Enemigo::moveAnimation()
     else count++;
 }
 
+void Enemigo::die()
+{
+    enemigos->removeOne(this);
+    count = SPEED_DEAD_ENEMY;
+    frame = 0;
+    state = false;
+    connect(timer, &QTimer::timeout, this, &Enemigo::deadAnimation);
+}
+
 void Enemigo::deadAnimation()
 {
 
-    if (count == SPEED_DEAD_ENEMY) {
+    if (count >= SPEED_DEAD_ENEMY) {
         if(frame == 3) {
             disconnect(timer, &QTimer::timeout, this, &Enemigo::deadAnimation);//disconnect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation()));
-            enemigos->removeOne(this);
+            //enemigos->removeOne(this);
             escena->removeItem(this);
             delete this;
             return;
@@ -92,10 +95,7 @@ void Enemigo::collidingWithPlayer()
 {
     if(state && personaje->getState()){ //si el personaje esta vivo
         if (collidesWithItem(personaje)) {
-            personaje->setState(false);
-            personaje->setLifes(personaje->getLifes()-1);
-            mainwindow->lcdUpdate();
-            connect(timer, SIGNAL(timeout()), personaje, SLOT(deadAnimation()));
+            personaje->die();
         }
     }
 }

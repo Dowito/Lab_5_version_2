@@ -28,6 +28,7 @@ public:
     void putBomb();
     void moveAnimation(short direction);
     void setTypeDead(int typeX = 0, int typeY = 0);
+    void die(); //condiciones iniciales para ahcer la animacion de muerte
 
     short getBombs() const;
     void setBombs(short newBombs);

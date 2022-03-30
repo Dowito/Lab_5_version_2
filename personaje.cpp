@@ -24,13 +24,6 @@ Personaje::Personaje(MainWindow *mainwindow)
     escena->addItem(this);
 }
 
-void Personaje::setTypeDead(int typeX, int typeY)
-{
-    typeDead = spriteDead.copy(typeX*size_sprites, typeY*size_sprites, size_sprites, size_sprites)
-            .scaled(size, size);
-    setPixmap(typeDead);
-}
-
 void Personaje::putBomb()
 {
     QPointF pos;
@@ -92,31 +85,26 @@ bool Personaje::tryBomb(QPointF &pos)
     return false;
 }
 
-short Personaje::getBombs() const
+void Personaje::setTypeDead(int typeX, int typeY)
 {
-    return bombs;
+    typeDead = spriteDead.copy(typeX*size_sprites, typeY*size_sprites, size_sprites, size_sprites)
+            .scaled(size, size);
+    setPixmap(typeDead);
 }
 
-void Personaje::setBombs(short newBombs)
+void Personaje::die()
 {
-    bombs = newBombs;
-}
-
-bool Personaje::getState() const
-{
-    return state;
-}
-
-void Personaje::setState(bool newState)
-{
-    if (state == newState)
-        return;
-    state = newState;
+    count = SPEED_DEAD;
+    frame = 0;
+    state = false;
+    lifes -= 1;
+    mainwindow->lcdUpdate();
+    connect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation()));
 }
 
 void Personaje::deadAnimation() //se daña a la segunda muerte
 {
-    if (count == SPEED_DEAD) {
+    if (count >= SPEED_DEAD) {
         if(frame == 3) {
             disconnect(timer, SIGNAL(timeout()), this, SLOT(deadAnimation()));
             frame = 0;
@@ -131,18 +119,6 @@ void Personaje::deadAnimation() //se daña a la segunda muerte
             frame+=1;
         }
     }else count++;
-}
-
-int Personaje::getLifes() const
-{
-    return lifes;
-}
-
-void Personaje::setLifes(int newLifes)
-{
-    if (lifes == newLifes)
-        return;
-    lifes = newLifes;
 }
 
 void Personaje::moveAnimation(short direction)
@@ -173,4 +149,38 @@ void Personaje::setImmuneExplotions(bool newImmuneExplotions)
 bool Personaje::getImmuneExplotions() const
 {
     return immuneExplotions;
+}
+
+short Personaje::getBombs() const
+{
+    return bombs;
+}
+
+void Personaje::setBombs(short newBombs)
+{
+    bombs = newBombs;
+}
+
+bool Personaje::getState() const
+{
+    return state;
+}
+
+void Personaje::setState(bool newState)
+{
+    if (state == newState)
+        return;
+    state = newState;
+}
+
+int Personaje::getLifes() const
+{
+    return lifes;
+}
+
+void Personaje::setLifes(int newLifes)
+{
+    if (lifes == newLifes)
+        return;
+    lifes = newLifes;
 }

@@ -1,10 +1,4 @@
 #include "objeto.h"
-
-Objeto::Objeto()
-{
-
-}
-
 void Objeto::setSize(unsigned short size)
 {
     this->size = size_sprites*size;

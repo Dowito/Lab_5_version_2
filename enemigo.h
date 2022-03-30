@@ -18,7 +18,7 @@ class Enemigo : public Objeto
 public:
     Enemigo() {};
     Enemigo(MainWindow *mainwindow);
-    void prepare2Die();
+    void die();
     void setTypeDead(int typeX = 0, int typeY = 0);
     QTimer *getTimer() const;
     void setTimer(QTimer *newTimer);

@@ -69,9 +69,7 @@ void Explotion::collidingWithEnemy()
 {
     for (auto enemy : *enemigos) {
         if (collidesWithItem(enemy)) {
-            enemy->setState(false);
-            enemy->prepare2Die();
-            connect(timer, &QTimer::timeout, enemy, &Enemigo::deadAnimation);
+            enemy->die();
             break;
         }
     }
@@ -79,9 +77,9 @@ void Explotion::collidingWithEnemy()
 
 void Explotion::collidingWithPlayer()
 {
-    if(!personaje->getImmuneExplotions()) {
+    if(!personaje->getImmuneExplotions() && personaje->getState()) {
         if(collidesWithItem(personaje)){
-            personaje->setState(false); //Con la escena, simplmente lo eliminaria aqui mismo sin encesidad de señales.
+            personaje->die();
         }
     }
 }

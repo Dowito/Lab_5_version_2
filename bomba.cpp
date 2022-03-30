@@ -33,7 +33,7 @@ int Bomba::mY()
 
 void Bomba::explote()
 {
-    if(steps >= ((int)(DElAY_BOMB/clockGame))){ //DElAY_BOMB/clockGame
+    if(steps >= ((int)(STEPS_BOMB))){
         disconnect(timer, SIGNAL(timeout()), this, SLOT(explote()));
         mainwindow->setNumBombs(mainwindow->getNumBombs()-1);
         matrizGame[mY()][mX()] = 9;

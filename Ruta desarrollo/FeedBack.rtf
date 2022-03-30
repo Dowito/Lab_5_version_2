@@ -78,6 +78,13 @@ Se conecta una se\'f1al, que cuando el estado del enemigo cambia, se inicia su m
 La idea e shacer todo esto dentro de la misma clase que se encarga de interactuar y eliminarla.\par
 Asi si muere por culpa de la explosion, dentro de la misma explosion, se cambiara el estado del enemigo,  se iniciara su animacion de muerte, y dentro de la misma animacion de muerte del enemigo se eliminara de la escena. \par
 \par
+
+\pard\sa200\sl276\slmult1\b Mas Problemas de dise\'f1o:\par
+\b0 Un problema con las animaciones. La idea es hacer que dentro de cada clase que interactua y elimina otra calse, se haga todo el proceso dentro de dicha clase. Si el enemigo muere por culpa de una explosion, que dentro de la explosion, en la misma funcion de colision, se haga todo el proceso de eliminar al personaje dentro de la misma explosion, que cambie el estado, que conecte la animacion de muerte y dentro de la misma se quite de la escena.\par
+Lo que se me ocurre es hacer una unica funcion dentro de cada clase que se encargue de ese proceso, asi solo tendria que escribir un unico codigo, el cual se llamara en el momento de eliminar dentro de la clase con la que interactuo o lo mato.\par
+Dentro de la clase personaje habra un funcion que sea morir, que actualize su estado, hga la animacion y lo ponga de nuevo en el origen cambiando su  estado a vido, y esta se llamara dentro del enemigo que colisione y dentro de la explosion.\par
+
+\pard\li720\sa200\sl276\slmult1\par
  \par
 
 \pard\li1080\sa200\sl276\slmult1     \par
