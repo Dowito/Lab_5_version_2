@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     timer = new QTimer;
     contenedores = new Contenedores(this);
     ui->setupUi(this);
-    setGeometry(0,0,48*sizeMapX*sizeGame,48*sizeMapY*sizeGame+2*48);
+    setGeometry(0,0,size_sprites*sizeMapX*sizeGame,size_sprites*sizeMapY*sizeGame+2*48);
     ui->graphicsView->setGeometry(0,0,width(),height()-2*48);
     ui->VIDAS->setGeometry(1*size_sprites*sizeGame,((sizeMapY)*size_sprites*sizeGame)+(size_sprites*sizeGame)/2,size_sprites*sizeGame,size_sprites*sizeGame);
     ui->lcdVidas->setGeometry(2*size_sprites*sizeGame,((sizeMapY)*size_sprites*sizeGame)+(size_sprites*sizeGame)/2,size_sprites*sizeGame,size_sprites*sizeGame);
@@ -156,3 +156,23 @@ void MainWindow::setPersonaje(Personaje *newPersonaje)
 {
     personaje = newPersonaje;
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    ui->graphicsView->scale(1.1,1.1);
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    ui->graphicsView->scale(0.9,0.9);
+}
+
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    static int count = 0;
+    count++;
+    escena->setSceneRect(personaje->x()-10,0,50,50);
+}
+
