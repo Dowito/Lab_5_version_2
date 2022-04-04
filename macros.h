@@ -1,8 +1,8 @@
 #ifndef MACROS_H
 #define MACROS_H
 
-#define sizeMapX 21 //Solo numeros impares   Hay algunos numeros con los que no funciona poner bomba como con 31
-#define sizeMapY 15 //Solo numeros impares
+#define sizeMapX 45 //Solo numeros impares   Hay algunos numeros con los que no funciona poner bomba como con 31
+#define sizeMapY 17 //Solo numeros impares
 #define size_sprites 48 //Default 48  ->/No funciona con otro numero
 #define sizeGame 1 //No funciona bien
 #define dificult 0.0
@@ -17,7 +17,7 @@
 #define LIFES 3
 
 //Enemigo
-#define MAX_ENEMIES 10000
+#define MAX_ENEMIES 10
 #define SPEED_DEAD_ENEMY 10 //default
 #define SPEED_MOVE_ANIMATION 6 //velocidad en que cambian los frames en la animacion de muerte, 16 significa que cuenta 16 veces el clockGames antes de pasar al siguiente frame
 #define IFMOVE false  //Para iniciar un juego con los enemigos moviendoce o quietos.
