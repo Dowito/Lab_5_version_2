@@ -7,6 +7,7 @@
 #include <explotion.h>
 #include <QTimer>
 #include <QKeyEvent>
+#include <QtDebug>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -16,8 +17,10 @@ MainWindow::MainWindow(QWidget *parent)
     timer = new QTimer;
     contenedores = new Contenedores(this);
     ui->setupUi(this);
-    setGeometry(0,0,size_sprites*sizeMapX*sizeGame,size_sprites*sizeMapY*sizeGame+2*48);
+    setGeometry(0,0,size_sprites*sizeMapY*sizeGame,size_sprites*sizeMapY*sizeGame+2*48);
     ui->graphicsView->setGeometry(0,0,width(),height()-2*48);
+    //ui->graphicsView->horizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    //ui->graphicsView->verticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->VIDAS->setGeometry(1*size_sprites*sizeGame,((sizeMapY)*size_sprites*sizeGame)+(size_sprites*sizeGame)/2,size_sprites*sizeGame,size_sprites*sizeGame);
     ui->lcdVidas->setGeometry(2*size_sprites*sizeGame,((sizeMapY)*size_sprites*sizeGame)+(size_sprites*sizeGame)/2,size_sprites*sizeGame,size_sprites*sizeGame);
     escena->setSceneRect(0,0,ui->graphicsView->width()-2,ui->graphicsView->height()-2);
@@ -61,7 +64,12 @@ void MainWindow::keyPressEvent(QKeyEvent *i)
                 personaje->putBomb();
             }
         }
-        else return;
+        if(ui->graphicsView->mapFromScene(personaje->pos()).x() > ui->graphicsView->height()/2 && personaje->x() < 1872) escena->setSceneRect(escena->sceneRect().x()+personaje->getVel(),0,escena->sceneRect().width(),escena->sceneRect().height());
+        if(ui->graphicsView->mapFromScene(personaje->pos()).x() < ui->graphicsView->height()/2 && personaje->x() > ui->graphicsView->height()/2) escena->setSceneRect(escena->sceneRect().x()-personaje->getVel(),0,escena->sceneRect().width(),escena->sceneRect().height());
+        qDebug() << ui->graphicsView->mapFromScene(personaje->pos()).x();
+        qDebug() << ui->graphicsView->height()/2;
+        qDebug() << "Coordendas en Scene: " << personaje->pos();
+        qDebug() << "Coordendas en GV: " << ui->graphicsView->mapFromScene(personaje->pos());
     }
 }
 
@@ -171,8 +179,21 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    static int count = 0;
-    count++;
-    escena->setSceneRect(personaje->x()-10,0,50,50);
+    escena->setSceneRect(escena->sceneRect().x()-personaje->getSize(),0,escena->sceneRect().width(),escena->sceneRect().height()); //escena->sceneRect().width(),escena->sceneRect().height()
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    escena->setSceneRect(escena->sceneRect().x()+personaje->getSize(),0,escena->sceneRect().width(),escena->sceneRect().height());
+}
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    ui->graphicsView->rotate(180);
+}
+
+void MainWindow::on_pushButton_8_clicked()
+{
+    personaje->setRotation(personaje->rotation()+180);
 }
 

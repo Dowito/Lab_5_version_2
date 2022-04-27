@@ -3,6 +3,13 @@
 #include <explotion.h>
 #include <QTimer>
 #include <QGraphicsScene>
+Bomba::Bomba()
+{
+    sprite.load(":/images/Sprites/bomba.png");
+    setSize(sizeGame);
+    setFrame(1);
+}
+
 Bomba::Bomba(QPointF pos, MainWindow *mainwindow)
 {
     mainwindow->bombas.push_back(this);

@@ -6,6 +6,7 @@ class Bomba : public Objeto
 {
     Q_OBJECT
 public:
+    Bomba();
     Bomba(QPointF pos, MainWindow *mainwindow);
     int mX();
     int mY();
